@@ -81,3 +81,5 @@ Check out all the cool people working on this project!
 * [Travis Bennett](https://github.com/one2code)
 * [Jenna Cox](https://github.com/Jenna59)
 * [Dale Orders](https://github.com/DaleOrders)
+
+<p align="left">(<a href="#readme-top">back to top</a>)</p>
