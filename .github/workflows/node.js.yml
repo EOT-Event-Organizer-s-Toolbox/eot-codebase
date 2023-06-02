@@ -26,14 +26,14 @@ jobs:
         run: npm ci
       - name: Run backend build
         working-directory: ./server
-        run: npm build
+        run: npm run build
       - name: Run backend tests
         working-directory: ./server
-        run: npm build
+        run: npm run test
       - name: Install frontend dependencies
         working-directory: ./web
         run: npm ci
       - name: Run frontend start
         working-directory: ./web
-        run: npm build
+        run: npm run build
 
