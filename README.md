@@ -53,8 +53,15 @@ To run a local copy of this project, follow the steps below
     ```sh
     git clone https://github.com/EOT-Event-Organizer-s-Toolbox/eot-codebase.git
     ```
-* Install NPM packages
+* Navigate to the web folder and install NPM packages
     ```sh
+    cd web
+    npm install
+    ```
+* Navigate to the server folder and install NPM packages
+    ```sh
+    cd ..
+    cd server
     npm install
     ```
 
