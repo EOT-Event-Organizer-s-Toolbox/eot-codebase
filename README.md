@@ -4,7 +4,7 @@
 
 * [Overview](#overview)
 * [Getting Started](#getting-started)
-  * [Dependencies](#dependencies)
+  * [Technologies Used](#technologies-used)
   * [Installing](#installing)
 * [Authors](#authors)
   * [Lead Developers](#lead-developers)
@@ -34,12 +34,13 @@ Some of the planned features are:
 
 ## Getting Started
 
-### Dependencies
+### Technologies Used
 
 * Reactjs
 * TypeScript
 * Nestjs
 * Prisma
+* Postgres
 
 ### Installing
 
