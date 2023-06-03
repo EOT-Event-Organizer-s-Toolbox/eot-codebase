@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --check src/**/*.css src/**/*.tsx"
   },
   "dependencies": {
     "dotenv": "^16.1.3",

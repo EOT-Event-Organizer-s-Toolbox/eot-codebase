@@ -27,7 +27,7 @@ jobs:
       - name: Run backend build
         working-directory: ./server
         run: npm run build
-      - name: Run backend prettier tests
+      - name: Run backend prettier checks
         working-directory: ./server
         run: npm run format
       - name: Run backend tests
@@ -39,7 +39,7 @@ jobs:
       - name: Run frontend start
         working-directory: ./web
         run: npm run build
-      - name: Run frontend prettier tests
+      - name: Run frontend prettier checks
         working-directory: ./web
         run: npm run format
 
