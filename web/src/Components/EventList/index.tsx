@@ -2,7 +2,7 @@ import EventListSingle from './EventListSingle';
 import { EventType } from '../../types';
 
 interface Props {
-  eventList: EventType[];
+  eventList: EventType[] | undefined;
 }
 
 const EventList = ({ eventList }: Props) => {

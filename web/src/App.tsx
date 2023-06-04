@@ -6,7 +6,7 @@ import eventService from './Services/eventService';
 import EventList from './Components/EventList';
 
 function App() {
-  const [eventList, setEventsList] = useState<EventType[]>([]);
+  const [eventList, setEventsList] = useState<EventType[] | undefined>([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
