@@ -1,12 +1,12 @@
 import { EventType } from '../../types';
 
 interface Props {
-  eventList: EventType[] | undefined;
+  event: EventType | undefined;
 }
 
-const EventListSingle = ({ eventList }: Props) => {
-  console.log('SINGLE', eventList);
-  return <div className="placeholder">EventListPage</div>;
+const EventListSingle = ({ event }: Props) => {
+  console.log('SINGLE', event);
+  return <div className="placeholder">{event?.eventName}</div>;
 };
 
 export default EventListSingle;
