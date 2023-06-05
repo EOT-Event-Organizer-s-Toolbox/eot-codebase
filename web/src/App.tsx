@@ -15,6 +15,7 @@ function App() {
     };
     fetchEvents();
   }, []);
+
   return (
     <main>
       <h1>Event Organizer's Toolbox</h1>
