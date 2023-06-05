@@ -6,22 +6,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function main() {
-  await buildWeb();
-  await buildServer();
+  await installWeb();
+  await installServer();
 }
 
-async function buildWeb() {
+async function installWeb() {
   await run(
     "npm",
-    ["run", "build"],
+    ["ci"],
     { cwd: path.resolve(__dirname, "../web") },
   );
 }
 
-async function buildServer() {
+async function installServer() {
   await run(
     "npm",
-    ["run", "build"],
+    ["ci"],
     { cwd: path.resolve(__dirname, "../server") },
   );
 }
