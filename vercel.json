@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "node scripts/vercel-install.mjs",
+  "buildCommand": "node scripts/vercel-build.mjs",
+  "outputDirectory": "web/dist",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/server/dist"
+    }
+  ]
+}
