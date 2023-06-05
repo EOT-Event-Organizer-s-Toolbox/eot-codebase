@@ -16,5 +16,4 @@ const EventList = ({ eventList }: Props) => {
     </div>
   );
 };
-
 export default EventList;
