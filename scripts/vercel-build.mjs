@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { run } from "./run.mjs";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -36,39 +36,4 @@ async function buildServer() {
   );
 }
 
-/**
- * @typedef {{ cwd: string }} RunOptions
- * @param {string} command
- * @param {string[]} args
- * @param {RunOptions} options
- */
-async function run(
-  command,
-  args,
-  options,
-) {
-  return new Promise((resolve, reject) => {
-    const childProcess = spawn(
-      command,
-      args,
-      {
-        detached: true,
-        stdio: "inherit",
-        cwd: options.cwd,
-      },
-    );
-
-    childProcess.on("close", (code) => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(code);
-      }
-    });
-
-    childProcess.on("error", (err) => reject(err));
-  });
-}
-
 main();
-
