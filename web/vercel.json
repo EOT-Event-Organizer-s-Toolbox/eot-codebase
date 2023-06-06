@@ -1,4 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "vite"
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://event-organizers-toolbox.fly.dev/api/:match*"
+    }
+  ]
 }
