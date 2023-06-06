@@ -15,11 +15,6 @@ export type EventType = {
   active: boolean;
 };
 
-export type Note = {
-  id: number;
-  text: string;
-};
-
 export type CommunityEvent = {
   id: number;
   eventType: EventType;
@@ -37,10 +32,9 @@ export type CommunityEvent = {
   eventSignupSent: boolean;
   numVolunteersNeeded: number;
   volunteerSignupSent: boolean;
-  notes?: Note[];
 };
 
-// Omits for
+// Omits public view of data
 export type NonSensitiveCommunityEvent = Omit<
   CommunityEvent,
   | 'eventIdeaConfirmed'
@@ -54,6 +48,6 @@ export type NonSensitiveCommunityEvent = Omit<
 >;
 
 // Omits for creating new entries
-export type NewPerson = Omit<User, 'id'>;
-export type NewNote = Omit<Note, 'id'>;
-export type NewEventType = Omit<Event, 'id'>;
+export type NewUser = Omit<User, 'id'>;
+export type NewEventType = Omit<EventType, 'id'>;
+export type NewCommunityEvent = Omit<CommunityEvent, 'id'>;
