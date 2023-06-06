@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  # For testing
+  pull_request:
+    branches: [main]
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.16.0"
+          cache: "npm"
+      - name: Use Fly.io
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy to Fly.io
+        run: flyctl deploy --remote-only
+        working-directory: ./server
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel environment information
+        run: vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+        working-directory: ./web
+      - name: Build Vercel artifacts
+        run: vercel build --token=$VERCEL_TOKEN
+        working-directory: ./web
+      - name: Deploy to Vercel
+        run: vercel deploy --prebuilt --token=$VERCEL_TOKEN
+        working-directory: ./web
