@@ -1,8 +1,8 @@
 import EventListSingle from './EventListSingle';
-import { EventType } from '../../types';
+import { CommunityEvent } from '../../types';
 
 interface Props {
-  eventList: EventType[] | undefined;
+  eventList: CommunityEvent[] | undefined;
 }
 
 const EventList = ({ eventList }: Props) => {

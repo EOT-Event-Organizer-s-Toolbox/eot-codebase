@@ -4,6 +4,15 @@ export type User = {
   lastName: string;
   phoneNumber: string;
   email: string;
+  role: string;
+  eventRegistrationComplete: boolean;
+};
+
+export type EventType = {
+  id: number;
+  type: string;
+  description: string;
+  active: boolean;
 };
 
 export type Note = {
@@ -11,23 +20,40 @@ export type Note = {
   text: string;
 };
 
-export type EventType = {
+export type CommunityEvent = {
   id: number;
-  eventName: string;
-  date: string;
-  location: string;
-  eventType: string;
-  locationConfirmation: boolean;
-  postedConfirmation: boolean;
-  googleFormSent: boolean;
-  organizers: User[];
-  venueContactName: string;
-  venueContactEmail: string;
-  venueContactPhone: string;
+  eventType: EventType;
+  eventIdeaConfirmed: boolean;
+  eventOrganizer: string;
+  eventDate: string;
+  inPerson: boolean;
+  online: boolean;
+  eventNotes: string;
+  eventVenue: string;
+  venueContactName: string | null;
+  venueContactPhone: string | null;
+  venueContactEmail: string | null;
+  eventAnnounced: boolean;
+  eventSignupSent: boolean;
+  numVolunteersNeeded: number;
+  volunteerSignupSent: boolean;
   notes: Note[];
 };
 
-// Omits for creating new fields
+// Omits for
+export type NonSensitiveCommunityEvent = Omit<
+  CommunityEvent,
+  | 'eventIdeaConfirmed'
+  | 'venueContactName'
+  | 'venueContactPhone'
+  | 'venueContactEmail'
+  | 'eventAnnounced'
+  | 'eventSignupSent'
+  | 'numVolunteersNeeded'
+  | 'volunteerSignupSent'
+>;
+
+// Omits for creating new entries
 export type NewPerson = Omit<User, 'id'>;
 export type NewNote = Omit<Note, 'id'>;
 export type NewEventType = Omit<Event, 'id'>;

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { EventType } from './types';
+import { CommunityEvent } from './types';
 
 import './App.css';
 import eventService from './Services/eventService';
 import EventList from './Components/EventList';
 
 function App() {
-  const [eventList, setEventsList] = useState<EventType[] | undefined>([]);
+  const [eventList, setEventsList] = useState<CommunityEvent[] | undefined>([]);
 
   useEffect(() => {
     const fetchEvents = async () => {

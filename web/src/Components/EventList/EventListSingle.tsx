@@ -1,9 +1,9 @@
-import { EventType } from '../../types';
-import { formatDateWritten } from '../../utils/date';
-import { getDayOfWeek } from '../../utils/date';
+import { CommunityEvent } from '../../types';
+//import { formatDateWritten } from '../../utils/date';
+//import { getDayOfWeek } from '../../utils/date';
 
 interface Props {
-  event: EventType | undefined;
+  event: CommunityEvent | undefined;
 }
 
 const EventListSingle = ({ event }: Props) => {
@@ -16,12 +16,12 @@ const EventListSingle = ({ event }: Props) => {
   return (
     <section className="event">
       <h3 className="event--detail-section">
-        <span className="event--name">{event.eventName}</span>
+        <span className="event--name"></span>
         <span className="event--name-separator">-</span>
-        <span className="event--day">{`${getDayOfWeek(event.date)},`}</span>
-        <span className="event--date">{formatDateWritten(event.date)}</span>
+        <span className="event--day"></span>
+        <span className="event--date"></span>
       </h3>
-      <p className="event--location">{event.location}</p>
+      <p className="event--location"></p>
       <div className="event--confirmations-container"></div>
     </section>
   );
