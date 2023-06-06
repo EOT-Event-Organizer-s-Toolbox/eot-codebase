@@ -19,13 +19,24 @@
 					"post": {
 						"summary": "Saves a newly created event to the db",
 						"description": " ",
+						"request": {
+							"url": "endpoint for event form. e.g: url to the page w/the form",
+							"requestBody": {
+        				"required": true,
+        				"content": "multipart/formdata"
+							}
+						},
 						"responses": {
 							"201 or 200": {
 								"description": "A JSON array of event details",
 								"content": {
 									"application/json": {
 										"id": 1002,
-										"eventTypeId": 4,
+										"eventType": { 
+											"type": "JS Social", 
+											"description": "Social networking opportunity for the TJS community.", 
+											"active": true 
+										},
 										"eventIdeaConfirmed": true,
 										"eventOrganizer": "Phyliss Vance",
 										"eventDate": "2012-04-23T18:25:43.511Z",
@@ -156,28 +167,8 @@
 						"summary": "Deletes old or cancelled events",
 						"description": " ",
 						"responses": {
-							"404 ?": {
-								"description": "Event is deleted from db and cannot be found on FE",
-								"content": {
-									"application/json": {
-										"id": 1002,
-										"eventTypeId": 4,
-										"eventIdeaConfirmed": true,
-										"eventOrganizer": "Angela Martin Schrute",
-										"eventDate": "2042-04-23T18:25:43.511Z",
-										"inPerson": true,
-										"online": false,
-										"eventNotes": "Should be a two hr long event. Remember to send Zoom link in invites.",
-										"eventVenue": "Schrute Farms",
-										"venueContactName": "Dwight Schrute",
-										"venueContactPhone": "999-123-4567",
-										"venueContactEmail": "ninjadschrute@schrutefarms.com",
-										"eventAnnounced": true,
-										"eventSignupSent": true,
-										"numVolunteersNeeded": 0,
-										"volunteerSignupSent": false
-									}
-								}
+							"204": {
+								"description": "HTTP 204 No Content. The request to delete succeeds but the client doesn't need to navigate away from the current page."
 							}
 						}
 					}
