@@ -28,16 +28,16 @@ export type CommunityEvent = {
   eventDate: string;
   inPerson: boolean;
   online: boolean;
-  eventNotes: string;
+  eventNotes?: string;
   eventVenue: string;
-  venueContactName: string | null;
-  venueContactPhone: string | null;
-  venueContactEmail: string | null;
+  venueContactName?: string;
+  venueContactPhone?: string;
+  venueContactEmail?: string;
   eventAnnounced: boolean;
   eventSignupSent: boolean;
   numVolunteersNeeded: number;
   volunteerSignupSent: boolean;
-  notes: Note[];
+  notes?: Note[];
 };
 
 // Omits for
