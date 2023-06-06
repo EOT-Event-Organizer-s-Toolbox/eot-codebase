@@ -14,7 +14,7 @@ env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
 jobs:
-  build:
+  flyio:
     runs-on: ubuntu-latest
 
     strategy:
@@ -32,6 +32,20 @@ jobs:
       - name: Deploy to Fly.io
         run: flyctl deploy --remote-only
         working-directory: ./server
+
+  vercel:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.16.0"
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel environment information
