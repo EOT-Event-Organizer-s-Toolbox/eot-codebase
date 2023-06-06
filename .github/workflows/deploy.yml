@@ -41,5 +41,5 @@ jobs:
         run: vercel build --token=$VERCEL_TOKEN
         working-directory: ./web
       - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --token=$VERCEL_TOKEN
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
         working-directory: ./web
