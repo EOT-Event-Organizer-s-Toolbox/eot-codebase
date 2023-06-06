@@ -10,8 +10,8 @@
     "json-server": "json-server -p 3001 -w developmentDatabase/db.json",
     "preview": "vite preview",
     "format": "npx prettier --check src/**/*.css src/**/*.tsx",
-    "format-fix": "npx prettier --fix src/**/*.css src/**/*.tsx",
-    "format-write": "npx prettier --write src/**/*.css src/**/*.tsx"
+    "format:fix": "npx prettier --fix src/**/*.css src/**/*.tsx",
+    "format:write": "npx prettier --write src/**/*.css src/**/*.tsx"
   },
   "dependencies": {
     "axios": "^1.4.0",

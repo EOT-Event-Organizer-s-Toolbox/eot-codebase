@@ -14,12 +14,12 @@ export const getDayOfWeek = (dateString: string): string => {
 
 export const formatDateWritten = (
   dateString: string,
-  localeString?: string | undefined | null,
+  localeOverride?: string | undefined | null,
 ): string => {
   let locale = 'en-US';
 
-  if (localeString) {
-    locale = localeString;
+  if (localeOverride) {
+    locale = localeOverride;
   }
 
   const date = new Date(dateString);

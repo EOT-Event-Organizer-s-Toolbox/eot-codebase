@@ -1,17 +1,17 @@
-export interface Person {
+export type User = {
   id: number;
   firstName: string;
   lastName: string;
   phoneNumber: string;
   email: string;
-}
+};
 
-export interface Note {
+export type Note = {
   id: number;
   text: string;
-}
+};
 
-export interface EventType {
+export type EventType = {
   id: number;
   eventName: string;
   date: string;
@@ -20,14 +20,14 @@ export interface EventType {
   locationConfirmation: boolean;
   postedConfirmation: boolean;
   googleFormSent: boolean;
-  organisers: Person[];
+  organizers: User[];
   venueContactName: string;
   venueContactEmail: string;
   venueContactPhone: string;
   notes: Note[];
-}
+};
 
 // Omits for creating new fields
-export type NewPerson = Omit<Person, 'id'>;
+export type NewPerson = Omit<User, 'id'>;
 export type NewNote = Omit<Note, 'id'>;
 export type NewEventType = Omit<Event, 'id'>;
