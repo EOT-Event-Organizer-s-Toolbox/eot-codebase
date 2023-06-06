@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { EventType } from '../../types';
 import { formatDateWritten } from '../../utils/date';
 import { getDayOfWeek } from '../../utils/date';
@@ -23,6 +24,7 @@ const EventListSingle = ({ event }: Props) => {
       </h3>
       <p className="event--location">{event.location}</p>
       <div className="event--confirmations-container"></div>
+      <Link to={event.id.toString()}>Click Me For Details</Link>
     </section>
   );
 };
