@@ -2,16 +2,18 @@
 
 ## Table of contents
 
-* [Overview](#overview)
-* [Getting Started](#getting-started)
-  * [Dependencies](#dependencies)
-  * [Installing](#installing)
-* [Authors](#authors)
-  * [Lead Developers](#lead-developers)
-  * [Project Manager](#project-manager)
-  * [Design and Wireframing](#design-and-wireframing)
-  * [Front End Team](#front-end-team)
-  * [Back End Team](#back-end-team)
+- [Event Organizer's Toolbox (EOT)](#event-organizers-toolbox-eot)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Getting Started](#getting-started)
+    - [Dependencies](#dependencies)
+    - [Installing](#installing)
+  - [Authors](#authors)
+    - [Lead Developers](#lead-developers)
+    - [Project Manager](#project-manager)
+    - [Design and Wireframing](#design-and-wireframing)
+    - [Front End Team](#front-end-team)
+    - [Back End Team](#back-end-team)
 
 
 ## Overview
