@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.16.0"
-          cache: "npm"
       - name: Use Fly.io
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy to Fly.io
