@@ -19,7 +19,6 @@ export class AppModule {
   static port: number;
 
   constructor(configService: ConfigService) {
-    console.log(configService.get('PORT'));
     AppModule.port = configService.get('PORT');
   }
 }
