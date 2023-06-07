@@ -2,8 +2,6 @@
 
 <a id="top"></a>
 
-## Table of contents
-
 - [Event Organizer's Toolbox (EOT)](#event-organizers-toolbox-eot)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
