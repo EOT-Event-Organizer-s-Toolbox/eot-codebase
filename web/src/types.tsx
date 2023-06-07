@@ -9,7 +9,7 @@ export type User = {
 };
 
 export type EventType = {
-  id: string;
+  id: number;
   type: string;
   description: string;
   active: boolean;
