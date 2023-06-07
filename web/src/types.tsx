@@ -18,33 +18,33 @@ export type EventType = {
 export type CommunityEvent = {
   id: number;
   eventType: EventType;
-  eventIdeaConfirmed: boolean;
-  eventOrganizer: string;
-  eventDate: string;
-  inPerson: boolean;
-  online: boolean;
-  eventNotes?: string;
-  eventVenue: string;
+  ideaConfirmed: boolean;
+  organizer: string;
+  date: string;
+  inPersonEvent: boolean;
+  onlineEvent: boolean;
+  notes?: string;
+  venue: string;
   venueContactName?: string;
   venueContactPhone?: string;
   venueContactEmail?: string;
   eventAnnounced: boolean;
-  eventSignupSent: boolean;
+  signUpFormSent: boolean;
   numVolunteersNeeded: number;
-  volunteerSignupSent: boolean;
+  volunteerRequestsSent: boolean;
 };
 
 // Omits public view of data
 export type NonSensitiveCommunityEvent = Omit<
   CommunityEvent,
-  | 'eventIdeaConfirmed'
+  | 'ideaConfirmed'
   | 'venueContactName'
   | 'venueContactPhone'
   | 'venueContactEmail'
   | 'eventAnnounced'
-  | 'eventSignupSent'
-  | 'numVolunteersNeeded'
-  | 'volunteerSignupSent'
+  | 'signUpFormSent'
+  | 'volunteersNeeded'
+  | 'volunteerRequestsSent'
 >;
 
 // Omits for creating new entries
