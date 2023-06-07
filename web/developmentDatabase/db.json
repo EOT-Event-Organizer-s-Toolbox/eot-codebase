@@ -1,9 +1,9 @@
 {
   "events": [
     {
-      "id": 1,
+      "id": "cjld2cjxh0000qzrmn831i7r0",
       "eventType": {
-        "id": 4,
+        "id": "cjld2cjxh0000qzrmn831i7rn",
         "type": "JS Social",
         "description": "Social networking opportunity for the TJS community.",
         "active": true
@@ -24,9 +24,9 @@
       "volunteerRequestsSent": false
     },
     {
-      "id": 2,
+      "id": "cjld2cjxh0000qzrmn831i7r1",
       "eventType": {
-        "id": 5,
+        "id": "cjld2cjxh0000qzrmn831i7rn",
         "type": "JS Social",
         "description": "Networking event for Toronto JS developers.",
         "active": true
@@ -47,9 +47,9 @@
       "volunteerRequestsSent": true
     },
     {
-      "id": 3,
+      "id": "cjld2cjxh0000qzrmn831i7r2",
       "eventType": {
-        "id": 6,
+        "id": "cjld2cjxh0000qzrmn831i7rn",
         "type": "JS Social",
         "description": "Workshop for advanced JS frameworks.",
         "active": true
@@ -70,9 +70,9 @@
       "volunteerRequestsSent": false
     },
     {
-      "id": 4,
+      "id": "cjld2cjxh0000qzrmn831i7r3",
       "eventType": {
-        "id": 7,
+        "id": "cjld2cjxh0000qzrmn831i7rn",
         "type": "JS Social",
         "description": "React vs Angular debate.",
         "active": true
@@ -93,9 +93,9 @@
       "volunteerRequestsSent": true
     },
     {
-      "id": 5,
+      "id": "cjld2cjxh0000qzrmn831i7r4",
       "eventType": {
-        "id": 8,
+        "id": "cjld2cjxh0000qzrmn831i7rn",
         "type": "JS Social",
         "description": "Node.js introductory workshop for beginners.",
         "active": true
@@ -116,9 +116,9 @@
       "volunteerRequestsSent": false
     },
     {
-      "id": 6,
+      "id": "cjld2cjxh0000qzrmn831i7r5",
       "eventType": {
-        "id": 9,
+        "id": "cjld2cjxh0000qzrmn831i7rn",
         "type": "JS Social",
         "description": "Post-conference networking event for JS developers.",
         "active": true
