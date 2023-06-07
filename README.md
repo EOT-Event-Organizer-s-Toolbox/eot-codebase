@@ -1,12 +1,14 @@
 # Event Organizer's Toolbox (EOT)
 
+<a id="top"></a>
+
 ## Table of contents
 
 - [Event Organizer's Toolbox (EOT)](#event-organizers-toolbox-eot)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
   - [Getting Started](#getting-started)
-    - [Dependencies](#dependencies)
+    - [Technologies Used](#technologies-used)
     - [Installing](#installing)
   - [Authors](#authors)
     - [Lead Developers](#lead-developers)
@@ -14,6 +16,7 @@
     - [Design and Wireframing](#design-and-wireframing)
     - [Front End Team](#front-end-team)
     - [Back End Team](#back-end-team)
+    - [Other Contributors](#other-contributors)
 
 ## Overview
 
@@ -95,6 +98,9 @@ Check out all the cool people working on this project!
 
 - [Travis Bennett](https://github.com/one2code)
 - [Jenna Cox](https://github.com/Jenna59)
+
+### Other Contributors
+
 - [Dale Orders](https://github.com/DaleOrders)
 
-<p align="left">(<a href="#readme-top">back to top</a>)</p>
+[Back to top](#top)
