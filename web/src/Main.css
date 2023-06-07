@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: .9rem;
+}
+
+p {
+  line-height: 1.5;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* || Variables */
+
+:root {
+  --COL-DARK: #131313;
+  --COL-MID: #b4b4b4;
+  --COL-LIGHT: #d9d9d9;
+  --COL-EXTRALIGHT: #ededed;
+  --COL-WHITE: #ffffff;
+  --FONT-MAIN: 'Montserrat', sans-serif;
+  --FONT-LIGHT: font-weight: 200;
+  --FONT-MEDIUM: font-weight: 500;
+  --FONT-HEAVY: font-weight: 700;
+}
+
+/* || Utility classes */
+
+.hidden {
+  display: none;
+}
+
+body {
+  margin: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: var(--COL-DARK);
+  font-family: var(--FONT-MAIN);
+  font-weight: var(--FONT-LIGHT);
+}
+
+.main-container {
+  margin: auto;
+}
+
+main {
+  margin: 0.5em;
+}
+
+.page-heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  padding: 0.5em 3em;
+  background-color: var(--COL-MID);
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.event-container {
+  background-color: var(--COL-EXTRALIGHT);
+  padding: 0.75em;
+  margin: 0.5em 0;
+}
+
+.event--detail-section{
+  display: flex;
+  flex-direction: row;
+  gap: .2em;
+}

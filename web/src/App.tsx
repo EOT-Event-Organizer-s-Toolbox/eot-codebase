@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { CommunityEvent } from './types';
 
-import './App.css';
 import eventService from './Services/eventService';
-import EventList from './Components/EventList';
+import EventList from './Components/EventList/EventList';
 
 function App() {
   const [eventList, setEventsList] = useState<CommunityEvent[] | undefined>([]);
