@@ -1,5 +1,5 @@
 export type User = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -9,14 +9,14 @@ export type User = {
 };
 
 export type EventType = {
-  id: number;
+  id: string;
   type: string;
   description: string;
   active: boolean;
 };
 
 export type CommunityEvent = {
-  id: number;
+  id: string;
   eventType: EventType;
   ideaConfirmed: boolean;
   organizer: string;
