@@ -3,7 +3,7 @@ import { EventType } from '../../types';
 import { useLoaderData } from 'react-router-dom';
 
 const EventList = () => {
-  const events = useLoaderData() as EventType[]
+  const events = useLoaderData() as EventType[];
   return (
     <div className="placeholder">
       <h1>EventList</h1>
