@@ -1,13 +1,11 @@
+import { LoaderFunction, LoaderFunctionArgs } from "react-router-dom";
 import eventService from "./eventService";
 
-export const eventsLoader = async () => {
-    const allEvents = await eventService.getAll();
-    return allEvents
+export const eventsLoader: LoaderFunction = async () => {
+    return await eventService.getAll();
 }
 
-// Getting an error here due to params being of type any
-export const eventDetailsLoader = async ({ params }) => {
-    const { id } = params
-    const eventDetails = await eventService.getEvent(id);
-    return eventDetails
+export const eventDetailsLoader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
+    if (!params.id) return null
+    return await eventService.getEvent(parseInt(params.id));
 }

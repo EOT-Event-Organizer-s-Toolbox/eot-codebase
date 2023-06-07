@@ -9,15 +9,6 @@ import EventDetails from './Components/EventDetails/EventDetails';
 import NotFound from './Components/Error/NotFound';
 
 function App() {
-  // const [eventList, setEventsList] = useState<EventType[] | undefined>([]);
-
-  // useEffect(() => {
-  //   const fetchEvents = async () => {
-  //     const allEvents = await eventService.getAll();
-  //     setEventsList(allEvents);
-  //   };
-  //   fetchEvents();
-  // }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
