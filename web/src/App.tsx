@@ -17,8 +17,12 @@ function App() {
 
   return (
     <main>
-      <h1>Event Organizer's Toolbox</h1>
-      <EventList eventList={eventList} />
+      <header>
+        <p className="site-name">Event Organizer's Toolbox</p>
+      </header>
+      <section className="main-content">
+        <EventList eventList={eventList} />
+      </section>
     </main>
   );
 }

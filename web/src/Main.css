@@ -24,10 +24,6 @@ h4 {
   line-height: 1.25;
 }
 
-h3 {
-  font-size: .9rem;
-}
-
 p {
   line-height: 1.5;
 }
@@ -44,13 +40,23 @@ select {
 :root {
   --COL-DARK: #131313;
   --COL-MID: #b4b4b4;
-  --COL-LIGHT: #d9d9d9;
+  --COL-LIGHT: #d3d3d3;
   --COL-EXTRALIGHT: #ededed;
   --COL-WHITE: #ffffff;
   --FONT-MAIN: 'Montserrat', sans-serif;
-  --FONT-LIGHT: font-weight: 200;
-  --FONT-MEDIUM: font-weight: 500;
-  --FONT-HEAVY: font-weight: 700;
+  --FONT-LIGHT: 200;
+  --FONT-MEDIUM: 500;
+  --FONT-HEAVY: 700;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: var(--FONT-HEAVY);
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 0.9rem;
 }
 
 /* || Utility classes */
@@ -66,22 +72,31 @@ body {
   background-size: cover;
   color: var(--COL-DARK);
   font-family: var(--FONT-MAIN);
-  font-weight: var(--FONT-LIGHT);
+  font-weight: var(--FONT-MEDIUM);
 }
 
 .main-container {
   margin: auto;
 }
-
-main {
-  margin: 0.5em;
+header {
+  background-color: var(--COL-LIGHT);
+  padding: 0.5em;
+  margin-bottom: 2em;
+}
+.site-name {
+  font-size: 1.75em;
+  font-weight: var(--FONT-MEDIUM);
+  text-transform: uppercase;
 }
 
+section {
+  margin: 0.5em;
+}
 .page-heading-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 button {
@@ -98,8 +113,8 @@ button {
   margin: 0.5em 0;
 }
 
-.event--detail-section{
+.event--detail-section {
   display: flex;
   flex-direction: row;
-  gap: .2em;
+  gap: 0.2em;
 }
