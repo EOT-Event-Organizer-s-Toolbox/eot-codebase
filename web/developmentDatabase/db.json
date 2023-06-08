@@ -1,164 +1,142 @@
 {
-  "events":[
+  "events": [
     {
-      "id": 1,
-      "eventName": "Picnic in the Park",
-      "date": "2023-06-10",
-      "location": "High Park",
-      "eventType": "Outdoor",
-      "locationConfirmation": true,
-      "postedConfirmation": true,
-      "googleFormSent": true,
-      "organisers": [
-        {
-          "id": 1,
-          "firstName": "John",
-          "lastName": "Doe",
-          "phoneNumber": "(123) 456-7890",
-          "email": "johndoe@example.com"
-        }
-      ],
-      "venueContactName": "Daryl",
-      "venueContactEmail": "dgoodwin@highpark.ca",
-      "venueContactPhone": "(416) 555-4466",
-      "notes": [
-        {
-          "id": 1,
-          "text": "Remember to bring your own picnic blankets."
-        },
-        {
-          "id": 3,
-          "text": "Don't forget sunscreen and insect repellent."
-        }
-      ]
+      "id": "12345678-1234-5678-1234-567812345670",
+      "eventType": {
+        "id": "12345678-1234-5678-1234-567812345655",
+        "type": "JS Social",
+        "description": "Social networking opportunity for the TJS community.",
+        "active": true
+      },
+      "ideaConfirmed": true,
+      "organizer": "Angela Martin Schrute",
+      "date": "2042-04-23T18:25:43.511Z",
+      "inPersonEvent": true,
+      "onlineEvent": false,
+      "notes": "Should be a two hr long event. Remember to send Zoom link in invites.",
+      "venue": "Schrute Farms",
+      "venueContactName": "Dwight Schrute",
+      "venueContactPhone": "999-123-4567",
+      "venueContactEmail": "ninjadschrute@schrutefarms.com",
+      "announcementPosted": true,
+      "signUpFormSent": true,
+      "volunteersNeeded": 0,
+      "volunteerRequestsSent": false
     },
     {
-      "id": 2,
-      "eventName": "Yoga in the Park",
-      "date": "2023-06-12",
-      "location": "115 Wellington street",
-      "eventType": "Fitness",
-      "locationConfirmation": true,
-      "postedConfirmation": true,
-      "googleFormSent": true,
-      "organisers": [
-        {
-          "id": 2,
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "phoneNumber": "(234) 567-8901",
-          "email": "janesmith@example.com"
-        },
-        {
-          "id": 3,
-          "firstName": "Michael",
-          "lastName": "Johnson",
-          "phoneNumber": "(345) 678-9012",
-          "email": "michaeljohnson@example.com"
-        }
-      ],
-      "venueContactName": "Wellness Center",
-      "venueContactEmail": "info@wellnesscenter.com",
-      "venueContactPhone": "(789) 012-3456",
-      "notes": [
-        {
-          "id": 2,
-          "text": "Bring your own yoga mat."
-        }
-      ]
+      "id": "12345678-1234-5678-1234-567812345671",
+      "eventType": {
+        "id": "12345678-1234-5678-1234-567812345655",
+        "type": "JS Social",
+        "description": "Networking event for Toronto JS developers.",
+        "active": true
+      },
+      "ideaConfirmed": true,
+      "organizer": "Alice Roberts",
+      "date": "2042-05-12T18:30:00.000Z",
+      "inPersonEvent": true,
+      "onlineEvent": false,
+      "notes": "Event to be held at MaRS Discovery District. Refreshments provided.",
+      "venue": "MaRS Discovery District",
+      "venueContactName": "John Doe",
+      "venueContactPhone": "416-123-4567",
+      "venueContactEmail": "johndoe@marsdd.com",
+      "announcementPosted": true,
+      "signUpFormSent": true,
+      "volunteersNeeded": 5,
+      "volunteerRequestsSent": true
     },
     {
-      "id": 3,
-      "eventName": "Concert Under the Stars",
-      "date": "2023-06-15",
-      "location": "Queens Quay",
-      "eventType": "Music",
-      "locationConfirmation": true,
-      "postedConfirmation": true,
-      "googleFormSent": true,
-      "organisers": [
-        {
-          "id": 4,
-          "firstName": "Emily",
-          "lastName": "Brown",
-          "phoneNumber": "(456) 789-0123",
-          "email": "emilybrown@example.com"
-        }
-      ],
-      "venueContactName": "Waterfront Concert Hall",
-      "venueContactEmail": "info@waterfrontconcerthall.com",
-      "venueContactPhone": "(901) 234-5678",
-      "notes": [
-        {
-          "id": 4,
-          "text": "Limited seating available, arrive early to secure your spot."
-        }
-      ]
+      "id": "12345678-1234-5678-1234-567812345672",
+      "eventType": {
+        "id": "12345678-1234-5678-1234-567812345655",
+        "type": "JS Social",
+        "description": "Workshop for advanced JS frameworks.",
+        "active": true
+      },
+      "ideaConfirmed": true,
+      "organizer": "Bob Parker",
+      "date": "2042-06-05T10:00:00.000Z",
+      "inPersonEvent": false,
+      "onlineEvent": true,
+      "notes": "Online event via Zoom. Link to be sent out prior to event.",
+      "venue": "Zoom",
+      "venueContactName": "Bob Parker",
+      "venueContactPhone": "647-123-4567",
+      "venueContactEmail": "bobparker@jsnetwork.com",
+      "announcementPosted": true,
+      "signUpFormSent": true,
+      "volunteersNeeded": 0,
+      "volunteerRequestsSent": false
     },
     {
-      "id": 4,
-      "eventName": "Photography Workshop",
-      "date": "2023-06-20",
-      "location": "Cadillac Lounge",
-      "eventType": "Workshop",
-      "locationConfirmation": true,
-      "postedConfirmation": true,
-      "googleFormSent": true,
-      "organisers": [
-        {
-          "id": 5,
-          "firstName": "David",
-          "lastName": "Wilson",
-          "phoneNumber": "(567) 890-1234",
-          "email": "davidwilson@example.com"
-        }
-      ],
-      "venueContactName": "Cadillac Lounge",
-      "venueContactEmail": "info@cadillaclounge.com",
-      "venueContactPhone": "(234) 567-8901",
-      "notes": [
-        {
-          "id": 5,
-          "text": "Bring your own camera and tripod."
-        }
-      ]
+      "id": "12345678-1234-5678-1234-567812345673",
+      "eventType": {
+        "id": "12345678-1234-5678-1234-567812345655",
+        "type": "JS Social",
+        "description": "React vs Angular debate.",
+        "active": true
+      },
+      "ideaConfirmed": true,
+      "organizer": "Carol Fisher",
+      "date": "2042-07-22T19:00:00.000Z",
+      "inPersonEvent": true,
+      "onlineEvent": false,
+      "notes": "Debate to be held at Toronto Reference Library. Snacks will be available.",
+      "venue": "Toronto Reference Library",
+      "venueContactName": "Emily Clarke",
+      "venueContactPhone": "905-123-4567",
+      "venueContactEmail": "emilyclarke@torontopubliclibrary.ca",
+      "announcementPosted": true,
+      "signUpFormSent": true,
+      "volunteersNeeded": 3,
+      "volunteerRequestsSent": true
     },
     {
-      "id": 5,
-      "eventName": "Networking Event",
-      "date": "2023-06-25",
-      "location": "Event room at Diptych Studio",
-      "eventType": "Business",
-      "locationConfirmation": true,
-      "postedConfirmation": true,
-      "googleFormSent": true,
-      "organisers": [
-        {
-          "id": 1,
-          "firstName": "John",
-          "lastName": "Doe",
-          "phoneNumber": "(123) 456-7890",
-          "email": "johndoe@example.com"
-        },
-        {
-          "id": 3,
-          "firstName": "Michael",
-          "lastName": "Johnson",
-          "phoneNumber": "(345) 678-9012",
-          "email": "michaeljohnson@example.com"
-        },
-        {
-          "id": 5,
-          "firstName": "David",
-          "lastName": "Wilson",
-          "phoneNumber": "(567) 890-1234",
-          "email": "davidwilson@example.com"
-        }
-      ],
-      "venueContactName": "Diptych Studio",
-      "venueContactEmail": "info@diptychstudio.com",
-      "venueContactPhone": "(789) 012-3456",
-      "notes": []
+      "id": "12345678-1234-5678-1234-567812345674",
+      "eventType": {
+        "id": "12345678-1234-5678-1234-567812345655",
+        "type": "JS Social",
+        "description": "Node.js introductory workshop for beginners.",
+        "active": true
+      },
+      "ideaConfirmed": true,
+      "organizer": "David Williams",
+      "date": "2042-08-18T15:00:00.000Z",
+      "inPersonEvent": false,
+      "onlineEvent": true,
+      "notes": "Online event via Microsoft Teams. Link will be sent out a week prior.",
+      "venue": "Microsoft Teams",
+      "venueContactName": "David Williams",
+      "venueContactPhone": "289-123-4567",
+      "venueContactEmail": "davidwilliams@jsnetwork.com",
+      "announcementPosted": true,
+      "signUpFormSent": true,
+      "volunteersNeeded": 0,
+      "volunteerRequestsSent": false
+    },
+    {
+      "id": "12345678-1234-5678-1234-567812345675",
+      "eventType": {
+        "id": "12345678-1234-5678-1234-567812345655",
+        "type": "JS Social",
+        "description": "Post-conference networking event for JS developers.",
+        "active": true
+      },
+      "ideaConfirmed": true,
+      "organizer": "Elizabeth Johnson",
+      "date": "2042-09-12T20:00:00.000Z",
+      "inPersonEvent": true,
+      "onlineEvent": false,
+      "notes": "Event to be held at Fairmont Royal York. Cocktail attire required.",
+      "venue": "Fairmont Royal York",
+      "venueContactName": "Frank Adams",
+      "venueContactPhone": "519-123-4567",
+      "venueContactEmail": "frankadams@fairmont.com",
+      "announcementPosted": true,
+      "signUpFormSent": true,
+      "volunteersNeeded": 7,
+      "volunteerRequestsSent": true
     }
   ]
 }
