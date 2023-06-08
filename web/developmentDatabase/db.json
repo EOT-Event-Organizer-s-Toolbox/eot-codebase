@@ -1,9 +1,9 @@
 {
   "events": [
     {
-      "id": "cjld2cjxh0000qzrmn831i7r0",
+      "id": "12345678-1234-5678-1234-567812345670",
       "eventType": {
-        "id": "cjld2cjxh0000qzrmn831i7rn",
+        "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
         "description": "Social networking opportunity for the TJS community.",
         "active": true
@@ -24,9 +24,9 @@
       "volunteerRequestsSent": false
     },
     {
-      "id": "cjld2cjxh0000qzrmn831i7r1",
+      "id": "12345678-1234-5678-1234-567812345671",
       "eventType": {
-        "id": "cjld2cjxh0000qzrmn831i7rn",
+        "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
         "description": "Networking event for Toronto JS developers.",
         "active": true
@@ -47,9 +47,9 @@
       "volunteerRequestsSent": true
     },
     {
-      "id": "cjld2cjxh0000qzrmn831i7r2",
+      "id": "12345678-1234-5678-1234-567812345672",
       "eventType": {
-        "id": "cjld2cjxh0000qzrmn831i7rn",
+        "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
         "description": "Workshop for advanced JS frameworks.",
         "active": true
@@ -70,9 +70,9 @@
       "volunteerRequestsSent": false
     },
     {
-      "id": "cjld2cjxh0000qzrmn831i7r3",
+      "id": "12345678-1234-5678-1234-567812345673",
       "eventType": {
-        "id": "cjld2cjxh0000qzrmn831i7rn",
+        "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
         "description": "React vs Angular debate.",
         "active": true
@@ -93,9 +93,9 @@
       "volunteerRequestsSent": true
     },
     {
-      "id": "cjld2cjxh0000qzrmn831i7r4",
+      "id": "12345678-1234-5678-1234-567812345674",
       "eventType": {
-        "id": "cjld2cjxh0000qzrmn831i7rn",
+        "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
         "description": "Node.js introductory workshop for beginners.",
         "active": true
@@ -116,9 +116,9 @@
       "volunteerRequestsSent": false
     },
     {
-      "id": "cjld2cjxh0000qzrmn831i7r5",
+      "id": "12345678-1234-5678-1234-567812345675",
       "eventType": {
-        "id": "cjld2cjxh0000qzrmn831i7rn",
+        "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
         "description": "Post-conference networking event for JS developers.",
         "active": true
