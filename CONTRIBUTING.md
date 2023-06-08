@@ -1,5 +1,7 @@
 # Getting Started
 
+<a id="top"></a>
+
 ## Important Links
 
 - Main Google Doc
@@ -49,4 +51,6 @@ To run a local copy of this project, follow the steps below
   npm install
   ```
 
+
+[Back to top](#top)
 
