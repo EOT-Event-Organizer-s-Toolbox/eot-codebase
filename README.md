@@ -35,39 +35,6 @@ Some of the planned features are:
   - Dietary restrictions
   - Payment confirmation
 
-## Getting Started
-
-### Technologies Used
-
-- Reactjs
-- TypeScript
-- Nestjs
-- Prisma
-- Postgres
-
-### Installing
-
-To run a local copy of this project, follow the steps below
-
-- If you haven't installed npm, run the command below to install the latest version
-  ```sh
-  npm install npm@latest -g
-  ```
-- Clone the repo
-  ```sh
-  git clone https://github.com/EOT-Event-Organizer-s-Toolbox/eot-codebase.git
-  ```
-- Navigate to the web folder and install NPM packages
-  ```sh
-  cd web
-  npm install
-  ```
-- Navigate to the server folder and install NPM packages
-  ```sh
-  cd ..
-  cd server
-  npm install
-  ```
 
 ## Authors
 
