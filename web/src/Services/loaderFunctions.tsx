@@ -9,5 +9,5 @@ export const eventDetailsLoader: LoaderFunction = async ({
   params,
 }: LoaderFunctionArgs) => {
   if (!params.id) return null;
-  return await eventService.getEvent(parseInt(params.id));
+  return await eventService.getEvent(params.id);
 };

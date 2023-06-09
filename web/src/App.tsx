@@ -5,13 +5,13 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { eventDetailsLoader, eventsLoader } from './Services/loaderFunctions';
-import './App.css';
 //Layouts
 import RootLayout from './Layout/RootLayout';
 //Pages
 import EventList from './Components/EventList/EventList';
 import EventDetails from './Components/EventDetails/EventDetails';
 import NotFound from './Components/Error/NotFound';
+import EventDetailsError from './Components/Error/EventDetailsError';
 
 function App() {
   const router = createBrowserRouter(
@@ -22,6 +22,7 @@ function App() {
           path=":id"
           element={<EventDetails />}
           loader={eventDetailsLoader}
+          errorElement={<EventDetailsError />}
         />
         <Route path="*" element={<NotFound />} />
       </Route>,

@@ -3,7 +3,6 @@ import { CommunityEvent } from '../../types';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-
 const EventList = () => {
   const events = useLoaderData() as CommunityEvent[];
   const EventButtonLabel = 'New Event';
@@ -32,4 +31,4 @@ const EventList = () => {
   );
 };
 
-export default EventList
+export default EventList;

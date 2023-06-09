@@ -23,7 +23,7 @@ const EventListSingle = ({ event }: Props) => {
       </h3>
       <p className="event--location">{event.venue}</p>
       <div className="event--confirmations-container"></div>
-      <Link to={event.id.toString()}>Click Me For Details</Link>
+      <Link to={event.id}>Click Me For Details</Link>
     </section>
   );
 };
