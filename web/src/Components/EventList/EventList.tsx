@@ -1,16 +1,35 @@
 import EventListSingle from './EventListSingle';
-import { EventType } from '../../types';
+import { CommunityEvent } from '../../types';
+import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+
 const EventList = () => {
-  const events = useLoaderData() as EventType[];
+  const events = useLoaderData() as CommunityEvent[];
+  const EventButtonLabel = 'New Event';
+  const [newEventButtonLabel, setNewEventButtonLabel] =
+    useState(EventButtonLabel);
+  const newCommunityEvent = () => {
+    setNewEventButtonLabel('Hi!');
+    setTimeout(() => {
+      setNewEventButtonLabel(EventButtonLabel);
+    }, 2000);
+  };
+
   return (
-    <div className="placeholder">
-      <h1>EventList</h1>
-      {events.map((event) => (
-        <EventListSingle key={event.id} event={event} />
-      ))}
+    <div className="main-container">
+      <main>
+        <div className="page-heading-container">
+          <h2>EventList</h2>
+          <button onClick={newCommunityEvent}>{newEventButtonLabel}</button>
+        </div>
+
+        {events.map((event) => (
+          <EventListSingle key={event.id} event={event} />
+        ))}
+      </main>
     </div>
   );
 };
-export default EventList;
+
+export default EventList

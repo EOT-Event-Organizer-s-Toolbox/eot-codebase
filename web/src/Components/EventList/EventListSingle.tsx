@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import { EventType } from '../../types';
-import { formatDateWritten } from '../../utils/date';
-import { getDayOfWeek } from '../../utils/date';
+import { CommunityEvent } from '../../types';
+import { formatDateWritten, getDayOfWeek } from '../../utils/date';
 
 interface Props {
-  event: EventType | undefined;
+  event: CommunityEvent | undefined;
 }
 
 const EventListSingle = ({ event }: Props) => {
@@ -15,14 +14,14 @@ const EventListSingle = ({ event }: Props) => {
   }
 
   return (
-    <section className="event">
+    <section className="event-container">
       <h3 className="event--detail-section">
-        <span className="event--name">{event.eventName}</span>
+        <span className="event--name">{event.eventType.type}</span>
         <span className="event--name-separator">-</span>
         <span className="event--day">{`${getDayOfWeek(event.date)},`}</span>
         <span className="event--date">{formatDateWritten(event.date)}</span>
       </h3>
-      <p className="event--location">{event.location}</p>
+      <p className="event--location">{event.venue}</p>
       <div className="event--confirmations-container"></div>
       <Link to={event.id.toString()}>Click Me For Details</Link>
     </section>
