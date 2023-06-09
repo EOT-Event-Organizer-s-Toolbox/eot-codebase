@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 const RootLayout = () => {
   return (
     <main>
-      <h1>Event Organizer's Toolbox</h1>
+      <p>Event Organizer's Toolbox</p>
       <Outlet />
     </main>
   );

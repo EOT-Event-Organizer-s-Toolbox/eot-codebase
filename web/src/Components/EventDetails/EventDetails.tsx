@@ -6,7 +6,7 @@ const EventDetails = () => {
   const event = useLoaderData() as CommunityEvent;
   return (
     <>
-      <h2>Event Details</h2>
+      <h1>Event Details</h1>
       <p>{event.eventType.type}</p>
       <p>{event.venue}</p>
       <p>{event.date}</p>
