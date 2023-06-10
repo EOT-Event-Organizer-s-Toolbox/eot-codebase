@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { EventType } from './types';
+import { CommunityEvent } from './types';
 
-import './App.css';
 import eventService from './Services/eventService';
-import EventList from './Components/EventList';
+import EventList from './Components/EventList/EventList';
 
 function App() {
-  const [eventList, setEventsList] = useState<EventType[] | undefined>([]);
+  const [eventList, setEventsList] = useState<CommunityEvent[] | undefined>([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -18,8 +17,12 @@ function App() {
 
   return (
     <main>
-      <h1>Event Organizer's Toolbox</h1>
-      <EventList eventList={eventList} />
+      <header>
+        <p className="site-name">Event Organizer's Toolbox</p>
+      </header>
+      <section className="main-content">
+        <EventList eventList={eventList} />
+      </section>
     </main>
   );
 }
