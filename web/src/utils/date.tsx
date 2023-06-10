@@ -4,6 +4,7 @@ export const getDayOfWeek = (dateString: string): string => {
     'Sunday',
     'Monday',
     'Tuesday',
+    'Wednesday',
     'Thursday',
     'Friday',
     'Saturday',
