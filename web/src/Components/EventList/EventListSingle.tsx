@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { CommunityEvent } from '../../types';
 import { formatDateWritten, getDayOfWeek } from '../../utils/date';
 
@@ -20,10 +21,9 @@ const EventListSingle = ({ event }: Props) => {
         <span className="event--day">{`${getDayOfWeek(event.date)},`}</span>
         <span className="event--date">{formatDateWritten(event.date)}</span>
       </h3>
-      <p className="event--location"></p>
-      <div className="event--confirmations-container">
-        <div className="event--confirmation-label"></div>
-      </div>
+      <p className="event--location">{event.venue}</p>
+      <div className="event--confirmations-container"></div>
+      <Link to={event.id}>Click Me For Details</Link>
     </section>
   );
 };
