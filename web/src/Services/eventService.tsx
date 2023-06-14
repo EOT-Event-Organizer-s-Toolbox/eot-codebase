@@ -15,7 +15,7 @@ const getAll = async () => {
 };
 
 // Retrieve a single event from the server
-const getEvent = async (id: number) => {
+const getEvent = async (id: string) => {
   try {
     const req = await axios.get(`${baseUrl}/${id}`);
     const event: CommunityEvent = req.data;

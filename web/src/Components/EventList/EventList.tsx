@@ -1,12 +1,10 @@
 import EventListSingle from './EventListSingle';
 import { CommunityEvent } from '../../types';
 import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
-interface Props {
-  eventList: CommunityEvent[] | undefined;
-}
-
-const EventList = ({ eventList }: Props) => {
+const EventList = () => {
+  const events = useLoaderData() as CommunityEvent[];
   const EventButtonLabel = 'New Event';
   const [newEventButtonLabel, setNewEventButtonLabel] =
     useState(EventButtonLabel);
@@ -21,16 +19,16 @@ const EventList = ({ eventList }: Props) => {
     <div className="main-container">
       <main>
         <div className="page-heading-container">
-          <h1>EventList</h1>
+          <h1>Event List</h1>
           <button onClick={newCommunityEvent}>{newEventButtonLabel}</button>
         </div>
 
-        {eventList &&
-          eventList.map((event) => (
-            <EventListSingle key={event.id} event={event} />
-          ))}
+        {events.map((event) => (
+          <EventListSingle key={event.id} event={event} />
+        ))}
       </main>
     </div>
   );
 };
+
 export default EventList;

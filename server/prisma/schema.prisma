@@ -9,3 +9,50 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  first_name                   String?
+  last_name                    String?
+  email                        String           @unique
+  phone                        String?
+  role                         Role             @default(USER)
+  event_registration_completed Boolean          @default(false)
+  community_events             CommunityEvent[]
+}
+
+model EventType {
+  id          Int              @id @default(autoincrement())
+  type        String
+  description String?
+  active      Boolean          @default(false)
+  events      CommunityEvent[]
+}
+
+// Full template timezone > DateTime implementation
+model CommunityEvent {
+  event_type             EventType @relation(fields: [type_id], references: [id])
+  id                     Int       @id @default(autoincrement())
+  type_id                Int
+  idea_confirmed         Boolean   @default(false)
+  organizer_id           Int
+  organizer              User      @relation(fields: [organizer_id], references: [id])
+  date                   DateTime
+  in_person_event        Boolean   @default(false)
+  online_event           Boolean   @default(false)
+  notes                  String?
+  venue                  String?
+  venue_contact_name     String?
+  venue_contact_phone    String?
+  venue_contact_email    String?
+  announcement_posted    Boolean   @default(false)
+  sign_up_form_sent      Boolean   @default(false)
+  volunteers_needed      Int
+  voluneer_requests_sent Boolean   @default(false)
+}
