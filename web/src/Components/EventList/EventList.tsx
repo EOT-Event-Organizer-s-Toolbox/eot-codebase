@@ -19,7 +19,7 @@ const EventList = () => {
     <div>
       <main>
         <div>
-          <h1>Event List</h1>
+          <h1 className="text-red-700">Event List</h1>
           <button onClick={newCommunityEvent}>{newEventButtonLabel}</button>
         </div>
 

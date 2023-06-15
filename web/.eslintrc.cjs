@@ -8,6 +8,14 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   plugins: ['react-refresh'],
+  overrides: [
+    {
+      files: ['*.cjs'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
   rules: {
     'react-refresh/only-export-components': 'warn',
   },
