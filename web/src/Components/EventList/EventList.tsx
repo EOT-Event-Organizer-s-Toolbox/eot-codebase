@@ -16,9 +16,9 @@ const EventList = () => {
   };
 
   return (
-    <div className="main-container">
+    <div>
       <main>
-        <div className="page-heading-container">
+        <div>
           <h1>Event List</h1>
           <button onClick={newCommunityEvent}>{newEventButtonLabel}</button>
         </div>

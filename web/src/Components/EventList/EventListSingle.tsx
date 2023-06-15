@@ -14,15 +14,15 @@ const EventListSingle = ({ event }: Props) => {
   }
 
   return (
-    <section className="event-container">
-      <h3 className="event--detail-section">
-        <span className="event--name">{event.eventType.type}</span>
-        <span className="event--name-separator">-</span>
-        <span className="event--day">{`${getDayOfWeek(event.date)},`}</span>
-        <span className="event--date">{formatDateWritten(event.date)}</span>
+    <section>
+      <h3>
+        <span>{event.eventType.type}</span>
+        <span>-</span>
+        <span>{`${getDayOfWeek(event.date)},`}</span>
+        <span>{formatDateWritten(event.date)}</span>
       </h3>
-      <p className="event--location">{event.venue}</p>
-      <div className="event--confirmations-container"></div>
+      <p>{event.venue}</p>
+      <div></div>
       <Link to={event.id}>Click Me For Details</Link>
     </section>
   );
