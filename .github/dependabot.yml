@@ -1,11 +1,11 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "server/package.json" # Location of package manifests
+    directory: "server/" # Location of package manifests
     schedule:
       interval: "daily"
   - package-ecosystem: "npm"
-    directory: "web/package.json" # Location of package manifests
+    directory: "web/" # Location of package manifests
     schedule:
       interval: "daily"
   - package-ecosystem: "github-actions"
