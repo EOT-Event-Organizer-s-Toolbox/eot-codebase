@@ -36,9 +36,6 @@ jobs:
       - name: Install frontend dependencies
         working-directory: ./web
         run: npm ci
-      - name: Run frontend start
-        working-directory: ./web
-        run: npm run build
       - name: Run frontend prettier checks
         working-directory: ./web
         run: npm run format
