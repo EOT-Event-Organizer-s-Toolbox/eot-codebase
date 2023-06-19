@@ -16,7 +16,7 @@ enum Role {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   first_name                   String?
   last_name                    String?
@@ -28,7 +28,7 @@ model User {
 }
 
 model EventType {
-  id          Int              @id @default(autoincrement())
+  id          String           @id @default(uuid())
   type        String
   description String?
   active      Boolean          @default(false)
@@ -38,10 +38,10 @@ model EventType {
 // Full template timezone > DateTime implementation
 model CommunityEvent {
   event_type             EventType @relation(fields: [type_id], references: [id])
-  id                     Int       @id @default(autoincrement())
-  type_id                Int
+  id                     String    @id @default(uuid())
+  type_id                String
   idea_confirmed         Boolean   @default(false)
-  organizer_id           Int
+  organizer_id           String
   organizer              User      @relation(fields: [organizer_id], references: [id])
   date                   DateTime
   in_person_event        Boolean   @default(false)
