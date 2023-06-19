@@ -10,7 +10,7 @@ module.exports = {
   plugins: ['react-refresh'],
   overrides: [
     {
-      files: ['*.cjs'],
+      files: ['postcss.config.cjs', '.eslintrc.cjs'],
       rules: {
         'no-undef': 'off',
       },
