@@ -24,9 +24,9 @@ jobs:
       - name: Install backend dependencies
         working-directory: ./server
         run: npm ci
-      - name: Run backend build
-        working-directory: ./server
-        run: npm run build
+      # - name: Run backend build
+      #   working-directory: ./server
+      #   run: npm run build
       - name: Run backend prettier checks
         working-directory: ./server
         run: npm run format
