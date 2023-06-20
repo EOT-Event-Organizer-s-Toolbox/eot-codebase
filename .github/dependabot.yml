@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "server/" # Location of backend NPM package manifests
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "web/" # Location of frontend NPM package manifests
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "github-actions"
+    directory: "/" # Location of Github Action workflows
+    schedule:
+      interval: "daily"

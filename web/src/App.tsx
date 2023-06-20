@@ -1,27 +1,34 @@
-import { useState, useEffect } from 'react';
-import { EventType } from './types';
-
-import './App.css';
-import eventService from './Services/eventService';
-import EventList from './Components/EventList';
+import {
+  createBrowserRouter,
+  Route,
+  createRoutesFromElements,
+  RouterProvider,
+} from 'react-router-dom';
+import { eventDetailsLoader, eventsLoader } from './Services/loaderFunctions';
+//Layouts
+import RootLayout from './Layout/RootLayout';
+//Pages
+import EventList from './Components/EventList/EventList';
+import EventDetails from './Components/EventDetails/EventDetails';
+import NotFound from './Components/Error/NotFound';
+import EventDetailsError from './Components/Error/EventDetailsError';
 
 function App() {
-  const [eventList, setEventsList] = useState<EventType[] | undefined>([]);
-
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const allEvents = await eventService.getAll();
-      setEventsList(allEvents);
-    };
-    fetchEvents();
-  }, []);
-
-  return (
-    <main>
-      <h1>Event Organizer's Toolbox</h1>
-      <EventList eventList={eventList} />
-    </main>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<EventList />} loader={eventsLoader} />
+        <Route
+          path=":id"
+          element={<EventDetails />}
+          loader={eventDetailsLoader}
+          errorElement={<EventDetailsError />}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Route>,
+    ),
   );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

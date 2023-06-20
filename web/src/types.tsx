@@ -1,33 +1,53 @@
 export type User = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
   email: string;
-};
-
-export type Note = {
-  id: number;
-  text: string;
+  role: string;
+  eventRegistrationComplete: boolean;
 };
 
 export type EventType = {
-  id: number;
-  eventName: string;
-  date: string;
-  location: string;
-  eventType: string;
-  locationConfirmation: boolean;
-  postedConfirmation: boolean;
-  googleFormSent: boolean;
-  organizers: User[];
-  venueContactName: string;
-  venueContactEmail: string;
-  venueContactPhone: string;
-  notes: Note[];
+  id: string;
+  type: string;
+  description: string;
+  active: boolean;
 };
 
-// Omits for creating new fields
-export type NewPerson = Omit<User, 'id'>;
-export type NewNote = Omit<Note, 'id'>;
-export type NewEventType = Omit<Event, 'id'>;
+export type CommunityEvent = {
+  id: string;
+  eventType: EventType;
+  ideaConfirmed: boolean;
+  organizer: string;
+  date: string;
+  inPersonEvent: boolean;
+  onlineEvent: boolean;
+  notes?: string;
+  venue: string;
+  venueContactName?: string;
+  venueContactPhone?: string;
+  venueContactEmail?: string;
+  eventAnnounced: boolean;
+  signUpFormSent: boolean;
+  numVolunteersNeeded: number;
+  volunteerRequestsSent: boolean;
+};
+
+// Omits public view of data
+export type NonSensitiveCommunityEvent = Omit<
+  CommunityEvent,
+  | 'ideaConfirmed'
+  | 'venueContactName'
+  | 'venueContactPhone'
+  | 'venueContactEmail'
+  | 'eventAnnounced'
+  | 'signUpFormSent'
+  | 'volunteersNeeded'
+  | 'volunteerRequestsSent'
+>;
+
+// Omits for creating new entries
+export type NewUser = Omit<User, 'id'>;
+export type NewEventType = Omit<EventType, 'id'>;
+export type NewCommunityEvent = Omit<CommunityEvent, 'id'>;
