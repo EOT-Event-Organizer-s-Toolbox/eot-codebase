@@ -3,11 +3,7 @@
 <a id="top"></a>
 
 - [Event Organizer's Toolbox (EOT)](#event-organizers-toolbox-eot)
-  - [Table of contents](#table-of-contents)
   - [Overview](#overview)
-  - [Getting Started](#getting-started)
-    - [Technologies Used](#technologies-used)
-    - [Installing](#installing)
   - [Authors](#authors)
     - [Lead Developers](#lead-developers)
     - [Project Manager](#project-manager)
@@ -62,7 +58,7 @@ Check out all the cool people working on this project!
 ### Back End Team
 
 - [Travis Bennett](https://github.com/one2code)
-- [Jenna Cox](https://github.com/Jenna59)
+- [Akindipe Anjolaoluwa Daniel](https://github.com/anjolaoluwaakindipe)
 
 ### Other Contributors
 
