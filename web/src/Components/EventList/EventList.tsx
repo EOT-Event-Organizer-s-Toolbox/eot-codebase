@@ -5,6 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const EventList = () => {
   const events = useLoaderData() as CommunityEvent[];
+  
   const EventButtonLabel = 'New Event';
   const [newEventButtonLabel, setNewEventButtonLabel] =
     useState(EventButtonLabel);
