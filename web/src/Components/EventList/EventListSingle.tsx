@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CommunityEvent } from '../../types';
 import { formatDateWritten, getDayOfWeek } from '../../utils/date';
 
@@ -8,6 +8,17 @@ interface Props {
 
 const EventListSingle = ({ event }: Props) => {
   console.log('SINGLE', event);
+  const navigate = useNavigate();
+
+  const handleView = (id: string) => {
+    //TODO - this route should perhaps be /event/:id
+    navigate(`/${id}`);
+  }
+
+  const handleDelete = (id: string) => {
+    // TODO - implement delete
+    console.log('DELETE', id)
+  };
 
   if (!event) {
     return null;
@@ -22,8 +33,17 @@ const EventListSingle = ({ event }: Props) => {
         <span>{formatDateWritten(event.date)}</span>
       </h3>
       <p>{event.venue}</p>
-      <div></div>
-      <Link to={event.id}>Click Me For Details</Link>
+      <div>
+        {event.onlineEvent && <div>Online Event</div>}
+        {event.inPersonEvent && <div>In Person Event</div>}
+        {event.ideaConfirmed && <div>Confirmed</div>}
+        {event.announcementPosted && <div>Posted</div>}
+        {event.signUpFormSent && <div>Sign-up Form Sent</div>}
+      </div>
+      <div>
+        <button onClick={() => handleView(event.id)}>View</button>
+        <button onClick={() => handleDelete(event.id)}>Delete</button>
+      </div>
     </section>
   );
 };
