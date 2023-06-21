@@ -2,7 +2,13 @@ import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
 import eventService from './eventService';
 
 export const eventsLoader: LoaderFunction = async () => {
-  return await eventService.getAll();
+  const events =  await eventService.getAll();
+  
+  if(!events) return null;
+  
+  return events.sort((a, b) => {
+    return a.date > b.date ? 1 : -1;
+  });
 };
 
 export const eventDetailsLoader: LoaderFunction = async ({
