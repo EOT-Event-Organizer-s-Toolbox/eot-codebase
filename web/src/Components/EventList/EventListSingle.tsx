@@ -25,10 +25,11 @@ const EventListSingle = ({ event }: Props) => {
 
   return (
     <section 
-      onClick={() => handleView(event.id)}
-      className="flex justify-between flex-col md:flex-row md:align-middle p-3 md:py-1.5 md:gap-2 bg-zinc-100 mb-2 hover:bg-zinc-200 cursor-pointer"
+      className="flex justify-between flex-col md:flex-row md:align-middle p-3 md:py-1.5 md:gap-2 bg-zinc-100 mb-2 hover:bg-zinc-200"
     >
-      <div className='flex flex-col md:flex-row md:align-middle md:gap-2'>
+      <div 
+        onClick={() => handleView(event.id)}
+        className='flex flex-col md:flex-row md:align-middle md:gap-2 cursor-pointer'>
         <h3 className='font-semibold'>
           {`${event.eventType.type} - ${getDayOfWeek(event.date)}, ${formatDateWritten(event.date)}`}
         </h3>
@@ -63,7 +64,7 @@ const EventListSingle = ({ event }: Props) => {
           }
         </div>
       </div>
-      <div className='hidden md:flex md:flex-row md:justify-center md:align-middle md:gap-2'>
+      <div className='hidden md:flex md:flex-row md:justify-center md:align-middle md:gap-2 z-50'>
         <button className="bg-zinc-400 px-4 py-0 self-center text-white text-xs leading-loose hover:bg-lime-600" onClick={() => handleView(event.id)}>View</button>
         <button className="bg-zinc-400 px-4 py-0 text-white self-center text-xs leading-loose hover:bg-red-600" onClick={() => handleDelete(event.id)}>Delete</button>
       </div>
