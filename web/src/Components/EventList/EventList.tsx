@@ -17,10 +17,10 @@ const EventList = () => {
 
   return (
     <div>
-      <main>
-        <div>
-          <h1 className="text-red-700">Event List</h1>
-          <button onClick={newCommunityEvent}>{newEventButtonLabel}</button>
+      <main className='p-4'>
+        <div className='flex flex-row justify-between align-middle pb-2'>
+          <h1 className="text-2xl font-black uppercase">Event List</h1>
+          <button className='bg-slate-200 pr-4 pl-4 pt-1 pb-1' onClick={newCommunityEvent}>{newEventButtonLabel}</button>
         </div>
 
         {events.map((event) => (
