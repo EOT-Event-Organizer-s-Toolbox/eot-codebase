@@ -10,7 +10,7 @@ const communityEventService = {
     return prisma.communityEvent.create({
       data: params,
       include: {
-        event_type: true,
+        eventType: true,
         organizer: true,
       },
     });
