@@ -3,12 +3,12 @@ import communityEventRouter from './community-event/router';
 
 const router = Router();
 
-router.get('/', (_, res: Response) => {
+router.get('/api', (_, res: Response) => {
   res.json({
     message: 'Hello, World!',
   });
 });
 
-router.use('/community-events', communityEventRouter);
+router.use('/api/community-events', communityEventRouter);
 
 export default router;
