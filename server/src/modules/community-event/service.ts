@@ -1,11 +1,11 @@
 import { prisma } from '../prisma';
-import { CreateParams } from './types';
+import { Prisma } from '@prisma/client';
 
 const communityEventService = {
   findAll: async () => {
     return prisma.communityEvent.findMany();
   },
-  create: async (params: CreateParams) => {
+  create: async (params: Prisma.CommunityEventCreateInput) => {
     params.date = new Date(params.date);
     return prisma.communityEvent.create({
       data: params,

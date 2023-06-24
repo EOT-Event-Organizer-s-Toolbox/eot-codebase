@@ -21,21 +21,3 @@ export type CommunityEventResponse = Modify<
     numVolunteersNeeded: number;
   }
 >;
-
-export type CreateParams = {
-  typeId: string;
-  ideaConfirmed?: boolean;
-  organizerId: string;
-  date: string | Date;
-  inPersonEvent?: boolean;
-  onlineEvent?: boolean;
-  notes?: string;
-  venue?: string;
-  venueContactName?: string;
-  venueContactPhone?: string;
-  venueContactEmail?: string;
-  announcementPosted?: boolean;
-  signUpFormSent?: boolean;
-  volunteersNeeded: number;
-  volunteerRequestsSent?: boolean;
-};
