@@ -17,6 +17,6 @@ export default {
     eventAnnounced: communityEvent.announcementPosted,
     signUpFormSent: communityEvent.signUpFormSent,
     numVolunteersNeeded: communityEvent.volunteersNeeded,
-    voluneerRequestsSent: communityEvent.voluneerRequestsSent,
+    volunteerRequestsSent: communityEvent.volunteerRequestsSent,
   }),
 };

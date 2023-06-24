@@ -37,5 +37,5 @@ export type CreateParams = {
   announcementPosted?: boolean;
   signUpFormSent?: boolean;
   volunteersNeeded: number;
-  voluneerRequestsSent?: boolean;
+  volunteerRequestsSent?: boolean;
 };
