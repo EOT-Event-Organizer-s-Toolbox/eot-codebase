@@ -1,40 +1,22 @@
 import { CommunityEvent, CommunityEventResponse } from './types';
 
 export default {
-  default: (communityEvent: CommunityEvent) => {
-    const fields = [
-      'id',
-      'eventType',
-      'ideaConfirmed',
-      'organizer',
-      'date',
-      'inPersonEvent',
-      'onlineEvent',
-      'notes',
-      'venue',
-      'venueContactName',
-      'venueContactPhone',
-      'venueContactEmail',
-      'announcementPosted',
-      'signUpFormSent',
-      'volunteersNeeded',
-      'voluneerRequestsSent',
-    ];
-    const fieldMap: CommunityEventResponse = fields.reduce(
-      (map: { [key: string]: any }, field) => {
-        map[field] = (communityEvent as { [key: string]: any })[field];
-        if (field === 'eventType' && communityEvent.eventType) {
-          map[field] = communityEvent[field];
-        }
-        if (field === 'organizer' && communityEvent.organizer) {
-          map[
-            field
-          ] = `${communityEvent[field].firstName} ${communityEvent[field].lastName}`;
-        }
-        return map;
-      },
-      {},
-    );
-    return fieldMap;
-  },
+  default: (communityEvent: CommunityEvent): CommunityEventResponse => ({
+    id: communityEvent.id,
+    eventType: communityEvent.eventType,
+    ideaConfirmed: communityEvent.ideaConfirmed,
+    organizer: `${communityEvent.organizer.firstName} ${communityEvent.organizer.lastName}`,
+    date: communityEvent.date,
+    inPersonEvent: communityEvent.inPersonEvent,
+    onlineEvent: communityEvent.onlineEvent,
+    notes: communityEvent.notes,
+    venue: communityEvent.venue,
+    venueContactName: communityEvent.venueContactName,
+    venueContactPhone: communityEvent.venueContactPhone,
+    venueContactEmail: communityEvent.venueContactEmail,
+    eventAnnounced: communityEvent.announcementPosted,
+    signUpFormSent: communityEvent.signUpFormSent,
+    numVolunteersNeeded: communityEvent.volunteersNeeded,
+    voluneerRequestsSent: communityEvent.voluneerRequestsSent,
+  }),
 };
