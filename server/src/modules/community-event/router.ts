@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import controller from './controller';
 import communityEventController from './controller';
 
 const communityEventRouter = Router();
+
+communityEventRouter.post('/', communityEventController.create);
 
 communityEventRouter.put('/', communityEventController.updateCommunityEvent);
 

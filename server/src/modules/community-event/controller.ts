@@ -1,7 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
-import communityEventService from './services';
+import communityEventSerializer from './serializer';
+import communityEventService from './service';
 
 const communityEventController = {
+  create: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      // validate the request body later
+      const communityEvent = await communityEventService.create(req.body);
+      res.json({
+        data: communityEventSerializer.default(communityEvent),
+      });
+    } catch (e) {
+      next(e);
+    }
+  },
   updateCommunityEvent: async (
     req: Request,
     res: Response,

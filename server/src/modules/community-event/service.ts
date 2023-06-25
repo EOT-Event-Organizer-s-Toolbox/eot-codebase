@@ -1,12 +1,25 @@
-import { Prisma, CommunityEvent } from '@prisma/client';
 import { prisma } from '../prisma';
+import { Prisma } from '@prisma/client';
 import { NotFoundError } from '../../utils/errors';
 
 const communityEventService = {
+  findAll: async () => {
+    return prisma.communityEvent.findMany();
+  },
+  create: async (params: Prisma.CommunityEventCreateInput) => {
+    params.date = new Date(params.date);
+    return prisma.communityEvent.create({
+      data: params,
+      include: {
+        eventType: true,
+        organizer: true,
+      },
+    });
+  },
   updateEventById: async (
     communityEventId: string,
     updateData: Prisma.CommunityEventUpdateInput,
-  ): Promise<CommunityEvent> => {
+  ) => {
     const existingCommunityEvent = !!(await prisma.communityEvent.findUnique({
       where: { id: communityEventId },
     }));
@@ -24,4 +37,4 @@ const communityEventService = {
   },
 };
 
-export default communityEventService
+export default communityEventService;
