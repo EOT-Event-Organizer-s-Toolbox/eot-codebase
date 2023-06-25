@@ -28,7 +28,7 @@ export type CommunityEvent = {
   venueContactName?: string;
   venueContactPhone?: string;
   venueContactEmail?: string;
-  eventAnnounced: boolean;
+  announcementPosted: boolean;
   signUpFormSent: boolean;
   numVolunteersNeeded: number;
   volunteerRequestsSent: boolean;
