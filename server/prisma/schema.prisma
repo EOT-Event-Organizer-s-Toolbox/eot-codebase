@@ -18,13 +18,13 @@ enum Role {
 model User {
   id String @id @default(uuid())
 
-  first_name                   String?
-  last_name                    String?
-  email                        String           @unique
-  phone                        String?
-  role                         Role             @default(USER)
-  event_registration_completed Boolean          @default(false)
-  community_events             CommunityEvent[]
+  firstName                  String?
+  lastName                   String?
+  email                      String           @unique
+  phone                      String?
+  role                       Role             @default(USER)
+  eventRegistrationCompleted Boolean          @default(false)
+  communityEvents            CommunityEvent[]
 }
 
 model EventType {
@@ -37,22 +37,22 @@ model EventType {
 
 // Full template timezone > DateTime implementation
 model CommunityEvent {
-  event_type             EventType @relation(fields: [type_id], references: [id])
-  id                     String    @id @default(uuid())
-  type_id                String
-  idea_confirmed         Boolean   @default(false)
-  organizer_id           String
-  organizer              User      @relation(fields: [organizer_id], references: [id])
-  date                   DateTime
-  in_person_event        Boolean   @default(false)
-  online_event           Boolean   @default(false)
-  notes                  String?
-  venue                  String?
-  venue_contact_name     String?
-  venue_contact_phone    String?
-  venue_contact_email    String?
-  announcement_posted    Boolean   @default(false)
-  sign_up_form_sent      Boolean   @default(false)
-  volunteers_needed      Int
-  voluneer_requests_sent Boolean   @default(false)
+  eventType             EventType @relation(fields: [typeId], references: [id])
+  id                    String    @id @default(uuid())
+  typeId                String
+  ideaConfirmed         Boolean   @default(false)
+  organizerId           String
+  organizer             User      @relation(fields: [organizerId], references: [id])
+  date                  DateTime
+  inPersonEvent         Boolean   @default(false)
+  onlineEvent           Boolean   @default(false)
+  notes                 String?
+  venue                 String?
+  venueContactName      String?
+  venueContactPhone     String?
+  venueContactEmail     String?
+  announcementPosted    Boolean   @default(false)
+  signUpFormSent        Boolean   @default(false)
+  volunteersNeeded      Int
+  volunteerRequestsSent Boolean   @default(false)
 }
