@@ -5,6 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const EventList = () => {
   const events = useLoaderData() as CommunityEvent[];
+
   const EventButtonLabel = 'New Event';
   const [newEventButtonLabel, setNewEventButtonLabel] =
     useState(EventButtonLabel);
@@ -16,11 +17,16 @@ const EventList = () => {
   };
 
   return (
-    <div className="main-container">
-      <main>
-        <div className="page-heading-container">
-          <h1>Event List</h1>
-          <button onClick={newCommunityEvent}>{newEventButtonLabel}</button>
+    <div>
+      <main className="p-4">
+        <div className="flex flex-row justify-between align-middle pb-2">
+          <h1 className="text-2xl font-black uppercase">Event List</h1>
+          <button
+            className="bg-slate-200 pr-4 pl-4 pt-1 pb-1"
+            onClick={newCommunityEvent}
+          >
+            {newEventButtonLabel}
+          </button>
         </div>
 
         {events.map((event) => (
