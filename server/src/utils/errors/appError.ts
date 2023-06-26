@@ -1,3 +1,6 @@
+/**
+ * Main application error
+ */
 export class ApplicationError extends Error {
   status: number;
   message: string;

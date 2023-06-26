@@ -14,10 +14,6 @@ app.use('/', router);
 // error handling
 app.use(errorHandler);
 
-app
-  .listen(port, () => {
-    console.log(`Server listening on port ${port}!`);
-  })
-  .on('close', async () => {
-    await prisma.$disconnect();
-  });
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}!`);
+});
