@@ -7,10 +7,7 @@ export const updateCommunityEventReq = z.object({
   body: z.object({
     id: z.string().uuid(),
     ideaConfirmed: z.boolean().optional(),
-    date: z.coerce
-      .date()
-      .min(new Date(), { message: 'Event must be updated to a future date' })
-      .optional(),
+    date: z.coerce.date().optional(),
     inPersonEvent: z.boolean().optional(),
     onlineEvent: z.boolean().optional(),
     notes: z.string().optional(),

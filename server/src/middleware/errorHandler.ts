@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ApplicationError } from '../utils/errors';
-import { BadRequestError } from '../utils/errors/badRequestError';
+import { BadRequestError } from '../utils/errors';
 
 export const errorHandler = (
   err: Error,
@@ -9,16 +9,17 @@ export const errorHandler = (
   next: NextFunction,
 ) => {
   console.error(err);
+  const response: { message: string; status: number; issues?: any[] } = {
+    message: 'INTERNAL SERVER ERROR',
+    status: 500,
+  };
+
   if (err instanceof ApplicationError) {
-    res.status(err.status).send({
-      message: err.message,
-      status: err.status,
-      ...(err instanceof BadRequestError ? { issues: err.issues } : {}),
-    });
-  } else {
-    res.status(500).send({
-      message: 'INTERNAL SERVER ERROR',
-      status: 500,
-    });
+    response.message = err.message;
+    response.status = err.status;
+    if (err instanceof BadRequestError) {
+      response.issues = err.issues;
+    }
   }
+  res.status(response.status).send(response);
 };

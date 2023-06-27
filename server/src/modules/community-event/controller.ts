@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import communityEventSerializer from './serializer';
 import communityEventService from './service';
-import { validationParser } from '../../utils/validation/validationParser';
+import { validationParser } from '../../utils/validation';
 import { updateCommunityEventReq } from './validations';
 
 /**
@@ -19,11 +19,7 @@ const communityEventController = {
       next(e);
     }
   },
-  updateCommunityEvent: async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => {
+  update: async (req: Request, res: Response, next: NextFunction) => {
     try {
       // validate request
       const {
@@ -31,7 +27,7 @@ const communityEventController = {
       } = await validationParser(updateCommunityEventReq, req);
 
       // call service
-      const response = await communityEventService.updateEventById(id, update);
+      const response = await communityEventService.updateById(id, update);
 
       // serialize response
       res.json({ data: communityEventSerializer.default(response) });

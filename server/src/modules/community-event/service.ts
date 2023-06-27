@@ -19,12 +19,12 @@ const communityEventService = {
 
   /**
    * This service is used the to update a community event with a specific ID.
-   * 
-   * @param communityEventId 
-   * @param updateData 
-   * @returns 
+   *
+   * @param communityEventId
+   * @param updateData
+   * @returns
    */
-  updateEventById: async (
+  updateById: async (
     communityEventId: string,
     updateData: Prisma.CommunityEventUpdateInput,
   ) => {

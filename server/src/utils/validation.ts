@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import { AnyZodObject, ZodError, z } from 'zod';
-import { BadRequestError } from '../errors';
+import { BadRequestError } from './errors';
 
 /**
  * Applies validation to the request and returns a type safe version of the request.
