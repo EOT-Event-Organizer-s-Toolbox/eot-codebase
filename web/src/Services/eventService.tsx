@@ -1,7 +1,8 @@
 import { CommunityEvent } from '../types';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3001/events';
+const apiUrl = import.meta.env.DEV ? import.meta.env.VITE_API_URL : import.meta.env.PROD_API_URL || 'http://localhost:3001';
+const baseUrl = `${apiUrl}/events`;
 
 // Retrieve all Events from the server
 const getAll = async () => {
