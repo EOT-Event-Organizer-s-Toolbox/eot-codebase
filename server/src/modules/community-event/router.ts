@@ -1,8 +1,13 @@
 import { Router } from 'express';
-import controller from './controller';
+import communityEventController from './controller';
 
-const router = Router();
+/**
+ * Router for the Community Event module
+ */
+const communityEventRouter = Router();
 
-router.post('/', controller.create);
+communityEventRouter.post('/', communityEventController.create);
 
-export default router;
+communityEventRouter.put('/', communityEventController.update);
+
+export default communityEventRouter;
