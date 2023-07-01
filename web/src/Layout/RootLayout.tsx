@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import logo from '../../public/eotlogo_white.svg';
+import logo from '/eotlogo_white.svg';
 
 const RootLayout = () => {
   return (
