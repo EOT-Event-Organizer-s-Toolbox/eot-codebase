@@ -12,11 +12,18 @@ import EventList from './Components/EventList/EventList';
 import EventDetails from './Components/EventDetails/EventDetails';
 import NotFound from './Components/Error/NotFound';
 import EventDetailsError from './Components/Error/EventDetailsError';
+import EditEvent from './Components/EditEvent/EditEvent';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
+        <Route 
+          path="edit/:id"
+          element={<EditEvent />}
+          loader={eventDetailsLoader}
+          errorElement={<EventDetailsError />}
+        />
         <Route index element={<EventList />} loader={eventsLoader} />
         <Route
           path=":id"
