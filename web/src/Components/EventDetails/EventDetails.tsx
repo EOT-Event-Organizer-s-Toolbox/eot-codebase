@@ -7,10 +7,12 @@ const EventDetails = () => {
   return (
     <>
       <h1>Event Details</h1>
-      <p>{event.eventType.type}</p>
-      <p>{event.venue}</p>
-      <p>{event.date}</p>
+      <p>{event.eventType && event.eventType.type}</p>
+      <p>{event.venue && event.venue}</p>
+      <p>{event.date && event.date}</p>
       <Link to="/">Return to Event List</Link>
+      <br />
+      <Link to={`/edit/${event.id}`}>Edit Event</Link>
     </>
   );
 };
