@@ -5,7 +5,9 @@ export default {
     id: communityEvent.id,
     eventType: communityEvent.eventType,
     ideaConfirmed: communityEvent.ideaConfirmed,
-    organizer: `${communityEvent.organizer.firstName} ${communityEvent.organizer.lastName}`,
+    organizer:
+      communityEvent.organizer &&
+      `${communityEvent.organizer.firstName} ${communityEvent.organizer.lastName}`,
     date: communityEvent.date,
     inPersonEvent: communityEvent.inPersonEvent,
     onlineEvent: communityEvent.onlineEvent,

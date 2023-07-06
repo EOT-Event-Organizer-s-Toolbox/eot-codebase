@@ -7,7 +7,6 @@ const communityEventService = {
     return prisma.communityEvent.findMany();
   },
   create: async (params: Prisma.CommunityEventCreateInput) => {
-    params.date = new Date(params.date);
     return prisma.communityEvent.create({
       data: params,
       include: {
