@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { CommunityEvent } from '../../types';
-import { formatDateWritten, getDayOfWeek } from '../../utils/date';
+import { formatDateWritten, getDayOfWeek, isDateValid } from '../../utils/date';
 
-interface Props {
+type Props = {
   event: CommunityEvent | undefined;
 }
 const EventListSingle = ({ event }: Props) => {
@@ -11,6 +11,7 @@ const EventListSingle = ({ event }: Props) => {
 
   const handleView = (id: string) => {
     //TODO - this route should perhaps be /event/:id
+    //TODO - if above is true then editing should be /event/edit/:id
     navigate(`/${id}`);
   };
 
@@ -23,6 +24,11 @@ const EventListSingle = ({ event }: Props) => {
     return null;
   }
 
+  // Handle dates that are not yet set
+  let dateDetails = 'Date TBD';
+  if(event.date && isDateValid(event.date)) {
+    dateDetails = `${getDayOfWeek(event.date)}, ${formatDateWritten(event.date)}`;
+  }
   return (
     <section className="flex justify-between flex-col md:flex-row md:align-middle p-3 md:py-1.5 md:gap-2 bg-zinc-100 mb-2 hover:bg-zinc-200">
       <div
@@ -30,9 +36,7 @@ const EventListSingle = ({ event }: Props) => {
         className="flex flex-col md:flex-row md:align-middle md:gap-2 cursor-pointer"
       >
         <h3 className="font-semibold">
-          {`${event.eventType.type} - ${getDayOfWeek(
-            event.date,
-          )}, ${formatDateWritten(event.date)}`}
+          {dateDetails}
         </h3>
         <p className="text-xs -mt-1 md:m-0 pb-2 md:pb-0 md:leading-loose">
           {event.venue}

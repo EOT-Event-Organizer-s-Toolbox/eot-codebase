@@ -13,16 +13,15 @@ type EventFormatOptionsType = {
   label: string;
 };
 
+type CommunityEventForm = Omit<CommunityEvent, 'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent' > & {
+  eventTypeUUID: string;
+  eventFormat: EventFormatOptions;
+};
 
 const enumToArray = (e: typeof EventFormatOptions): EventFormatOptionsType[] => {
   return Object.keys(e).map((key: string): EventFormatOptionsType => {
     return { id: key, label: e[key as keyof typeof EventFormatOptions] as string };
    });
-};
-
-type CommunityEventForm = Omit<CommunityEvent, 'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent' > & {
-  eventTypeUUID: string;
-  eventFormat: EventFormatOptions;
 };
 
 const EventFormatOptionsSchema = z.nativeEnum(EventFormatOptions);
@@ -50,16 +49,28 @@ const validationSchema:ZodType<CommunityEventForm> = z.object({
   volunteerRequestsSent: schemaPatterns.singleCheckBox,
 });
 
+type Props = {
+  event: CommunityEvent | undefined;
+}
 
-const EventForm = () => {
-  const {register, handleSubmit, formState: { errors }} = useForm<CommunityEventForm>({
+const EventForm = ({event}: Props) => {
+  const {register, reset, handleSubmit, formState: { errors }} = useForm<CommunityEventForm>({
     resolver: zodResolver(validationSchema)
   });
 
+  
+
+  if (!event) return null;
+  console.log(event)
+  reset({
+    ...event,
+    eventTypeUUID: event.eventType?.id,
+
+  })
   const submitData = (data: CommunityEventForm) => {
     console.log("form submitted", data);
   };
-
+  
   const style = {
     text: "border border-slate-700 p-1",
     formLabel: "capitalize text-slate-700",
@@ -72,7 +83,7 @@ const EventForm = () => {
 
         <div className="flex flex-col gap-1 pb-2">
           <label className={style.formLabel} htmlFor="organizer">Organizer</label>
-          <input type="text" id="organizer" placeholder="Organizer"
+          <input type="text" id="organizer" placeholder={"Organizer"}
             {...register("organizer")}
             className={style.text}
           />
@@ -82,9 +93,9 @@ const EventForm = () => {
         <div className="flex flex-col gap-1 pb-2">
           <label className={style.formLabel} htmlFor="eventTypeUUID">Event Type</label>
           <select id="eventTypeUUID" {...register("eventTypeUUID")} className={style.select}>
-            <option value="5f478c15-2718-4f67-83d6-4c8d6ca5c8c9">JS Social</option>
-            <option value="e1188e72-2a67-4532-9c5a-df5873f68b9d">Code Club</option>
-            <option value="7ec438a2-0c9d-4c0e-98c6-9f2df76f2ee3">JS Talks</option>
+            <option value="12345678-1234-5678-1234-567812345655">JS Social</option>
+            <option value="12345678-1234-5678-1234-567812345656">Code Jam</option>
+            <option value="12345678-1234-5678-1234-567812345658">Tech Talks</option>
           </select>
           {errors.eventTypeUUID && <span className="text-red-700">{errors.eventTypeUUID.message}</span>}
         </div>
@@ -98,7 +109,7 @@ const EventForm = () => {
         </div>
 
         <div className="flex flex-col gap-1 pb-2">
-          <label className={style.formLabel} htmlFor="date">Date</label>
+          <label className={style.formLabel} htmlFor="date">Date (use 2023-05-12T18:30:00.000Z to test)</label>
           <input type="text" id="date" placeholder=""
             {...register("date")}
             className={style.text}
