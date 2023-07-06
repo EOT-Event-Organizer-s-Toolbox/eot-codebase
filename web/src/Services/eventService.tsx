@@ -26,15 +26,9 @@ const getEvent = async (id: string) => {
 };
 
 /**  Creates a new event */
-const createEvent = async (newEvent: {
-  typeId: string;
-  date: string;
-  ideaConfirmed: boolean;
-  organizerId: string;
-  volunteersNeeded: number;
-}) => {
+const createEvent = async () => {
   try {
-    const req = await axios.post(`${baseUrl}`, newEvent);
+    const req = await axios.post(baseUrl, {});
     const event: CommunityEvent = req.data;
     return event;
   } catch (e) {
