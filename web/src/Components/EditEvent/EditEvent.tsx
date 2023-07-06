@@ -3,9 +3,9 @@ import { useLoaderData } from "react-router-dom";
 import { CommunityEvent } from "../../types";
 
 const EditEvent = () => {
-  const event = useLoaderData() as CommunityEvent;
+  const communityEvent = useLoaderData() as CommunityEvent;
   return (
-    <EventForm event={event} />
+    <EventForm communityEvent={communityEvent} />
   );
 };
 

@@ -6,7 +6,12 @@ const RootLayout = () => {
   return (
     <main>
       <header className="flex flex-row align-middle gap-3 p-2 bg-zinc-700">
-        <img src={logo} onClick={() => navigate("/")} alt="logo" className="w-10 h-10 cursor-pointer" />
+        <img
+          src={logo}
+          onClick={() => navigate('/')}
+          alt="logo"
+          className="w-10 h-10 cursor-pointer"
+        />
         <p className="max-sm:hidden md:text-lg font-black place-self-center text-white uppercase">
           Event Organizer's Toolbox
         </p>

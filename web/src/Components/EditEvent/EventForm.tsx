@@ -2,7 +2,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { CommunityEvent } from "../../types";
+import { useEffect } from "react";
 
+/* communityEvent format replaces values for inPersonEvent(BOOLEAN) and onlineEvent(BOOLEAN) */
 enum EventFormatOptions {
   InPerson = "IN PERSON EVENT",
   Online = "ONLINE EVENT"
@@ -13,11 +15,15 @@ type EventFormatOptionsType = {
   label: string;
 };
 
+/* CommunityEventForm type is used to interact with react hook forms an */
+/* Event type is replaced with a reference */
+/* Event format is used to control toggle between communityEvent formats that are stored in 2 parts */
 type CommunityEventForm = Omit<CommunityEvent, 'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent' > & {
   eventTypeUUID: string;
   eventFormat: EventFormatOptions;
 };
 
+/* Convert enum to array of objects for use in select input */
 const enumToArray = (e: typeof EventFormatOptions): EventFormatOptionsType[] => {
   return Object.keys(e).map((key: string): EventFormatOptionsType => {
     return { id: key, label: e[key as keyof typeof EventFormatOptions] as string };
@@ -26,6 +32,7 @@ const enumToArray = (e: typeof EventFormatOptions): EventFormatOptionsType[] => 
 
 const EventFormatOptionsSchema = z.nativeEnum(EventFormatOptions);
 
+/* Define zod reusable schema patterns */
 const schemaPatterns = {
   optionalString: z.string().optional().or(z.literal('')),
   optionalEmail: z.string().email().optional().or(z.literal('')),
@@ -50,23 +57,26 @@ const validationSchema:ZodType<CommunityEventForm> = z.object({
 });
 
 type Props = {
-  event: CommunityEvent | undefined;
+  communityEvent: CommunityEvent | undefined;
 }
 
-const EventForm = ({event}: Props) => {
+const EventForm = ({communityEvent}: Props) => {
   const {register, reset, handleSubmit, formState: { errors }} = useForm<CommunityEventForm>({
     resolver: zodResolver(validationSchema)
   });
+  /* Set the initial values for the form */
+  useEffect(() => {
+    if(!communityEvent) return;
+    reset({
+      ...communityEvent,
+      eventTypeUUID: communityEvent.eventType?.id,
+      eventFormat: communityEvent.inPersonEvent ? EventFormatOptions.InPerson : EventFormatOptions.Online
 
+    })
+  }, [communityEvent, reset])
   
-
-  if (!event) return null;
-  console.log(event)
-  reset({
-    ...event,
-    eventTypeUUID: event.eventType?.id,
-
-  })
+  if (!communityEvent) return null;
+  
   const submitData = (data: CommunityEventForm) => {
     console.log("form submitted", data);
   };

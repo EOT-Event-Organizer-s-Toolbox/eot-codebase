@@ -12,17 +12,16 @@ export const eventsLoader: LoaderFunction = async () => {
     if (!event.date) {
       event.date = 'TBD';
       newEvents.push(event);
-      return false
+      return false;
     }
     return true;
   });
 
-  const sortedEvents =  eventsWithDate.sort((a, b) => {
+  const sortedEvents = eventsWithDate.sort((a, b) => {
     return a.date && b.date ? a.date.localeCompare(b.date) : 0;
   });
 
   return newEvents.concat(sortedEvents);
-
 };
 
 export const eventDetailsLoader: LoaderFunction = async ({
