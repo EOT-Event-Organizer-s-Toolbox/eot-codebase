@@ -43,7 +43,7 @@ export type NonSensitiveCommunityEvent = Omit<
   'venueContactEmail'|
   'eventAnnounced'|
   'signUpFormSent'|
-  'volunteersNeeded'|
+  'numVolunteersNeeded'|
   'volunteerRequestsSent'
   >;
 
