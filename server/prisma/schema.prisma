@@ -10,11 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  ADMIN
-  USER
-}
-
 model User {
   id String @id @default(uuid())
 
@@ -22,7 +17,6 @@ model User {
   lastName                   String?
   email                      String           @unique
   phone                      String?
-  role                       Role             @default(USER)
   eventRegistrationCompleted Boolean          @default(false)
   communityEvents            CommunityEvent[]
 }
@@ -37,22 +31,22 @@ model EventType {
 
 // Full template timezone > DateTime implementation
 model CommunityEvent {
-  eventType             EventType @relation(fields: [typeId], references: [id])
-  id                    String    @id @default(uuid())
-  typeId                String
-  ideaConfirmed         Boolean   @default(false)
-  organizerId           String
-  organizer             User      @relation(fields: [organizerId], references: [id])
-  date                  DateTime
-  inPersonEvent         Boolean   @default(false)
-  onlineEvent           Boolean   @default(false)
+  eventType             EventType? @relation(fields: [typeId], references: [id])
+  id                    String     @id @default(uuid())
+  typeId                String?
+  ideaConfirmed         Boolean    @default(false)
+  organizerId           String?
+  organizer             User?      @relation(fields: [organizerId], references: [id])
+  date                  DateTime   @default(now())
+  inPersonEvent         Boolean    @default(false)
+  onlineEvent           Boolean    @default(false)
   notes                 String?
   venue                 String?
   venueContactName      String?
   venueContactPhone     String?
   venueContactEmail     String?
-  announcementPosted    Boolean   @default(false)
-  signUpFormSent        Boolean   @default(false)
-  volunteersNeeded      Int
-  volunteerRequestsSent Boolean   @default(false)
+  announcementPosted    Boolean    @default(false)
+  signUpFormSent        Boolean    @default(false)
+  volunteersNeeded      Int?
+  volunteerRequestsSent Boolean    @default(false)
 }
