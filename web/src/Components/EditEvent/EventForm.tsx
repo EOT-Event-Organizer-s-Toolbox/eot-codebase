@@ -2,39 +2,28 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
 import { CommunityEvent } from "../../types";
-import { useEffect } from "react";
 
 /* communityEvent format replaces values for inPersonEvent(BOOLEAN) and onlineEvent(BOOLEAN) */
-enum EventFormatOptions {
-  InPerson = "IN PERSON EVENT",
-  Online = "ONLINE EVENT"
-}
+const EventFormatOptions = {
+  InPerson: "IN PERSON EVENT",
+  Online: "ONLINE EVENT"
+} as const;
 
-type EventFormatOptionsType = {
-  id: string;
-  label: string;
-};
+type EventFormatOptionsType = typeof EventFormatOptions[keyof typeof EventFormatOptions];
 
 /* CommunityEventForm type is used to interact with react hook forms an */
 /* Event type is replaced with a reference */
 /* Event format is used to control toggle between communityEvent formats that are stored in 2 parts */
 type CommunityEventForm = Omit<CommunityEvent, 'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent' > & {
   eventTypeUUID: string;
-  eventFormat: EventFormatOptions;
-};
-
-/* Convert enum to array of objects for use in select input */
-const enumToArray = (e: typeof EventFormatOptions): EventFormatOptionsType[] => {
-  return Object.keys(e).map((key: string): EventFormatOptionsType => {
-    return { id: key, label: e[key as keyof typeof EventFormatOptions] as string };
-   });
+  eventFormat: EventFormatOptionsType;
 };
 
 const EventFormatOptionsSchema = z.nativeEnum(EventFormatOptions);
 
 /* Define zod reusable schema patterns */
 const schemaPatterns = {
-  optionalString: z.string().optional().or(z.literal('')),
+  optionalString: z.string().optional(),
   optionalEmail: z.string().email().optional().or(z.literal('')),
   singleCheckBox: z.literal(true).or(z.literal(false))
 }
@@ -61,22 +50,28 @@ type Props = {
 }
 
 const EventForm = ({communityEvent}: Props) => {
-  const {register, reset, handleSubmit, formState: { errors }} = useForm<CommunityEventForm>({
-    resolver: zodResolver(validationSchema)
+  
+  /* Register form and check if communityEvent Exists */
+  const {register, handleSubmit, formState: { errors }} = useForm<CommunityEventForm>({
+    resolver: zodResolver(validationSchema),
+    defaultValues: {
+      ...(communityEvent? {
+        ...communityEvent,
+        eventTypeUUID: communityEvent.eventType?.id,
+        eventFormat: communityEvent.inPersonEvent ? EventFormatOptions.InPerson : EventFormatOptions.Online
+      } : {}),
+     
+    }
   });
-  /* Set the initial values for the form */
-  useEffect(() => {
-    if(!communityEvent) return;
-    reset({
-      ...communityEvent,
-      eventTypeUUID: communityEvent.eventType?.id,
-      eventFormat: communityEvent.inPersonEvent ? EventFormatOptions.InPerson : EventFormatOptions.Online
 
-    })
-  }, [communityEvent, reset])
-  
-  if (!communityEvent) return null;
-  
+  if (!communityEvent) {
+    return (
+      <>
+        No matching Community Event
+      </>
+    )
+  }
+
   const submitData = (data: CommunityEventForm) => {
     console.log("form submitted", data);
   };
@@ -113,7 +108,12 @@ const EventForm = ({communityEvent}: Props) => {
         <div className="flex flex-col gap-1 pb-2">
           <label className={style.formLabel} htmlFor="eventFormat">Event Format</label>
           <select id="eventFormat" {...register("eventFormat")} className={style.select}>
-            {enumToArray(EventFormatOptions).map((option) => <option key={option.id} value={option.label}>{option.label}</option>)}
+            {Object.values(EventFormatOptions).map((option) => {
+              return (
+                <option key={option} value={option}>{option}</option>
+              )
+            } 
+            )}
           </select>
           {errors.eventFormat && <span className="text-red-700">{errors.eventFormat.message}</span>}
         </div>

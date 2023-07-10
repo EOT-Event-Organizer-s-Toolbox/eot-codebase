@@ -160,6 +160,24 @@
       "signUpFormSent": true,
       "numVolunteersNeeded": 7,
       "volunteerRequestsSent": true
+    },
+    {
+      "id": "12345678-1234-5678-1234-56781234eeee",
+      "eventType": null,
+      "ideaConfirmed": false,
+      "organizer": null,
+      "date": null,
+      "inPersonEvent": true,
+      "onlineEvent": null,
+      "notes": null,
+      "venue": null,
+      "venueContactName": null,
+      "venueContactPhone": null,
+      "venueContactEmail": null,
+      "announcementPosted": null,
+      "signUpFormSent": null,
+      "numVolunteersNeeded": null,
+      "volunteerRequestsSent": null
     }
   ],
   "eventTypes": [
