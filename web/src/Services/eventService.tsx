@@ -1,7 +1,7 @@
 import { CommunityEvent } from '../types';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3001/community-events';
+const baseUrl = 'http://localhost:3000/community-events';
 
 /** Retrieve all Events from the server */
 const getAll = async () => {
