@@ -1,14 +1,11 @@
 import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
 import eventService from './eventService';
+import { CommunityEvent } from '../types';
 
 export const eventsLoader: LoaderFunction = async () => {
-  const events = await eventService.getAll();
-
+  const events: CommunityEvent[] | undefined = await eventService.getAll();
   if (!events) return null;
-
-  return events.sort((a, b) => {
-    return a.date > b.date ? 1 : -1;
-  });
+  return events;
 };
 
 export const eventDetailsLoader: LoaderFunction = async ({

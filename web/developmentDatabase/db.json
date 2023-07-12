@@ -5,12 +5,12 @@
       "eventType": {
         "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
-        "description": "Social networking opportunity for the TJS community.",
+        "description": "Socialize with other JS developers.",
         "active": true
       },
       "ideaConfirmed": true,
       "organizer": "Angela Martin Schrute",
-      "date": "2042-04-23T18:25:43.511Z",
+      "date": "2023-04-23T18:25:43.511Z",
       "inPersonEvent": true,
       "onlineEvent": false,
       "notes": "Should be a two hr long event. Remember to send Zoom link in invites.",
@@ -20,7 +20,7 @@
       "venueContactEmail": "ninjadschrute@schrutefarms.com",
       "announcementPosted": true,
       "signUpFormSent": true,
-      "volunteersNeeded": 0,
+      "numVolunteersNeeded": 0,
       "volunteerRequestsSent": false
     },
     {
@@ -28,12 +28,12 @@
       "eventType": {
         "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
-        "description": "Networking event for Toronto JS developers.",
+        "description": "Socialize with other JS developers.",
         "active": true
       },
       "ideaConfirmed": true,
       "organizer": "Alice Roberts",
-      "date": "2042-05-12T18:30:00.000Z",
+      "date": "2023-05-12T18:30:00.000Z",
       "inPersonEvent": true,
       "onlineEvent": false,
       "notes": "Event to be held at MaRS Discovery District. Refreshments provided.",
@@ -43,7 +43,7 @@
       "venueContactEmail": "johndoe@marsdd.com",
       "announcementPosted": true,
       "signUpFormSent": true,
-      "volunteersNeeded": 5,
+      "numVolunteersNeeded": 5,
       "volunteerRequestsSent": true
     },
     {
@@ -51,12 +51,12 @@
       "eventType": {
         "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
-        "description": "Workshop for advanced JS frameworks.",
+        "description": "Socialize with other JS developers.",
         "active": true
       },
       "ideaConfirmed": true,
       "organizer": "Bob Parker",
-      "date": "2042-06-05T10:00:00.000Z",
+      "date": "2023-06-05T10:00:00.000Z",
       "inPersonEvent": false,
       "onlineEvent": true,
       "notes": "Online event via Zoom. Link to be sent out prior to event.",
@@ -66,7 +66,7 @@
       "venueContactEmail": "bobparker@jsnetwork.com",
       "announcementPosted": true,
       "signUpFormSent": true,
-      "volunteersNeeded": 0,
+      "numVolunteersNeeded": 0,
       "volunteerRequestsSent": false
     },
     {
@@ -74,12 +74,12 @@
       "eventType": {
         "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
-        "description": "React vs Angular debate.",
+        "description": "Socialize with other JS developers.",
         "active": true
       },
       "ideaConfirmed": true,
       "organizer": "Carol Fisher",
-      "date": "2042-07-22T19:00:00.000Z",
+      "date": "2023-07-22T19:00:00.000Z",
       "inPersonEvent": true,
       "onlineEvent": false,
       "notes": "Debate to be held at Toronto Reference Library. Snacks will be available.",
@@ -89,7 +89,7 @@
       "venueContactEmail": "emilyclarke@torontopubliclibrary.ca",
       "announcementPosted": true,
       "signUpFormSent": true,
-      "volunteersNeeded": 3,
+      "numVolunteersNeeded": 3,
       "volunteerRequestsSent": true
     },
     {
@@ -97,12 +97,12 @@
       "eventType": {
         "id": "12345678-1234-5678-1234-567812345655",
         "type": "JS Social",
-        "description": "Node.js introductory workshop for beginners.",
+        "description": "Socialize with other JS developers.",
         "active": true
       },
       "ideaConfirmed": true,
       "organizer": "David Williams",
-      "date": "2042-08-18T15:00:00.000Z",
+      "date": "2023-08-18T15:00:00.000Z",
       "inPersonEvent": false,
       "onlineEvent": true,
       "notes": "Online event via Microsoft Teams. Link will be sent out a week prior.",
@@ -112,20 +112,43 @@
       "venueContactEmail": "davidwilliams@jsnetwork.com",
       "announcementPosted": true,
       "signUpFormSent": true,
-      "volunteersNeeded": 0,
+      "numVolunteersNeeded": 10,
       "volunteerRequestsSent": false
+    },
+    {
+      "id": "12345678-1234-5678-1234-667812345674",
+      "eventType": {
+        "id": "12345678-1234-5678-1234-567812345658",
+        "type": "Tech Talk test",
+        "description": "Let's talk about tech.",
+        "active": true
+      },
+      "ideaConfirmed": true,
+      "organizer": "David Williams",
+      "date": null,
+      "inPersonEvent": false,
+      "onlineEvent": true,
+      "notes": "",
+      "venue": "Microsoft Teams",
+      "venueContactName": "David Williams",
+      "venueContactPhone": "289-123-4567",
+      "venueContactEmail": "davidwilliams@jsnetwork.com",
+      "announcementPosted": true,
+      "signUpFormSent": true,
+      "numVolunteersNeeded": 5,
+      "volunteerRequestsSent": true
     },
     {
       "id": "12345678-1234-5678-1234-567812345675",
       "eventType": {
-        "id": "12345678-1234-5678-1234-567812345655",
-        "type": "JS Social",
-        "description": "Post-conference networking event for JS developers.",
+        "id": "12345678-1234-5678-1234-567812345656",
+        "type": "Code Jam",
+        "description": "Code together.",
         "active": true
       },
       "ideaConfirmed": true,
       "organizer": "Elizabeth Johnson",
-      "date": "2042-09-12T20:00:00.000Z",
+      "date": "2023-09-12T20:00:00.000Z",
       "inPersonEvent": true,
       "onlineEvent": false,
       "notes": "Event to be held at Fairmont Royal York. Cocktail attire required.",
@@ -135,8 +158,48 @@
       "venueContactEmail": "frankadams@fairmont.com",
       "announcementPosted": true,
       "signUpFormSent": true,
-      "volunteersNeeded": 7,
+      "numVolunteersNeeded": 7,
       "volunteerRequestsSent": true
+    },
+    {
+      "id": "12345678-1234-5678-1234-56781234eeee",
+      "eventType": null,
+      "ideaConfirmed": false,
+      "organizer": null,
+      "date": null,
+      "inPersonEvent": true,
+      "onlineEvent": null,
+      "notes": null,
+      "venue": null,
+      "venueContactName": null,
+      "venueContactPhone": null,
+      "venueContactEmail": null,
+      "announcementPosted": null,
+      "signUpFormSent": null,
+      "numVolunteersNeeded": null,
+      "volunteerRequestsSent": null
     }
+  ],
+  "eventTypes": [
+    {
+      "id": "12345678-1234-5678-1234-567812345655",
+      "type": "JS Social",
+      "description": "Socialize with other JS developers.",
+      "active": true
+    },
+    {
+      "id": "12345678-1234-5678-1234-567812345656",
+      "type": "Code Jam",
+      "description": "Code together.",
+      "active": true
+    }, 
+    {
+      "id": "12345678-1234-5678-1234-567812345658",
+      "type": "Tech Talk",
+      "description": "Let's talk about tech.",
+      "active": true
+    }    
+
   ]
 }
+

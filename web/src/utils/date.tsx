@@ -32,3 +32,8 @@ export const formatDateWritten = (
 
   return date.toLocaleDateString(locale, opts);
 };
+
+export const isDateValid = (dateString: string): boolean => {
+  if (isNaN(Date.parse(dateString))) return false;
+  return true;
+};
