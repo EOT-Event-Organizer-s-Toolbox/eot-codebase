@@ -36,4 +36,14 @@ const createEvent = async () => {
   }
 };
 
+/** Deletes an existing event */
+export const deleteEvent = async(id: string) => {
+  try {
+    await axios.delete(`${baseUrl}/${id}`);
+    return 
+  } catch(e){
+    console.error(e)
+  }
+}
+
 export default { getAll, getEvent, createEvent };
