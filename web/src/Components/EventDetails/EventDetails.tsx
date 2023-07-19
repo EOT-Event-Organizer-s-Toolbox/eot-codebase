@@ -2,23 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import { CommunityEvent } from '../../types';
 import { Link } from 'react-router-dom';
 import { formatDateWritten, getDayOfWeek, isDateValid } from '../../utils/date';
-
-type CheckListProps = {
-  label: string;
-  data: boolean | undefined;
-}
-
-const CheckList = ({label, data} : CheckListProps)  => {
-  return (
-      <div className="flex flex-row gap-2">
-        <h3 className="font-semibold">{label}?</h3>
-        
-        <p className="font-black">
-          {data ? <span className="text-lime-600">Yes</span> : <span className="text-red-500">No</span>}
-        </p>
-      </div>
-    );
-};
+import Task from './Task';
 
 const EventDetails = () => {
   const event = useLoaderData() as CommunityEvent;
@@ -69,10 +53,10 @@ const EventDetails = () => {
         } 
         <section className="p-3 bg-zinc-100 mb-2">
           <h2 className="text-xl font-black uppercase">Event Checklist</h2>
-          <CheckList label="Idea Confirmed" data={event.ideaConfirmed} />
-          <CheckList label="Sign-up Form Sent" data={event.signUpFormSent} />
-          <CheckList label="Announcement Posted" data={event.announcementPosted} />
-          <CheckList label="Volunteer Requests Sent" data={event.volunteerRequestsSent} />
+          <Task label="Idea Confirmed" data={event.ideaConfirmed} />
+          <Task label="Sign-up Form Sent" data={event.signUpFormSent} />
+          <Task label="Announcement Posted" data={event.announcementPosted} />
+          <Task label="Volunteer Requests Sent" data={event.volunteerRequestsSent} />
         </section>
         <section className="p-3 bg-zinc-100 mb-2">
           <h2 className="text-xl font-black uppercase">Volunteer Details</h2>
