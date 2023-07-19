@@ -1,5 +1,5 @@
 {
-  "events": [
+  "community-events": [
     {
       "id": "12345678-1234-5678-1234-567812345670",
       "eventType": {
@@ -180,7 +180,7 @@
       "volunteerRequestsSent": null
     }
   ],
-  "eventTypes": [
+  "event-types": [
     {
       "id": "12345678-1234-5678-1234-567812345655",
       "type": "JS Social",
