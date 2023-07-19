@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "json-server": "json-server -p 3001 -w developmentDatabase/db.json",
+    "json-server": "json-server --watch developmentDatabase/db.json --routes developmentDatabase/routes.json --port 3000",
     "preview": "vite preview",
     "format": "npx prettier --check src/**/*.css src/**/*.tsx",
     "format:fix": "npx prettier --fix src/**/*.css src/**/*.tsx",

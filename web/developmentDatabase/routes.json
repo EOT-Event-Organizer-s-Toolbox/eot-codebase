@@ -1,0 +1,4 @@
+{
+  "/api/community-events": "/community-events",
+  "/api/community-events/:id": "/community-events/:id"
+}
