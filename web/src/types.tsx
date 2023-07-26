@@ -53,3 +53,4 @@ export type NewEventType = Omit<EventType, 'id'>;
 export type EditCommunityEvent = Omit<CommunityEvent, 'eventType'> & {
   eventTypeUUID: string;
 };
+export type CommunityEventForEdit = Omit<CommunityEvent, 'id'>;
