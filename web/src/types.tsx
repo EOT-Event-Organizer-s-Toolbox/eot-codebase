@@ -50,7 +50,6 @@ export type NonSensitiveCommunityEvent = Omit<
 // Omits for creating new entries
 export type NewUser = Omit<User, 'id'>;
 export type NewEventType = Omit<EventType, 'id'>;
-export type EditCommunityEvent = Omit<CommunityEvent, 'eventType'> & {
+export type EditCommunityEvent = Omit<CommunityEvent, 'eventType' | 'id'> & {
   eventTypeUUID: string;
 };
-export type CommunityEventForEdit = Omit<CommunityEvent, 'id'>;

@@ -1,4 +1,4 @@
-import { CommunityEvent } from '../types';
+import { CommunityEvent, EditCommunityEvent } from '../types';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000/api/community-events';
@@ -37,4 +37,14 @@ const createEvent = async () => {
   }
 };
 
-export default { getAll, getEvent, createEvent };
+/* Update an event */
+const updateEvent = async (id:string, event: EditCommunityEvent) => {
+  try {
+    const req = await axios.put(`${baseUrl}/${id}`, event);
+    const updatedEvent: CommunityEvent = req.data;
+    return updatedEvent;
+  } catch (e) {
+    console.error(e);
+  }
+}
+export default { getAll, getEvent, createEvent, updateEvent };

@@ -1,13 +1,7 @@
 {
   "community-events": [
     {
-      "id": "12345678-1234-5678-1234-567812345670",
-      "eventType": {
-        "id": "12345678-1234-5678-1234-567812345655",
-        "type": "JS Social",
-        "description": "Socialize with other JS developers.",
-        "active": true
-      },
+      "eventTypeUUID": "12345678-1234-5678-1234-567812345655",
       "ideaConfirmed": true,
       "organizer": "Angela Martin Schrute",
       "date": "2023-04-23T18:25:43.511Z",
@@ -17,11 +11,11 @@
       "venue": "Schrute Farms",
       "venueContactName": "Dwight Schrute",
       "venueContactPhone": "999-123-4567",
-      "venueContactEmail": "ninjadschrute@schrutefarms.com",
       "announcementPosted": true,
       "signUpFormSent": true,
       "numVolunteersNeeded": 0,
-      "volunteerRequestsSent": false
+      "volunteerRequestsSent": false,
+      "id": "12345678-1234-5678-1234-567812345670"
     },
     {
       "id": "12345678-1234-5678-1234-567812345671",
@@ -192,14 +186,12 @@
       "type": "Code Jam",
       "description": "Code together.",
       "active": true
-    }, 
+    },
     {
       "id": "12345678-1234-5678-1234-567812345658",
       "type": "Tech Talk",
       "description": "Let's talk about tech.",
       "active": true
-    }    
-
+    }
   ]
 }
-

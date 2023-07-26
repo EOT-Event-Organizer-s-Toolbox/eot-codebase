@@ -1,7 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
-import { CommunityEvent } from "../../types";
+import { CommunityEvent, EditCommunityEvent } from "../../types";
+import eventService from "../../Services/eventService";
+import { useNavigate } from "react-router-dom";
 
 /* communityEvent format replaces values for inPersonEvent(BOOLEAN) and onlineEvent(BOOLEAN) */
 const EventFormatOptions = {
@@ -64,6 +66,8 @@ const EventForm = ({communityEvent}: Props) => {
     }
   });
 
+  const navigate = useNavigate();
+
   if (!communityEvent) {
     return (
       <>
@@ -72,8 +76,30 @@ const EventForm = ({communityEvent}: Props) => {
     )
   }
 
-  const submitData = (data: CommunityEventForm) => {
-    console.log("form submitted", data);
+  const submitData = async (data: CommunityEventForm) => {
+    const eventId: string = communityEvent.id;
+    const event: EditCommunityEvent = {
+      eventTypeUUID: data.eventTypeUUID,
+      ideaConfirmed: data.ideaConfirmed,
+      organizer: data.organizer,
+      date: data.date,
+      inPersonEvent: data.eventFormat === EventFormatOptions.InPerson ? true : false,
+      onlineEvent: data.eventFormat === EventFormatOptions.Online ? true : false,
+      notes: data.notes,
+      venue: data.venue,
+      venueContactName: data.venueContactName,
+      venueContactPhone: data.venueContactPhone,
+      announcementPosted: data.announcementPosted,
+      signUpFormSent: data.signUpFormSent,
+      numVolunteersNeeded: data.numVolunteersNeeded,
+      volunteerRequestsSent: data.volunteerRequestsSent
+    }
+
+    const submittedEvent = await eventService.updateEvent(eventId, event);
+    if (submittedEvent) {
+      navigate(`/${eventId}`);
+    }
+
   };
   
   const style = {
