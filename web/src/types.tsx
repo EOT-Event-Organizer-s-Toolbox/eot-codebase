@@ -37,15 +37,15 @@ export type CommunityEvent = {
 // Omits public view of data
 export type NonSensitiveCommunityEvent = Omit<
   CommunityEvent,
-  'ideaConfirmed'|
-  'venueContactName'|
-  'venueContactPhone'|
-  'venueContactEmail'|
-  'eventAnnounced'|
-  'signUpFormSent'|
-  'numVolunteersNeeded'|
-  'volunteerRequestsSent'
-  >;
+  | 'ideaConfirmed'
+  | 'venueContactName'
+  | 'venueContactPhone'
+  | 'venueContactEmail'
+  | 'eventAnnounced'
+  | 'signUpFormSent'
+  | 'numVolunteersNeeded'
+  | 'volunteerRequestsSent'
+>;
 
 // Omits for creating new entries
 export type NewUser = Omit<User, 'id'>;

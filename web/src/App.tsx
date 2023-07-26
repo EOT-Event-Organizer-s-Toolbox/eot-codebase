@@ -18,7 +18,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
-        <Route 
+        <Route
           path="edit/:id"
           element={<EditEvent />}
           loader={eventDetailsLoader}
