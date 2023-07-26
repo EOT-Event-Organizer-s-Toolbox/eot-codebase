@@ -37,4 +37,17 @@ const createEvent = async () => {
   }
 };
 
+/**  Updates an exisiting event */
+export const updateEvent = async (
+  request: { id: string } & Partial<Omit<CommunityEvent, 'organizer' | 'id'>>,
+) => {
+  try {
+    const req = await axios.put(baseUrl, request);
+    const updatedEvent: CommunityEvent = req.data;
+    return updatedEvent;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export default { getAll, getEvent, createEvent };
