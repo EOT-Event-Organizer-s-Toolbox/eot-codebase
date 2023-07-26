@@ -38,7 +38,7 @@ const createEvent = async () => {
 };
 
 /* Update an event */
-const updateEvent = async (id:string, event: EditCommunityEvent) => {
+const updateEvent = async (id: string, event: EditCommunityEvent) => {
   try {
     const req = await axios.put(`${baseUrl}/${id}`, event);
     const updatedEvent: CommunityEvent = req.data;
@@ -46,5 +46,5 @@ const updateEvent = async (id:string, event: EditCommunityEvent) => {
   } catch (e) {
     console.error(e);
   }
-}
+};
 export default { getAll, getEvent, createEvent, updateEvent };
