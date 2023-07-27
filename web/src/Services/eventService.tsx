@@ -37,7 +37,6 @@ const createEvent = async () => {
   }
 };
 
-
 /* Update an event */
 const updateEvent = async (id: string, event: EditCommunityEvent) => {
   try {
@@ -50,4 +49,3 @@ const updateEvent = async (id: string, event: EditCommunityEvent) => {
 };
 
 export default { getAll, getEvent, createEvent, updateEvent };
-

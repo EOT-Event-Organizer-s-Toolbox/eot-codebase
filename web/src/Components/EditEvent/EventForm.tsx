@@ -2,9 +2,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z, ZodType } from "zod";
 import { useForm } from "react-hook-form";
-import { CommunityEvent, EditCommunityEvent } from "../../types";
-import eventService from "../../Services/eventService";
+import { CommunityEvent, EditCommunityEvent, CommunityEventType } from "../../types";
+import eventService from "../../Services/eventService"; 
+import eventTypeService from "../../Services/eventTypeService";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 /* communityEvent format replaces values for inPersonEvent(BOOLEAN) and onlineEvent(BOOLEAN) */
@@ -12,6 +14,7 @@ const EventFormatOptions = {
   InPerson: 'IN PERSON EVENT',
   Online: 'ONLINE EVENT',
 } as const;
+
 
 type EventFormatOptionsType =
   (typeof EventFormatOptions)[keyof typeof EventFormatOptions];
@@ -33,11 +36,11 @@ const EventFormatOptionsSchema = z.nativeEnum(EventFormatOptions);
 const schemaPatterns = {
   optionalString: z.string().optional(),
   optionalEmail: z.string().email().optional().or(z.literal('')),
-  singleCheckBox: z.literal(true).or(z.literal(false)),
+  singleCheckBox: z.boolean().optional(),
 };
 
 const validationSchema: ZodType<CommunityEventForm> = z.object({
-  date: z.string().optional(),
+  date: z.string(),
   eventTypeUUID: z.string().uuid(),
   organizer: z.string().min(1).max(50),
   venue: schemaPatterns.optionalString,
@@ -58,7 +61,9 @@ type Props = {
 };
 
 const EventForm = ({ communityEvent }: Props) => {
+  const [eventTypes, setEventTypes] = useState<CommunityEventType[] | undefined>(undefined);
   /* Register form and check if communityEvent Exists */
+
   const {
     register,
     handleSubmit,
@@ -66,15 +71,19 @@ const EventForm = ({ communityEvent }: Props) => {
   } = useForm<CommunityEventForm>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
-      ...(communityEvent
-        ? {
-            ...communityEvent,
-            eventTypeUUID: communityEvent.eventType?.id,
-            eventFormat: communityEvent.inPersonEvent
-              ? EventFormatOptions.InPerson
-              : EventFormatOptions.Online,
-          }
-        : {}),
+      date: communityEvent?.date ? communityEvent.date : '',
+      eventTypeUUID: communityEvent?.eventType?.id ? communityEvent.eventType.id : '',
+      organizer: communityEvent?.organizer ? communityEvent.organizer : '',
+      venue: communityEvent?.venue ? communityEvent.venue : '',
+      venueContactName: communityEvent?.venueContactName? communityEvent.venueContactName : '',
+      venueContactEmail: communityEvent?.venueContactEmail? communityEvent.venueContactEmail : '',
+      venueContactPhone: communityEvent?.venueContactPhone? communityEvent.venueContactPhone : '',
+      notes: communityEvent?.notes? communityEvent.notes : '',
+      numVolunteersNeeded: communityEvent?.numVolunteersNeeded? communityEvent.numVolunteersNeeded : 0,
+      eventFormat: communityEvent?.inPersonEvent ? EventFormatOptions.InPerson : EventFormatOptions.Online,
+      ideaConfirmed: communityEvent?.ideaConfirmed? communityEvent.ideaConfirmed : false,
+      announcementPosted: communityEvent?.announcementPosted? communityEvent.announcementPosted : false,
+      signUpFormSent: communityEvent?.signUpFormSent? communityEvent.signUpFormSent : false,
     },
   });
 
@@ -83,6 +92,15 @@ const EventForm = ({ communityEvent }: Props) => {
   if (!communityEvent) {
     return <>No matching Community Event</>;
   }
+
+  useEffect(() => {
+    const fetchEventTypes = async () => {
+      const allEventTypes = await eventTypeService.getAll();
+      setEventTypes(allEventTypes);
+    };
+    fetchEventTypes();
+  }, []);
+
 
   const submitData = async (data: CommunityEventForm) => {
     const eventId: string = communityEvent.id;
@@ -145,15 +163,13 @@ const EventForm = ({ communityEvent }: Props) => {
             {...register('eventTypeUUID')}
             className={style.select}
           >
-            <option value="12345678-1234-5678-1234-567812345655">
-              JS Social
-            </option>
-            <option value="12345678-1234-5678-1234-567812345656">
-              Code Jam
-            </option>
-            <option value="12345678-1234-5678-1234-567812345658">
-              Tech Talks
-            </option>
+            { eventTypes && eventTypes.map((eventType: CommunityEventType) => {
+              return (
+                <option key={eventType.id} value={eventType.id}>
+                  {eventType.type}
+                </option>
+              );
+            } )}
           </select>
           {errors.eventTypeUUID && (
             <span className="text-red-700">{errors.eventTypeUUID.message}</span>

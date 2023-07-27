@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { EventType } from '../types';
+import { CommunityEventType } from '../types';
 
 const baseUrl = 'http://localhost:3000/api/event-types';
 
@@ -7,7 +7,7 @@ const baseUrl = 'http://localhost:3000/api/event-types';
 const getAll = async () => {
   try {
     const req = await axios.get(baseUrl);
-    const eventTypes: EventType[] = req.data;
+    const eventTypes: CommunityEventType[] = req.data;
     return eventTypes;
   } catch (e) {
     console.error(e);

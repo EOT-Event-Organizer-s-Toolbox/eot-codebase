@@ -8,7 +8,7 @@ export type User = {
   eventRegistrationComplete: boolean;
 };
 
-export type EventType = {
+export type CommunityEventType = {
   id: string;
   type: string;
   description: string;
@@ -17,7 +17,7 @@ export type EventType = {
 
 export type CommunityEvent = {
   id: string;
-  eventType?: EventType;
+  eventType?: CommunityEventType;
   ideaConfirmed?: boolean;
   organizer?: string;
   date?: string;
@@ -49,7 +49,7 @@ export type NonSensitiveCommunityEvent = Omit<
 
 // Omits for creating new entries
 export type NewUser = Omit<User, 'id'>;
-export type NewEventType = Omit<EventType, 'id'>;
+export type NewCommunityEventType = Omit<CommunityEventType, 'id'>;
 export type EditCommunityEvent = Omit<CommunityEvent, 'eventType' | 'id'> & {
   eventTypeUUID: string;
 };
