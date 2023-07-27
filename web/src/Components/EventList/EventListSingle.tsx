@@ -4,7 +4,7 @@ import { formatDateWritten, getDayOfWeek, isDateValid } from '../../utils/date';
 
 type Props = {
   event: CommunityEvent | undefined;
-}
+};
 const EventListSingle = ({ event }: Props) => {
   console.log('SINGLE', event);
   const navigate = useNavigate();
@@ -26,8 +26,10 @@ const EventListSingle = ({ event }: Props) => {
 
   // Handle dates that are not yet set
   let dateDetails = 'Date TBD';
-  if(event.date && isDateValid(event.date)) {
-    dateDetails = `${getDayOfWeek(event.date)}, ${formatDateWritten(event.date)}`;
+  if (event.date && isDateValid(event.date)) {
+    dateDetails = `${getDayOfWeek(event.date)}, ${formatDateWritten(
+      event.date,
+    )}`;
   }
   return (
     <section className="flex justify-between flex-col md:flex-row md:align-middle p-3 md:py-1.5 md:gap-2 bg-zinc-100 mb-2 hover:bg-zinc-200">
@@ -35,9 +37,7 @@ const EventListSingle = ({ event }: Props) => {
         onClick={() => handleView(event.id)}
         className="flex flex-col md:flex-row md:align-middle md:gap-2 cursor-pointer"
       >
-        <h3 className="font-semibold">
-          {dateDetails}
-        </h3>
+        <h3 className="font-semibold">{dateDetails}</h3>
         <p className="text-xs -mt-1 md:m-0 pb-2 md:pb-0 md:leading-loose">
           {event.venue}
         </p>
