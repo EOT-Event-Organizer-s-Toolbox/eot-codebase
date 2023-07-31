@@ -37,7 +37,7 @@ const createEvent = async () => {
 };
 
 /** Deletes an existing event */
-export const deleteEvent = async(id: string) => {
+const deleteEvent = async(id: string) => {
   try {
     await axios.delete(`${baseUrl}/${id}`);
     return 
@@ -46,4 +46,4 @@ export const deleteEvent = async(id: string) => {
   }
 }
 
-export default { getAll, getEvent, createEvent };
+export default { getAll, getEvent, createEvent, deleteEvent };
