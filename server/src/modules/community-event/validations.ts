@@ -42,3 +42,13 @@ export const updateCommunityEventReq = z.object({
     volunteerRequestsSent: z.boolean().optional(),
   }),
 });
+
+/**
+ * Validation schema for the delete community event request
+ */
+
+export const deleteCommunityEventReq = z.object({
+  params: z.object({
+    id: z.string().uuid(),
+  }),
+});
