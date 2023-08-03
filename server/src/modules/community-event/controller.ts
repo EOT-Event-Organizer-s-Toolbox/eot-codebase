@@ -34,8 +34,25 @@ const communityEventController = {
 
       // serialize response
       res.json({ data: communityEventSerializer.default(response) });
-    } catch (err) {
-      next(err);
+    } catch (e) {
+      next(e);
+    }
+  },
+  findAll: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const communityEvents = await communityEventService.findAll();
+      res.json({ data: communityEvents.map(communityEventSerializer.default) });
+    } catch (e) {
+      next(e);
+    }
+  },
+  findById: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const communityEvent = await communityEventService.findById(id);
+      res.json({ data: communityEventSerializer.default(communityEvent) });
+    } catch (e) {
+      next(e);
     }
   },
 };

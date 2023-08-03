@@ -6,6 +6,11 @@ const communityEventService = {
   findAll: async () => {
     return prisma.communityEvent.findMany();
   },
+  findById: async (communityEventId: string) => {
+    return prisma.communityEvent.findUnique({
+      where: { id: communityEventId },
+    })
+  },
   create: async (params: Prisma.CommunityEventCreateInput) => {
     return prisma.communityEvent.create({
       data: params,
