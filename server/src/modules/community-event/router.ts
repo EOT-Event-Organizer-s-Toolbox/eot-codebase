@@ -10,4 +10,6 @@ communityEventRouter.post('/', communityEventController.create);
 
 communityEventRouter.put('/', communityEventController.update);
 
+communityEventRouter.get('/', communityEventController.getAll)
+
 export default communityEventRouter;

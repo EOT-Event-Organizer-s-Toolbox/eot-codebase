@@ -38,6 +38,16 @@ const communityEventController = {
       next(err);
     }
   },
+  getAll: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await communityEventService.findAll();
+      res.json({
+        data: result.map((event) => communityEventSerializer.default(event)),
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
 };
 
 export default communityEventController;
