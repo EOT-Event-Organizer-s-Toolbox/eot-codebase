@@ -21,4 +21,10 @@ export default {
     numVolunteersNeeded: communityEvent.volunteersNeeded,
     volunteerRequestsSent: communityEvent.volunteerRequestsSent,
   }),
+
+  delete: (communityEventId: string) =>({
+    id: communityEventId
+  })
 };
+
+
