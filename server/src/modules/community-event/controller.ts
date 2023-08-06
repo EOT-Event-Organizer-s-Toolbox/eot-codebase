@@ -4,6 +4,7 @@ import communityEventService from './service';
 import { validationParser } from '../../utils/validation';
 import {
   createCommunityEventReq,
+  deleteCommunityEventReq,
   updateCommunityEventReq,
 } from './validations';
 
@@ -30,10 +31,10 @@ const communityEventController = {
       } = await validationParser(updateCommunityEventReq, req);
 
       // call service
-      const response = await communityEventService.updateById(id, update);
+      const result = await communityEventService.updateById(id, update);
 
       // serialize response
-      res.json({ data: communityEventSerializer.default(response) });
+      res.json({ data: communityEventSerializer.default(result) });
     } catch (err) {
       next(err);
     }
@@ -48,6 +49,19 @@ const communityEventController = {
       next(err);
     }
   },
+  delete: async(req:Request, res: Response, next: NextFunction) =>{
+    try {
+      // validate request
+      const {params: {id}} = await validationParser(deleteCommunityEventReq, req)
+
+      const result = await communityEventService.deleteById(id)
+
+      res.json({data: communityEventSerializer.delete(result)})
+
+    }catch (err){
+      next(err)
+    }
+  }
 };
 
 export default communityEventController;

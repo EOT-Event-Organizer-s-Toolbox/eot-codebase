@@ -11,6 +11,7 @@ const communityEventService = {
       },
     });
   },
+
   create: async (params: Prisma.CommunityEventCreateInput) => {
     return prisma.communityEvent.create({
       data: params,
@@ -50,6 +51,29 @@ const communityEventService = {
         organizer: true,
       },
     });
+  },
+
+  /**
+   * This service deletes a community event by a specific ID.
+   * @param communityEventId
+   * @returns
+   */
+  deleteById: async (communityEventId: string) => {
+    const existingCommunityEvent = !!(await prisma.communityEvent.findUnique({
+      where: { id: communityEventId },
+    }));
+
+    if (!existingCommunityEvent) {
+      throw new NotFoundError(
+        `Could not find community event with id ${communityEventId}`,
+      );
+    }
+
+    const deletedCommunityEvent = await prisma.communityEvent.delete({
+      where: { id: communityEventId },
+    });
+
+    return deletedCommunityEvent.id;
   },
 };
 
