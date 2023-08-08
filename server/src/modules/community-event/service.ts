@@ -4,7 +4,12 @@ import { NotFoundError } from '../../utils/errors';
 
 const communityEventService = {
   findAll: async () => {
-    return prisma.communityEvent.findMany();
+    return await prisma.communityEvent.findMany({
+      include: {
+        eventType: true,
+        organizer: true,
+      },
+    });
   },
   findById: async (communityEventId: string) => {
     return prisma.communityEvent.findUnique({
@@ -50,6 +55,29 @@ const communityEventService = {
         organizer: true,
       },
     });
+  },
+
+  /**
+   * This service deletes a community event by a specific ID.
+   * @param communityEventId
+   * @returns
+   */
+  deleteById: async (communityEventId: string) => {
+    const existingCommunityEvent = !!(await prisma.communityEvent.findUnique({
+      where: { id: communityEventId },
+    }));
+
+    if (!existingCommunityEvent) {
+      throw new NotFoundError(
+        `Could not find community event with id ${communityEventId}`,
+      );
+    }
+
+    const deletedCommunityEvent = await prisma.communityEvent.delete({
+      where: { id: communityEventId },
+    });
+
+    return deletedCommunityEvent.id;
   },
 };
 
