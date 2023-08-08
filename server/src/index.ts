@@ -2,10 +2,12 @@ import express from 'express';
 import { prisma } from './modules/prisma';
 import { errorHandler } from './middleware/errorHandler';
 import router from './modules/routes';
+import cors from 'cors';
 const app = express();
 const port = 3000;
 
 // middlewares
+app.use(cors)
 app.use(express.json());
 
 // routers
