@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+
+  eotdb:
+    image: postgres:15-alpine
+    command: ["postgres", "-c", "log_statement=all"]
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: eotdevpassword
+      POSTGRES_USER: eotuser
+      POSTGRES_DB: eotdb
+    volumes: 
+      - ./postgres-data:/var/lib/postgresql/data
+    ports: 
+      - "5432:5432"

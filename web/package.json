@@ -10,7 +10,6 @@
     "json-server": "json-server --watch developmentDatabase/db.json --routes developmentDatabase/routes.json --port 3000",
     "preview": "vite preview",
     "format": "npx prettier --check src/**/*.css src/**/*.tsx",
-    "format:fix": "npx prettier --fix src/**/*.css src/**/*.tsx",
     "format:write": "npx prettier --write src/"
   },
   "dependencies": {

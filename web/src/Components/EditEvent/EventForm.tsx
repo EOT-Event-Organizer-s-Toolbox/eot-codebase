@@ -1,20 +1,21 @@
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z, ZodType } from "zod";
-import { useForm } from "react-hook-form";
-import { CommunityEvent, EditCommunityEvent, CommunityEventType } from "../../types";
-import eventService from "../../Services/eventService"; 
-import eventTypeService from "../../Services/eventTypeService";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z, ZodType } from 'zod';
+import { useForm } from 'react-hook-form';
+import {
+  CommunityEvent,
+  EditCommunityEvent,
+  CommunityEventType,
+} from '../../types';
+import eventService from '../../Services/eventService';
+import eventTypeService from '../../Services/eventTypeService';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 /* communityEvent format replaces values for inPersonEvent(BOOLEAN) and onlineEvent(BOOLEAN) */
 const EventFormatOptions = {
   InPerson: 'IN PERSON EVENT',
   Online: 'ONLINE EVENT',
 } as const;
-
 
 type EventFormatOptionsType =
   (typeof EventFormatOptions)[keyof typeof EventFormatOptions];
@@ -61,7 +62,9 @@ type Props = {
 };
 
 const EventForm = ({ communityEvent }: Props) => {
-  const [eventTypes, setEventTypes] = useState<CommunityEventType[] | undefined>(undefined);
+  const [eventTypes, setEventTypes] = useState<
+    CommunityEventType[] | undefined
+  >(undefined);
   /* Register form and check if communityEvent Exists */
 
   const {
@@ -72,18 +75,36 @@ const EventForm = ({ communityEvent }: Props) => {
     resolver: zodResolver(validationSchema),
     defaultValues: {
       date: communityEvent?.date ? communityEvent.date : '',
-      eventTypeUUID: communityEvent?.eventType?.id ? communityEvent.eventType.id : '',
+      eventTypeUUID: communityEvent?.eventType?.id
+        ? communityEvent.eventType.id
+        : '',
       organizer: communityEvent?.organizer ? communityEvent.organizer : '',
       venue: communityEvent?.venue ? communityEvent.venue : '',
-      venueContactName: communityEvent?.venueContactName? communityEvent.venueContactName : '',
-      venueContactEmail: communityEvent?.venueContactEmail? communityEvent.venueContactEmail : '',
-      venueContactPhone: communityEvent?.venueContactPhone? communityEvent.venueContactPhone : '',
-      notes: communityEvent?.notes? communityEvent.notes : '',
-      numVolunteersNeeded: communityEvent?.numVolunteersNeeded? communityEvent.numVolunteersNeeded : 0,
-      eventFormat: communityEvent?.inPersonEvent ? EventFormatOptions.InPerson : EventFormatOptions.Online,
-      ideaConfirmed: communityEvent?.ideaConfirmed? communityEvent.ideaConfirmed : false,
-      announcementPosted: communityEvent?.announcementPosted? communityEvent.announcementPosted : false,
-      signUpFormSent: communityEvent?.signUpFormSent? communityEvent.signUpFormSent : false,
+      venueContactName: communityEvent?.venueContactName
+        ? communityEvent.venueContactName
+        : '',
+      venueContactEmail: communityEvent?.venueContactEmail
+        ? communityEvent.venueContactEmail
+        : '',
+      venueContactPhone: communityEvent?.venueContactPhone
+        ? communityEvent.venueContactPhone
+        : '',
+      notes: communityEvent?.notes ? communityEvent.notes : '',
+      numVolunteersNeeded: communityEvent?.numVolunteersNeeded
+        ? communityEvent.numVolunteersNeeded
+        : 0,
+      eventFormat: communityEvent?.inPersonEvent
+        ? EventFormatOptions.InPerson
+        : EventFormatOptions.Online,
+      ideaConfirmed: communityEvent?.ideaConfirmed
+        ? communityEvent.ideaConfirmed
+        : false,
+      announcementPosted: communityEvent?.announcementPosted
+        ? communityEvent.announcementPosted
+        : false,
+      signUpFormSent: communityEvent?.signUpFormSent
+        ? communityEvent.signUpFormSent
+        : false,
     },
   });
 
@@ -101,17 +122,18 @@ const EventForm = ({ communityEvent }: Props) => {
     fetchEventTypes();
   }, []);
 
-
   const submitData = async (data: CommunityEventForm) => {
     const eventId: string = communityEvent.id;
-    
+
     const event: EditCommunityEvent = {
       eventTypeUUID: data.eventTypeUUID,
       ideaConfirmed: data.ideaConfirmed,
       organizer: data.organizer,
       date: data.date,
-      inPersonEvent: data.eventFormat === EventFormatOptions.InPerson ? true : false,
-      onlineEvent: data.eventFormat === EventFormatOptions.Online ? true : false,
+      inPersonEvent:
+        data.eventFormat === EventFormatOptions.InPerson ? true : false,
+      onlineEvent:
+        data.eventFormat === EventFormatOptions.Online ? true : false,
       notes: data.notes,
       venue: data.venue,
       venueContactName: data.venueContactName,
@@ -119,11 +141,11 @@ const EventForm = ({ communityEvent }: Props) => {
       announcementPosted: data.announcementPosted,
       signUpFormSent: data.signUpFormSent,
       numVolunteersNeeded: data.numVolunteersNeeded,
-      volunteerRequestsSent: data.volunteerRequestsSent
-    }
+      volunteerRequestsSent: data.volunteerRequestsSent,
+    };
 
     const submittedEvent = await eventService.updateEvent(eventId, event);
-    
+
     if (submittedEvent) {
       navigate(`/${eventId}`);
     }
@@ -163,13 +185,14 @@ const EventForm = ({ communityEvent }: Props) => {
             {...register('eventTypeUUID')}
             className={style.select}
           >
-            { eventTypes && eventTypes.map((eventType: CommunityEventType) => {
-              return (
-                <option key={eventType.id} value={eventType.id}>
-                  {eventType.type}
-                </option>
-              );
-            } )}
+            {eventTypes &&
+              eventTypes.map((eventType: CommunityEventType) => {
+                return (
+                  <option key={eventType.id} value={eventType.id}>
+                    {eventType.type}
+                  </option>
+                );
+              })}
           </select>
           {errors.eventTypeUUID && (
             <span className="text-red-700">{errors.eventTypeUUID.message}</span>

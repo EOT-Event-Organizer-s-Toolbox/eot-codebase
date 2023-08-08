@@ -35,8 +35,17 @@ const communityEventController = {
 
       // serialize response
       res.json({ data: communityEventSerializer.default(result) });
-    } catch (err) {
-      next(err);
+    } catch (e) {
+      next(e);
+    }
+  },
+  findById: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const result = await communityEventService.findById(id);
+      res.json({ data: communityEventSerializer.default(result) });
+    } catch (e) {
+      next(e);
     }
   },
   getAll: async (req: Request, res: Response, next: NextFunction) => {
@@ -45,8 +54,8 @@ const communityEventController = {
       res.json({
         data: result.map((event) => communityEventSerializer.default(event)),
       });
-    } catch (err) {
-      next(err);
+    } catch (e) {
+      next(e);
     }
   },
   delete: async(req:Request, res: Response, next: NextFunction) =>{
@@ -58,8 +67,8 @@ const communityEventController = {
 
       res.json({data: communityEventSerializer.delete(result)})
 
-    }catch (err){
-      next(err)
+    }catch (e){
+      next(e);
     }
   }
 };

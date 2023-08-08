@@ -11,7 +11,15 @@ const communityEventService = {
       },
     });
   },
-
+  findById: async (communityEventId: string) => {
+    return prisma.communityEvent.findUnique({
+      where: { id: communityEventId },
+      include: {
+        eventType: true,
+        organizer: true,
+      }
+    })
+  },
   create: async (params: Prisma.CommunityEventCreateInput) => {
     return prisma.communityEvent.create({
       data: params,
