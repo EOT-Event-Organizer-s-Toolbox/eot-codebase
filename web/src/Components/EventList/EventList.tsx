@@ -30,9 +30,9 @@ const EventList = () => {
           </LoadingButton>
         </div>
 
-        {events.map((event) => (
+        {events.length > 0 ? events.map((event) => (
           <EventListSingle key={event.id} event={event} />
-        ))}
+        )) : "No events found! Create a new event to get started."}
       </main>
     </div>
   );
