@@ -7,7 +7,11 @@ const app = express();
 const port = 3000;
 
 // middlewares
-app.use(cors)
+/* CORS policy for localhost in development.  will need to be updated for production. */
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173']
+}))
+
 app.use(express.json());
 
 // routers
