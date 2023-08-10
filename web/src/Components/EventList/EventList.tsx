@@ -2,7 +2,7 @@ import EventListSingle from './EventListSingle';
 import { CommunityEvent } from '../../types';
 import { useLoaderData } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LoadingButton from '../Utilities/LoadingButton';
+import LoadingButton from '../Shared/LoadingButton';
 import { useState } from 'react';
 import eventService from '../../Services/eventService';
 
