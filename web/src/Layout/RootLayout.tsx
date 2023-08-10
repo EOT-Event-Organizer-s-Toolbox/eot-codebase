@@ -3,7 +3,6 @@ import logo from '/eotlogo_white.svg';
 
 const RootLayout = () => {
   const navigate = useNavigate();
-  console.log('RootLayout')
   return (
     <main>
       <header className="flex flex-row align-middle gap-3 p-2 bg-zinc-700">
