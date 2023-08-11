@@ -4,9 +4,22 @@ import { NotFoundError } from '../../utils/errors';
 
 const communityEventService = {
   findAll: async () => {
-    return prisma.communityEvent.findMany();
+    return await prisma.communityEvent.findMany({
+      include: {
+        eventType: true,
+        organizer: true,
+      },
+    });
   },
-
+  findById: async (communityEventId: string) => {
+    return prisma.communityEvent.findUnique({
+      where: { id: communityEventId },
+      include: {
+        eventType: true,
+        organizer: true,
+      }
+    })
+  },
   create: async (params: Prisma.CommunityEventCreateInput) => {
     return prisma.communityEvent.create({
       data: params,
