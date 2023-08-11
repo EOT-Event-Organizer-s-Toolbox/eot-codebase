@@ -53,10 +53,10 @@ const EventDetails = () => {
         } 
         <section className="p-3 bg-zinc-100 mb-2">
           <h2 className="text-xl font-black uppercase">Event Checklist</h2>
-          <Task label="Idea Confirmed" data={event.ideaConfirmed} />
-          <Task label="Sign-up Form Sent" data={event.signUpFormSent} />
-          <Task label="Announcement Posted" data={event.announcementPosted} />
-          <Task label="Volunteer Requests Sent" data={event.volunteerRequestsSent} />
+          <Task label="Idea Confirmed" isComplete={event.ideaConfirmed} />
+          <Task label="Sign-up Form Sent" isComplete={event.signUpFormSent} />
+          <Task label="Announcement Posted" isComplete={event.announcementPosted} />
+          <Task label="Volunteer Requests Sent" isComplete={event.volunteerRequestsSent} />
         </section>
         <section className="p-3 bg-zinc-100 mb-2">
           <h2 className="text-xl font-black uppercase">Volunteer Details</h2>
