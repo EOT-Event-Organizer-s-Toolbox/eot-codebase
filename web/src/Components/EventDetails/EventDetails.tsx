@@ -69,7 +69,7 @@ const EventDetails = () => {
       <section className="p-3 bg-zinc-100 mb-2">
         <h2 className="text-xl font-black uppercase">Volunteer Details</h2>
         <p className="font-semibold">
-          Number of volunteers needed: {event.numVolunteersNeeded}
+          Number of volunteers needed: {event.volunteersNeeded}
         </p>
       </section>
       <section className="p-3 bg-zinc-100 mb-2">

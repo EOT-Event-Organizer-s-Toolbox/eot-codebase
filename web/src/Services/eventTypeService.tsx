@@ -7,7 +7,7 @@ const baseUrl = 'http://localhost:3000/api/event-types';
 const getAll = async () => {
   try {
     const req = await axios.get(baseUrl);
-    const eventTypes: CommunityEventType[] = req.data;
+    const eventTypes: CommunityEventType[] = req.data.data;
     return eventTypes;
   } catch (e) {
     console.error(e);

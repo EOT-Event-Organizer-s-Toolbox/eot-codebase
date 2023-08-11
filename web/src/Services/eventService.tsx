@@ -7,7 +7,7 @@ const baseUrl = 'http://localhost:3000/api/community-events';
 const getAll = async () => {
   try {
     const req = await axios.get(baseUrl);
-    const eventList: CommunityEvent[] = req.data;
+    const eventList: CommunityEvent[] = req.data.data;
     return eventList;
   } catch (e: any) {
      /* Handle error due to no server connection */
@@ -24,7 +24,7 @@ const getEvent = async (id: string) => {
   console.log('getEvent called');
   try {
     const req = await axios.get(`${baseUrl}/${id}`);
-    const event: CommunityEvent = req.data;
+    const event: CommunityEvent = req.data.data;
     return event;
   } catch (e: any) {
     if (e.response.status === 404) {
@@ -39,7 +39,7 @@ const getEvent = async (id: string) => {
 const createEvent = async () => {
   try {
     const req = await axios.post(baseUrl, {});
-    const event: CommunityEvent = req.data;
+    const event: CommunityEvent = req.data.data;
     return event;
   } catch (e) {
     console.error(e);
@@ -48,9 +48,12 @@ const createEvent = async () => {
 
 /* Update an event */
 const updateEvent = async (id: string, event: EditCommunityEvent) => {
+  console.log('updateEvent called');
+  console.log('id:', id);
+  console.log('event:', event);
   try {
     const req = await axios.put(`${baseUrl}/${id}`, event);
-    const updatedEvent: CommunityEvent = req.data;
+    const updatedEvent: CommunityEvent = req.data.data;
     return updatedEvent;
   } catch (e) {
     console.error(e);

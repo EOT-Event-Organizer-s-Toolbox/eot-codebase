@@ -20,7 +20,7 @@ export type CommunityEvent = {
   eventType?: CommunityEventType;
   ideaConfirmed?: boolean;
   organizer?: string;
-  date?: string;
+  date?: string|Date;
   inPersonEvent: boolean;
   onlineEvent: boolean;
   notes?: string;
@@ -30,7 +30,7 @@ export type CommunityEvent = {
   venueContactEmail?: string;
   announcementPosted?: boolean;
   signUpFormSent?: boolean;
-  numVolunteersNeeded?: number;
+  volunteersNeeded?: number;
   volunteerRequestsSent?: boolean;
 };
 
@@ -43,7 +43,7 @@ export type NonSensitiveCommunityEvent = Omit<
   | 'venueContactEmail'
   | 'eventAnnounced'
   | 'signUpFormSent'
-  | 'numVolunteersNeeded'
+  | 'volunteersNeeded'
   | 'volunteerRequestsSent'
 >;
 

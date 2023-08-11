@@ -8,6 +8,7 @@ import eventService from '../../Services/eventService';
 
 const EventList = () => {
   const events = useLoaderData() as CommunityEvent[];
+  console.log(events);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const newCommunityEvent = async () => {
