@@ -8,7 +8,7 @@ const communityEventRouter = Router();
 
 communityEventRouter.post('/', communityEventController.create);
 
-communityEventRouter.put('/', communityEventController.update);
+communityEventRouter.put('/:id', communityEventController.update);
 
 communityEventRouter.delete('/:id', communityEventController.delete)
 

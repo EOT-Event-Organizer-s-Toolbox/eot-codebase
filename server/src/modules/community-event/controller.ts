@@ -27,11 +27,11 @@ const communityEventController = {
     try {
       // validate request
       const {
-        body: { id, ...update },
+        body, params
       } = await validationParser(updateCommunityEventReq, req);
 
       // call service
-      const result = await communityEventService.updateById(id, update);
+      const result = await communityEventService.updateById(params.id, body);
 
       // serialize response
       res.json({ data: communityEventSerializer.default(result) });
