@@ -25,9 +25,10 @@ type EventFormatOptionsType =
 /* Event format is used to control toggle between communityEvent formats that are stored in 2 parts */
 type CommunityEventForm = Omit<
   CommunityEvent,
-  'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent'
+  'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent' | 'organizer'
 > & {
-  eventTypeUUID: string;
+  eventTypeUUID?: string;
+  organizerUUID?: string;
   eventFormat: EventFormatOptionsType;
 };
 
@@ -42,8 +43,8 @@ const schemaPatterns = {
 
 const validationSchema: ZodType<CommunityEventForm> = z.object({
   date: z.string(),
-  eventTypeUUID: z.string().uuid(),
-  organizer: z.string().min(1).max(50),
+  eventTypeUUID: z.string().uuid().optional(),
+  organizerUUID: z.string().uuid().optional(),
   venue: schemaPatterns.optionalString,
   venueContactName: schemaPatterns.optionalString,
   venueContactEmail: schemaPatterns.optionalEmail,
@@ -60,7 +61,6 @@ const validationSchema: ZodType<CommunityEventForm> = z.object({
 type Props = {
   communityEvent: CommunityEvent | undefined;
 };
-
 
 const EventForm = ({ communityEvent }: Props) => {
   const [eventTypes, setEventTypes] = useState<
@@ -79,7 +79,9 @@ const EventForm = ({ communityEvent }: Props) => {
       eventTypeUUID: communityEvent?.eventType?.id
         ? communityEvent.eventType.id
         : '',
-      organizer: communityEvent?.organizer ? communityEvent.organizer : '',
+      organizerUUID: communityEvent?.organizer
+        ? communityEvent.organizer.id
+        : '',
       venue: communityEvent?.venue ? communityEvent.venue : '',
       venueContactName: communityEvent?.venueContactName
         ? communityEvent.venueContactName
@@ -94,9 +96,9 @@ const EventForm = ({ communityEvent }: Props) => {
       volunteersNeeded: communityEvent?.volunteersNeeded
         ? communityEvent.volunteersNeeded
         : 0,
-      eventFormat: communityEvent?.inPersonEvent
-        ? EventFormatOptions.InPerson
-        : EventFormatOptions.Online,
+      eventFormat: communityEvent?.onlineEvent
+        ? EventFormatOptions.Online
+        : EventFormatOptions.InPerson,
       ideaConfirmed: communityEvent?.ideaConfirmed
         ? communityEvent.ideaConfirmed
         : false,
@@ -111,10 +113,6 @@ const EventForm = ({ communityEvent }: Props) => {
 
   const navigate = useNavigate();
 
-  if (!communityEvent) {
-    return <>No matching Community Event</>;
-  }
-
   useEffect(() => {
     const fetchEventTypes = async () => {
       const allEventTypes = await eventTypeService.getAll();
@@ -123,21 +121,27 @@ const EventForm = ({ communityEvent }: Props) => {
     fetchEventTypes();
   }, []);
 
+  if (!communityEvent) {
+    return <>No matching Community Event</>;
+  }
+
   if (!eventTypes) {
-    return <>OH NO!! there are no event types available. Contact an administrator!</>;
+    return (
+      <>OH NO!! there are no event types available. Contact an administrator!</>
+    );
   }
 
   const onCancel = () => {
     navigate(`/${communityEvent.id}`);
-  }
+  };
 
   const submitData = async (data: CommunityEventForm) => {
     const eventId: string = communityEvent.id;
 
     const event: EditCommunityEvent = {
       eventTypeUUID: data.eventTypeUUID,
+      organizerUUID: data.organizerUUID,
       ideaConfirmed: data.ideaConfirmed,
-      organizer: data.organizer,
       date: data.date,
       inPersonEvent:
         data.eventFormat === EventFormatOptions.InPerson ? true : false,
@@ -152,7 +156,6 @@ const EventForm = ({ communityEvent }: Props) => {
       volunteersNeeded: data.volunteersNeeded,
       volunteerRequestsSent: data.volunteerRequestsSent,
     };
-
     const submittedEvent = await eventService.updateEvent(eventId, event);
 
     if (submittedEvent) {
@@ -177,11 +180,11 @@ const EventForm = ({ communityEvent }: Props) => {
             type="text"
             id="organizer"
             placeholder={'Organizer'}
-            {...register('organizer')}
+            {...register('organizerUUID')}
             className={style.text}
           />
-          {errors.organizer && (
-            <span className="text-red-700">{errors.organizer.message}</span>
+          {errors.organizerUUID && (
+            <span className="text-red-700">{errors.organizerUUID.message}</span>
           )}
         </div>
 
@@ -194,7 +197,8 @@ const EventForm = ({ communityEvent }: Props) => {
             {...register('eventTypeUUID')}
             className={style.select}
           >
-            {eventTypes && eventTypes.length > 0 &&
+            {eventTypes &&
+              eventTypes.length > 0 &&
               eventTypes.map((eventType: CommunityEventType) => {
                 return (
                   <option key={eventType.id} value={eventType.id}>
@@ -412,8 +416,14 @@ const EventForm = ({ communityEvent }: Props) => {
         </div>
       </div>
       <div className="flex flex-row align-middle gap-3 py-6">
-        <input className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600 cursor-pointer" type="submit" />
-        <button className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-red-600" onClick={onCancel}>
+        <input
+          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600 cursor-pointer"
+          type="submit"
+        />
+        <button
+          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-red-600"
+          onClick={onCancel}
+        >
           Cancel
         </button>
       </div>

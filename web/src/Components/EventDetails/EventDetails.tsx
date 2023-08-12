@@ -40,7 +40,10 @@ const EventDetails = () => {
             {event.onlineEvent && '(Online)'}
           </h1>
           <p className="text-lg font-bold whitespace-nowrap">{dateDetails}</p>
-          <p className="font-semibold">Organizer: {event.organizer}</p>
+          <p className="font-semibold">
+            Organizer:{' '}
+            {`${event.organizer?.firstName} ${event.organizer?.lastName}`}
+          </p>
         </div>
         <div className="self-center"></div>
       </section>
