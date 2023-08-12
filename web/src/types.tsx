@@ -19,8 +19,8 @@ export type CommunityEvent = {
   id: string;
   eventType?: CommunityEventType;
   ideaConfirmed?: boolean;
-  organizer?: string;
-  date?: string;
+  organizer?: User;
+  date?: string | Date;
   inPersonEvent: boolean;
   onlineEvent: boolean;
   notes?: string;
@@ -30,7 +30,7 @@ export type CommunityEvent = {
   venueContactEmail?: string;
   announcementPosted?: boolean;
   signUpFormSent?: boolean;
-  numVolunteersNeeded?: number;
+  volunteersNeeded?: number;
   volunteerRequestsSent?: boolean;
 };
 
@@ -43,13 +43,17 @@ export type NonSensitiveCommunityEvent = Omit<
   | 'venueContactEmail'
   | 'eventAnnounced'
   | 'signUpFormSent'
-  | 'numVolunteersNeeded'
+  | 'volunteersNeeded'
   | 'volunteerRequestsSent'
 >;
 
 // Omits for creating new entries
 export type NewUser = Omit<User, 'id'>;
 export type NewCommunityEventType = Omit<CommunityEventType, 'id'>;
-export type EditCommunityEvent = Omit<CommunityEvent, 'eventType' | 'id'> & {
-  eventTypeUUID: string;
+export type EditCommunityEvent = Omit<
+  CommunityEvent,
+  'eventType' | 'id' | 'organizer'
+> & {
+  eventTypeUUID?: string;
+  organizerUUID?: string;
 };

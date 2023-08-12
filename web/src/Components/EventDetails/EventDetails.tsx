@@ -40,7 +40,10 @@ const EventDetails = () => {
             {event.onlineEvent && '(Online)'}
           </h1>
           <p className="text-lg font-bold whitespace-nowrap">{dateDetails}</p>
-          <p className="font-semibold">Organizer: {event.organizer}</p>
+          <p className="font-semibold">
+            Organizer:{' '}
+            {`${event.organizer?.firstName} ${event.organizer?.lastName}`}
+          </p>
         </div>
         <div className="self-center"></div>
       </section>
@@ -69,7 +72,7 @@ const EventDetails = () => {
       <section className="p-3 bg-zinc-100 mb-2">
         <h2 className="text-xl font-black uppercase">Volunteer Details</h2>
         <p className="font-semibold">
-          Number of volunteers needed: {event.numVolunteersNeeded}
+          Number of volunteers needed: {event.volunteersNeeded}
         </p>
       </section>
       <section className="p-3 bg-zinc-100 mb-2">
