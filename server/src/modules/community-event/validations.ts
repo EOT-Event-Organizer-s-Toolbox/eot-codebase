@@ -25,8 +25,10 @@ export const createCommunityEventReq = z.object({
  * Validation schema for the update Community Event Request
  */
 export const updateCommunityEventReq = z.object({
-  body: z.object({
+  params: z.object({
     id: z.string().uuid(),
+  }),
+  body: z.object({
     ideaConfirmed: z.boolean().optional(),
     date: z.coerce.date().optional(),
     inPersonEvent: z.boolean().optional(),
