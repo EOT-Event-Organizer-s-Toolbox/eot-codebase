@@ -43,8 +43,8 @@ const schemaPatterns = {
 
 const validationSchema: ZodType<CommunityEventForm> = z.object({
   date: z.string(),
-  eventTypeUUID: z.string().uuid().optional(),
-  organizerUUID: z.string().uuid().optional(),
+  eventTypeUUID: z.string().uuid().optional().or(z.literal('')),
+  organizerUUID: z.string().uuid().optional().or(z.literal('')),
   venue: schemaPatterns.optionalString,
   venueContactName: schemaPatterns.optionalString,
   venueContactEmail: schemaPatterns.optionalEmail,
@@ -156,6 +156,12 @@ const EventForm = ({ communityEvent }: Props) => {
       volunteersNeeded: data.volunteersNeeded,
       volunteerRequestsSent: data.volunteerRequestsSent,
     };
+
+    /* remove organizer UUID if not set */
+    if (!event.organizerUUID) {
+      event.organizerUUID = undefined;
+    }
+
     const submittedEvent = await eventService.updateEvent(eventId, event);
 
     if (submittedEvent) {
