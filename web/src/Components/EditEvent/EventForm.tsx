@@ -157,11 +157,6 @@ const EventForm = ({ communityEvent }: Props) => {
       volunteerRequestsSent: data.volunteerRequestsSent,
     };
 
-    /* remove organizer UUID if not set */
-    if (!event.organizerUUID) {
-      event.organizerUUID = undefined;
-    }
-
     const submittedEvent = await eventService.updateEvent(eventId, event);
 
     if (submittedEvent) {
