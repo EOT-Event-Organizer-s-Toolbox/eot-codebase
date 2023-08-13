@@ -37,7 +37,11 @@ const EventListSingle = ({ event }: Props) => {
         onClick={() => handleView(event.id)}
         className="flex flex-col md:flex-row md:align-middle md:gap-2 cursor-pointer"
       >
-        <h3 className="font-semibold">{dateDetails}</h3>
+        <h3 className="font-semibold flex flex-row gap-2">
+          <span>{event.eventType ? event.eventType.type : 'New Event'}</span>
+          <span>{event.onlineEvent && '(Online)'}</span>
+          <span>{dateDetails}</span>
+        </h3>
         <p className="text-xs -mt-1 md:m-0 pb-2 md:pb-0 md:leading-loose">
           {event.venue}
         </p>
