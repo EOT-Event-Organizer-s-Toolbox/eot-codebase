@@ -4,7 +4,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-
 import {
   CommunityEvent,
   EditCommunityEvent,
@@ -66,8 +65,6 @@ type Props = {
   communityEvent: CommunityEvent | undefined;
 };
 
-
-
 const EventForm = ({ communityEvent }: Props) => {
   const [eventTypes, setEventTypes] = useState<
     CommunityEventType[] | undefined
@@ -82,9 +79,7 @@ const EventForm = ({ communityEvent }: Props) => {
   } = useForm<CommunityEventForm>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
-      date: communityEvent?.date
-        ? new Date(communityEvent.date)
-        : new Date(),
+      date: communityEvent?.date ? new Date(communityEvent.date) : new Date(),
       eventTypeUUID: communityEvent?.eventType?.id
         ? communityEvent.eventType.id
         : '',
@@ -246,12 +241,10 @@ const EventForm = ({ communityEvent }: Props) => {
           <label className={style.formLabel} htmlFor="date">
             Event Date
           </label>
-          <Controller 
+          <Controller
             control={control}
             name="date"
-            render={({
-              field:{ onChange, value },
-            }) => (
+            render={({ field: { onChange, value } }) => (
               <DayPicker
                 mode="single"
                 selected={value as Date}
@@ -264,7 +257,7 @@ const EventForm = ({ communityEvent }: Props) => {
           {errors.date && (
             <span className="text-red-700">{errors.date.message}</span>
           )}
-          </div>
+        </div>
 
         <div className="flex flex-col gap-1 pb-2">
           <label className={style.formLabel} htmlFor="venue">

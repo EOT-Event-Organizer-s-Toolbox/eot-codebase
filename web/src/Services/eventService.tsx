@@ -10,12 +10,11 @@ const getAll = async () => {
     const eventList: CommunityEvent[] = req.data.data;
     return eventList;
   } catch (e: any) {
-     /* Handle error due to no server connection */
+    /* Handle error due to no server connection */
     if (e.code === 'ERR_NETWORK') {
       console.error('Network Error - Could not connect to server');
     }
     console.error('error:', e);
-
   }
 };
 
