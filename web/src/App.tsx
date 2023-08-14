@@ -3,7 +3,6 @@ import {
   Route,
   createRoutesFromElements,
   RouterProvider,
-  Routes,
 } from 'react-router-dom';
 import { eventDetailsLoader, eventsLoader } from './Services/loaderFunctions';
 //Layouts

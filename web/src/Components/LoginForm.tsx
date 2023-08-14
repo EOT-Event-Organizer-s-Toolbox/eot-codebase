@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z, ZodType } from 'zod';
+import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Text, Password } from './Shared/Forms';
 
