@@ -23,18 +23,16 @@ const EventList = () => {
 
   return (
     <div>
-      <main className="p-4">
-        <div className="flex flex-row justify-between align-middle pb-2">
-          <h1 className="text-2xl font-black uppercase">Event List</h1>
-          <LoadingButton loading={loading} action={newCommunityEvent}>
-            New Event
-          </LoadingButton>
-        </div>
+      <div className="flex flex-row justify-between align-middle pb-2">
+        <h1 className="text-2xl font-black uppercase">Event List</h1>
+        <LoadingButton loading={loading} action={newCommunityEvent}>
+          New Event
+        </LoadingButton>
+      </div>
 
-        {events.length > 0 ? events.map((event) => (
-          <EventListSingle key={event.id} event={event} />
-        )) : "No events found! Create a new event to get started."}
-      </main>
+      {events.length > 0 ? events.map((event) => (
+        <EventListSingle key={event.id} event={event} />
+      )) : "No events found! Create a new event to get started."}
     </div>
   );
 };

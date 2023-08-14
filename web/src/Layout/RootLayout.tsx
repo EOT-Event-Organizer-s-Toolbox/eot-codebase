@@ -4,7 +4,7 @@ import logo from '/eotlogo_white.svg';
 const RootLayout = () => {
   const navigate = useNavigate();
   return (
-    <main>
+    <>
       <header className="flex flex-row align-middle gap-3 p-2 bg-zinc-700">
         <img
           src={logo}
@@ -16,8 +16,10 @@ const RootLayout = () => {
           Event Organizer's Toolbox
         </p>
       </header>
-      <Outlet />
-    </main>
+      <main className="p-4">
+        <Outlet />
+      </main>
+    </>
   );
 };
 
