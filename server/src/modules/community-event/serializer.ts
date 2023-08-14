@@ -28,18 +28,34 @@ export default {
   updateRequest(
     requestBody: z.infer<typeof updateCommunityEventReq>['body'],
   ): Prisma.CommunityEventUpdateInput {
+
+    /* Make sure we are not adding any of the relationships if value is not set */
+    let communityEventRelationships: Prisma.CommunityEventUpdateInput = {};
+    if (requestBody.organizerUUID) {
+      communityEventRelationships = {
+        ...communityEventRelationships,
+        organizer: {
+          connect: {
+            id: requestBody.organizerUUID,
+          },
+        },
+      };
+    }
+
+    if (requestBody.eventTypeUUID) {
+      communityEventRelationships = {
+        ...communityEventRelationships,
+        eventType: {
+          connect: {
+            id: requestBody.eventTypeUUID,
+          },
+        },
+      };
+    }
+
     const result = {
       ...requestBody,
-      organizer: {
-        connect: {
-          id: requestBody.organizerUUID,
-        },
-      },
-      eventType: {
-        connect: {
-          id: requestBody.eventTypeUUID,
-        },
-      },
+      ...communityEventRelationships,
     };
     delete result.organizerUUID;
     delete result.eventTypeUUID;
