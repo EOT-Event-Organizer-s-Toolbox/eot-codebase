@@ -1,6 +1,9 @@
 import { prisma } from '../prisma';
 import { Prisma } from '@prisma/client';
 import { NotFoundError } from '../../utils/errors';
+import z from 'zod';
+import { updateCommunityEventReq } from './validations';
+import communityEventSerializer from './serializer';
 
 const communityEventService = {
   findAll: async () => {
@@ -17,8 +20,8 @@ const communityEventService = {
       include: {
         eventType: true,
         organizer: true,
-      }
-    })
+      },
+    });
   },
   create: async (params: Prisma.CommunityEventCreateInput) => {
     return prisma.communityEvent.create({
@@ -39,7 +42,7 @@ const communityEventService = {
    */
   updateById: async (
     communityEventId: string,
-    updateData: Prisma.CommunityEventUpdateInput,
+    updateData: z.infer<typeof updateCommunityEventReq>['body'],
   ) => {
     const existingCommunityEvent = !!(await prisma.communityEvent.findUnique({
       where: { id: communityEventId },
@@ -52,7 +55,7 @@ const communityEventService = {
     }
 
     return await prisma.communityEvent.update({
-      data: updateData,
+      data: communityEventSerializer.updateRequest(updateData),
       where: { id: communityEventId },
       include: {
         eventType: true,

@@ -25,9 +25,10 @@ type EventFormatOptionsType =
 /* Event format is used to control toggle between communityEvent formats that are stored in 2 parts */
 type CommunityEventForm = Omit<
   CommunityEvent,
-  'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent'
+  'id' | 'eventType' | 'inPersonEvent' | 'onlineEvent' | 'organizer'
 > & {
-  eventTypeUUID: string;
+  eventTypeUUID?: string;
+  organizerUUID?: string;
   eventFormat: EventFormatOptionsType;
 };
 
@@ -42,14 +43,14 @@ const schemaPatterns = {
 
 const validationSchema: ZodType<CommunityEventForm> = z.object({
   date: z.string(),
-  eventTypeUUID: z.string().uuid(),
-  organizer: z.string().min(1).max(50),
+  eventTypeUUID: z.string().uuid().optional().or(z.literal('')),
+  organizerUUID: z.string().uuid().optional().or(z.literal('')),
   venue: schemaPatterns.optionalString,
   venueContactName: schemaPatterns.optionalString,
   venueContactEmail: schemaPatterns.optionalEmail,
   venueContactPhone: schemaPatterns.optionalString,
   notes: schemaPatterns.optionalString,
-  numVolunteersNeeded: z.number().optional(),
+  volunteersNeeded: z.number().optional(),
   eventFormat: EventFormatOptionsSchema,
   ideaConfirmed: schemaPatterns.singleCheckBox,
   announcementPosted: schemaPatterns.singleCheckBox,
@@ -78,7 +79,9 @@ const EventForm = ({ communityEvent }: Props) => {
       eventTypeUUID: communityEvent?.eventType?.id
         ? communityEvent.eventType.id
         : '',
-      organizer: communityEvent?.organizer ? communityEvent.organizer : '',
+      organizerUUID: communityEvent?.organizer
+        ? communityEvent.organizer.id
+        : '',
       venue: communityEvent?.venue ? communityEvent.venue : '',
       venueContactName: communityEvent?.venueContactName
         ? communityEvent.venueContactName
@@ -90,12 +93,12 @@ const EventForm = ({ communityEvent }: Props) => {
         ? communityEvent.venueContactPhone
         : '',
       notes: communityEvent?.notes ? communityEvent.notes : '',
-      numVolunteersNeeded: communityEvent?.numVolunteersNeeded
-        ? communityEvent.numVolunteersNeeded
+      volunteersNeeded: communityEvent?.volunteersNeeded
+        ? communityEvent.volunteersNeeded
         : 0,
-      eventFormat: communityEvent?.inPersonEvent
-        ? EventFormatOptions.InPerson
-        : EventFormatOptions.Online,
+      eventFormat: communityEvent?.onlineEvent
+        ? EventFormatOptions.Online
+        : EventFormatOptions.InPerson,
       ideaConfirmed: communityEvent?.ideaConfirmed
         ? communityEvent.ideaConfirmed
         : false,
@@ -110,10 +113,6 @@ const EventForm = ({ communityEvent }: Props) => {
 
   const navigate = useNavigate();
 
-  if (!communityEvent) {
-    return <>No matching Community Event</>;
-  }
-
   useEffect(() => {
     const fetchEventTypes = async () => {
       const allEventTypes = await eventTypeService.getAll();
@@ -122,13 +121,27 @@ const EventForm = ({ communityEvent }: Props) => {
     fetchEventTypes();
   }, []);
 
+  if (!communityEvent) {
+    return <>No matching Community Event</>;
+  }
+
+  if (!eventTypes) {
+    return (
+      <>OH NO!! there are no event types available. Contact an administrator!</>
+    );
+  }
+
+  const onCancel = () => {
+    navigate(`/${communityEvent.id}`);
+  };
+
   const submitData = async (data: CommunityEventForm) => {
     const eventId: string = communityEvent.id;
 
     const event: EditCommunityEvent = {
       eventTypeUUID: data.eventTypeUUID,
+      organizerUUID: data.organizerUUID,
       ideaConfirmed: data.ideaConfirmed,
-      organizer: data.organizer,
       date: data.date,
       inPersonEvent:
         data.eventFormat === EventFormatOptions.InPerson ? true : false,
@@ -140,7 +153,7 @@ const EventForm = ({ communityEvent }: Props) => {
       venueContactPhone: data.venueContactPhone,
       announcementPosted: data.announcementPosted,
       signUpFormSent: data.signUpFormSent,
-      numVolunteersNeeded: data.numVolunteersNeeded,
+      volunteersNeeded: data.volunteersNeeded,
       volunteerRequestsSent: data.volunteerRequestsSent,
     };
 
@@ -168,11 +181,11 @@ const EventForm = ({ communityEvent }: Props) => {
             type="text"
             id="organizer"
             placeholder={'Organizer'}
-            {...register('organizer')}
+            {...register('organizerUUID')}
             className={style.text}
           />
-          {errors.organizer && (
-            <span className="text-red-700">{errors.organizer.message}</span>
+          {errors.organizerUUID && (
+            <span className="text-red-700">{errors.organizerUUID.message}</span>
           )}
         </div>
 
@@ -186,6 +199,7 @@ const EventForm = ({ communityEvent }: Props) => {
             className={style.select}
           >
             {eventTypes &&
+              eventTypes.length > 0 &&
               eventTypes.map((eventType: CommunityEventType) => {
                 return (
                   <option key={eventType.id} value={eventType.id}>
@@ -369,19 +383,19 @@ const EventForm = ({ communityEvent }: Props) => {
         </div>
 
         <div className="flex flex-col gap-1 pb-2">
-          <label className={style.formLabel} htmlFor="numVolunteersNeeded">
+          <label className={style.formLabel} htmlFor="volunteersNeeded">
             Number of Volunteers needed
           </label>
           <input
             type="number"
-            id="numVolunteersNeeded"
+            id="volunteersNeeded"
             placeholder="Number of volunteers needed"
-            {...register('numVolunteersNeeded', { valueAsNumber: true })}
+            {...register('volunteersNeeded', { valueAsNumber: true })}
             className={style.text}
           />
-          {errors.numVolunteersNeeded && (
+          {errors.volunteersNeeded && (
             <span className="text-red-700">
-              {errors.numVolunteersNeeded.message}
+              {errors.volunteersNeeded.message}
             </span>
           )}
         </div>
@@ -402,7 +416,18 @@ const EventForm = ({ communityEvent }: Props) => {
           )}
         </div>
       </div>
-      <input className="bg-slate-500 text-white px-5 py-1 " type="submit" />
+      <div className="flex flex-row align-middle gap-3 py-6">
+        <input
+          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600 cursor-pointer"
+          type="submit"
+        />
+        <button
+          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-red-600"
+          onClick={onCancel}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };

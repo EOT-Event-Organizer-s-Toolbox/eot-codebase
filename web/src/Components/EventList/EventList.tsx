@@ -2,12 +2,13 @@ import EventListSingle from './EventListSingle';
 import { CommunityEvent } from '../../types';
 import { useLoaderData } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LoadingButton from '../Utilities/LoadingButton';
+import LoadingButton from '../Shared/LoadingButton';
 import { useState } from 'react';
 import eventService from '../../Services/eventService';
 
 const EventList = () => {
   const events = useLoaderData() as CommunityEvent[];
+  console.log(events);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const newCommunityEvent = async () => {
@@ -30,9 +31,9 @@ const EventList = () => {
           </LoadingButton>
         </div>
 
-        {events.map((event) => (
+        {events.length > 0 ? events.map((event) => (
           <EventListSingle key={event.id} event={event} />
-        ))}
+        )) : "No events found! Create a new event to get started."}
       </main>
     </div>
   );

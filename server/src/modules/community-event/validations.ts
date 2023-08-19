@@ -29,6 +29,8 @@ export const updateCommunityEventReq = z.object({
     id: z.string().uuid(),
   }),
   body: z.object({
+    organizerUUID: z.string().uuid().optional().or(z.literal('')),
+    eventTypeUUID: z.string().uuid().optional().or(z.literal('')),
     ideaConfirmed: z.boolean().optional(),
     date: z.coerce.date().optional(),
     inPersonEvent: z.boolean().optional(),
