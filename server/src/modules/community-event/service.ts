@@ -15,17 +15,32 @@ const communityEventService = {
     });
   },
   findById: async (communityEventId: string) => {
-    return prisma.communityEvent.findUnique({
+    const exisitngEvent = await prisma.communityEvent.findUnique({
       where: { id: communityEventId },
       include: {
         eventType: true,
         organizer: true,
       },
     });
+
+    if (!exisitngEvent) {
+      throw new NotFoundError(
+        `Community Event with id ${communityEventId} not found`,
+      );
+    }
+    console.log(exisitngEvent)
+    return exisitngEvent;
   },
-  create: async (params: Prisma.CommunityEventCreateInput) => {
+  create: async (params: Prisma.CommunityEventCreateInput, userId: string) => {
     return prisma.communityEvent.create({
-      data: params,
+      data: {
+        ...params,
+        organizer: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
       include: {
         eventType: true,
         organizer: true,

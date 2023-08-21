@@ -7,6 +7,7 @@ import {
   deleteCommunityEventReq,
   updateCommunityEventReq,
 } from './validations';
+import { isAuthenticated } from '../../utils/auth';
 
 /**
  * Community Event Controller
@@ -15,7 +16,8 @@ const communityEventController = {
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { body } = await validationParser(createCommunityEventReq, req);
-      const communityEvent = await communityEventService.create(body);
+      const  user = await isAuthenticated(req.session);
+      const communityEvent = await communityEventService.create(body, user.id);
       res.json({
         data: communityEventSerializer.default(communityEvent),
       });

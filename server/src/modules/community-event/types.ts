@@ -16,7 +16,7 @@ export type CommunityEventResponse = Modify<
     'typeId' | 'organizerId' | 'announcementPosted' | 'volunteersNeeded'
   >,
   {
-    organizer: User;
+    organizer: string;
     eventAnnounced: boolean;
     numVolunteersNeeded: number;
   }
