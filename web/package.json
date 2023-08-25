@@ -21,7 +21,7 @@
     "react-day-picker": "^8.8.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.1",
-    "react-router-dom": "^6.13.0",
+    "react-router-dom": "^6.15.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
