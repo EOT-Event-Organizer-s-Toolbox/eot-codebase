@@ -1,6 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z, ZodType } from 'zod';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+
 import {
   CommunityEvent,
   EditCommunityEvent,
@@ -42,7 +45,7 @@ const schemaPatterns = {
 };
 
 const validationSchema: ZodType<CommunityEventForm> = z.object({
-  date: z.string(),
+  date: z.date(),
   eventTypeUUID: z.string().uuid().optional(),
   organizerUUID: z.string().uuid().optional(),
   venue: schemaPatterns.optionalString,
@@ -72,10 +75,11 @@ const EventForm = ({ communityEvent }: Props) => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<CommunityEventForm>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
-      date: communityEvent?.date ? communityEvent.date : '',
+      date: communityEvent?.date ? new Date(communityEvent.date) : new Date(),
       eventTypeUUID: communityEvent?.eventType?.id
         ? communityEvent.eventType.id
         : '',
@@ -137,7 +141,6 @@ const EventForm = ({ communityEvent }: Props) => {
 
   const submitData = async (data: CommunityEventForm) => {
     const eventId: string = communityEvent.id;
-
     const event: EditCommunityEvent = {
       eventTypeUUID: data.eventTypeUUID,
       organizerUUID: data.organizerUUID,
@@ -156,6 +159,7 @@ const EventForm = ({ communityEvent }: Props) => {
       volunteersNeeded: data.volunteersNeeded,
       volunteerRequestsSent: data.volunteerRequestsSent,
     };
+
     const submittedEvent = await eventService.updateEvent(eventId, event);
 
     if (submittedEvent) {
@@ -236,14 +240,20 @@ const EventForm = ({ communityEvent }: Props) => {
 
         <div className="flex flex-col gap-1 pb-2">
           <label className={style.formLabel} htmlFor="date">
-            Date (use 2023-05-12T18:30:00.000Z to test)
+            Event Date
           </label>
-          <input
-            type="text"
-            id="date"
-            placeholder=""
-            {...register('date')}
-            className={style.text}
+          <Controller
+            control={control}
+            name="date"
+            render={({ field: { onChange, value } }) => (
+              <DayPicker
+                mode="single"
+                selected={value as Date}
+                fromDate={new Date()}
+                onSelect={onChange}
+                footer={false}
+              />
+            )}
           />
           {errors.date && (
             <span className="text-red-700">{errors.date.message}</span>
