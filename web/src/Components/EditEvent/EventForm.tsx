@@ -159,6 +159,7 @@ const EventForm = ({ communityEvent }: Props) => {
       volunteersNeeded: data.volunteersNeeded,
       volunteerRequestsSent: data.volunteerRequestsSent,
     };
+
     const submittedEvent = await eventService.updateEvent(eventId, event);
 
     if (submittedEvent) {
