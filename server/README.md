@@ -10,6 +10,8 @@ Docker Docs: [https://docs.docker.com/]
 4. Navigate to ```/server```
 5. Run ```npx prisma migrate dev``` to create tables and apply any migrations.
 
+at the minimum you should add a userr and some initial event types to the database.  This can be dony by typing ```npx prisma studio``` and manully adding required rows.
+
 ### View DB logs
 
 ```bash
