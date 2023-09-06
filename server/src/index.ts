@@ -34,6 +34,6 @@ app.use('/', router);
 // error handling
 app.use(errorHandler);
 
-app.listen(env.PORT, () => {
-  console.log(`Server listening on port ${env.PORT}!`);
+app.listen(env.PORT || port, () => {
+  console.log(`Server listening on port ${env.PORT || port}!`);
 });

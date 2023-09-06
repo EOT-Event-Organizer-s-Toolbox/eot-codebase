@@ -9,8 +9,8 @@ export const loginReqSchema = z.object({
 
 export const registerReqSchema = z.object({
   body: z.object({
-    firstName: z.string(),
-    lastName: z.string(),
+    firstName: z.string().optional(),
+    lastName: z.string().optional(),
     email: z.string().email(),
     phone: z.string().optional(),
     password: z.string(),
