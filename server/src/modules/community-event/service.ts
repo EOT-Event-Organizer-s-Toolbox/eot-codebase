@@ -6,26 +6,44 @@ import { updateCommunityEventReq } from './validations';
 import communityEventSerializer from './serializer';
 
 const communityEventService = {
-  findAll: async () => {
+  findAll: async (userId: string) => {
     return await prisma.communityEvent.findMany({
+      where: {
+        organizerId: userId,
+      },
       include: {
         eventType: true,
         organizer: true,
       },
     });
   },
-  findById: async (communityEventId: string) => {
-    return prisma.communityEvent.findUnique({
-      where: { id: communityEventId },
+  findById: async (communityEventId: string, userId: string) => {
+    const exisitngEvent = await prisma.communityEvent.findFirst({
+      where: { id: communityEventId, organizerId: userId },
       include: {
         eventType: true,
         organizer: true,
       },
     });
+
+    if (!exisitngEvent) {
+      throw new NotFoundError(
+        `Community Event with id ${communityEventId} not found`,
+      );
+    }
+    console.log(exisitngEvent);
+    return exisitngEvent;
   },
-  create: async (params: Prisma.CommunityEventCreateInput) => {
+  create: async (params: Prisma.CommunityEventCreateInput, userId: string) => {
     return prisma.communityEvent.create({
-      data: params,
+      data: {
+        ...params,
+        organizer: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
       include: {
         eventType: true,
         organizer: true,
@@ -43,9 +61,10 @@ const communityEventService = {
   updateById: async (
     communityEventId: string,
     updateData: z.infer<typeof updateCommunityEventReq>['body'],
+    userId: string,
   ) => {
-    const existingCommunityEvent = !!(await prisma.communityEvent.findUnique({
-      where: { id: communityEventId },
+    const existingCommunityEvent = !!(await prisma.communityEvent.findFirst({
+      where: { id: communityEventId, organizerId: userId },
     }));
 
     if (!existingCommunityEvent) {
@@ -69,9 +88,9 @@ const communityEventService = {
    * @param communityEventId
    * @returns
    */
-  deleteById: async (communityEventId: string) => {
-    const existingCommunityEvent = !!(await prisma.communityEvent.findUnique({
-      where: { id: communityEventId },
+  deleteById: async (communityEventId: string, userId: string) => {
+    const existingCommunityEvent = !!(await prisma.communityEvent.findFirst({
+      where: { id: communityEventId, organizerId: userId },
     }));
 
     if (!existingCommunityEvent) {

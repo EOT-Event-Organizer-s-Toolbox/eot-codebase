@@ -10,7 +10,7 @@ export default {
     id: communityEvent.id,
     eventType: communityEvent.eventType,
     ideaConfirmed: communityEvent.ideaConfirmed,
-    organizer: communityEvent.organizer,
+    organizer: communityEvent.organizerId,
     date: communityEvent.date,
     inPersonEvent: communityEvent.inPersonEvent,
     onlineEvent: communityEvent.onlineEvent,

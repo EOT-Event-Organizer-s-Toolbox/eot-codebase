@@ -13,12 +13,12 @@ datasource db {
 model User {
   id String @id @default(uuid())
 
-  firstName                  String?
-  lastName                   String?
-  email                      String           @unique
-  phone                      String?
-  eventRegistrationCompleted Boolean          @default(false)
-  communityEvents            CommunityEvent[]
+  firstName       String?
+  lastName        String?
+  email           String           @unique
+  phone           String?
+  passwordHash    String
+  communityEvents CommunityEvent[]
 }
 
 model EventType {
