@@ -9,7 +9,7 @@ import {
 } from './validations';
 
 import { NewEventType } from './types';
-import { isAuthenticated } from 'src/utils/auth';
+import { isAuthenticated } from '../../utils/auth';
 
 /**
  * Event Type Controller
