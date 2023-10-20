@@ -6,10 +6,10 @@ const register = async (user: NewUser) => {
   console.log('register called');
   console.log('user:', user);
   try {
-    // 
+    //
     const req = await axiosService.post(`/auth/register`, user);
     const newUser: User = req.data.data;
-    console.log('newUser:', newUser)
+    console.log('newUser:', newUser);
     return newUser;
   } catch (e) {
     console.error(e);
@@ -17,7 +17,13 @@ const register = async (user: NewUser) => {
 };
 
 /* Login */
-const login = async ({ email, password }: { email: string; password: string }) => {
+const login = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
   try {
     const req = await axiosService.post(`/auth/login`, { email, password });
     const user = req.data.data;
@@ -25,7 +31,7 @@ const login = async ({ email, password }: { email: string; password: string }) =
   } catch (e) {
     console.error('failed in login:', e);
   }
-}
+};
 
 const logout = async () => {
   try {
@@ -35,6 +41,6 @@ const logout = async () => {
   } catch (e) {
     console.error(e);
   }
-}
+};
 
 export default { register, login, logout };

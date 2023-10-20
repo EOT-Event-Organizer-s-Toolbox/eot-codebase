@@ -23,9 +23,12 @@ const validationSchema = z
     path: ['passwordConfirmation'],
   });
 
-
 const RegistrationForm = () => {
-  const { register, handleSubmit, formState: { errors }, } = useForm<NewUserForm>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewUserForm>({
     resolver: zodResolver(validationSchema),
   });
 
@@ -49,69 +52,66 @@ const RegistrationForm = () => {
       setIsLoggedIn(true);
       setUser(response);
       console.log('response from server', response);
-
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
+      }
     }
 
-    }
-   
     console.log(data);
     navigate('/');
-  }
-  
+  };
+
   return (
     <div className={`${styles.layout.container} max-sm max-w-4xl m-auto`}>
       <h1 className={styles.layout.headingMain}>Create an account</h1>
       <div className="py-4">
-        <form onSubmit={handleSubmit(submitData)} className={styles.forms.layout.loginForm}>
+        <form
+          onSubmit={handleSubmit(submitData)}
+          className={styles.forms.layout.loginForm}
+        >
           <Text
-            label='First Name'
-            name='firstName'
-            placeHolder='Enter your first name'
+            label="First Name"
+            name="firstName"
+            placeHolder="Enter your first name"
             errorValue={errors.firstName?.message as string}
             reactHookRegister={register('firstName')}
           />
           <Text
-            label='Last Name'
-            name='lastName'
-            placeHolder='Enter your last name'
+            label="Last Name"
+            name="lastName"
+            placeHolder="Enter your last name"
             errorValue={errors.lastName?.message as string}
             reactHookRegister={register('lastName')}
           />
           <Text
-            label='Email'
-            name='email'
-            placeHolder='Enter your email'
+            label="Email"
+            name="email"
+            placeHolder="Enter your email"
             errorValue={errors.email?.message as string}
             reactHookRegister={register('email')}
           />
           <Password
-            label='Set a Password'
-            name='password'
-            placeHolder=''
+            label="Set a Password"
+            name="password"
+            placeHolder=""
             errorValue={errors.password?.message as string}
             reactHookRegister={register('password')}
           />
           <Password
-            label='Confirm Password'
-            name='passwordConfirmation'
-            placeHolder=''
+            label="Confirm Password"
+            name="passwordConfirmation"
+            placeHolder=""
             errorValue={errors.passwordConfirmation?.message as string}
             reactHookRegister={register('passwordConfirmation')}
           />
           <div className={styles.layout.buttonFooter}>
-            <input
-              className={styles.layout.buttons.primary}
-              type="submit"
-            />
+            <input className={styles.layout.buttons.primary} type="submit" />
           </div>
         </form>
       </div>
-      
     </div>
-  )
+  );
 };
 
 export default RegistrationForm;

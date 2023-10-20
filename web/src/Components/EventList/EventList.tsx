@@ -7,7 +7,6 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../Shared/context/AuthContext';
 import eventService from '../../Services/eventService';
 
-
 const EventList = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
@@ -19,7 +18,7 @@ const EventList = () => {
   }, [isLoggedIn]);
 
   if (!isLoggedIn) return null;
-  
+
   const events = useLoaderData() as CommunityEvent[];
   const [loading, setLoading] = useState(false);
   const newCommunityEvent = async () => {
@@ -41,11 +40,11 @@ const EventList = () => {
         </LoadingButton>
       </div>
 
-        {events.length > 0
-          ? events.map((event) => (
-              <EventListSingle key={event.id} event={event} />
-            ))
-          : 'No events found! Create a new event to get started.'}
+      {events.length > 0
+        ? events.map((event) => (
+            <EventListSingle key={event.id} event={event} />
+          ))
+        : 'No events found! Create a new event to get started.'}
     </div>
   );
 };

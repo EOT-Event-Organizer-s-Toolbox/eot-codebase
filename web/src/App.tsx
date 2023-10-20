@@ -19,24 +19,32 @@ import RegistrationForm from './Components/RegistrationForm';
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<RootLayout />}>
-          <Route path="login" element={<LoginForm />} errorElement={<NotFound/>}/>
-          <Route path="register" element={<RegistrationForm />} errorElement={<NotFound/>}/>
-          <Route
-            path="edit/:id"
-            element={<EditEvent />}
-            loader={eventDetailsLoader}
-            errorElement={<EventDetailsError />}
-          />
-          <Route index element={<EventList />} loader={eventsLoader} />
-          <Route
-            path=":id"
-            element={<EventDetails />}
-            loader={eventDetailsLoader}
-            errorElement={<EventDetailsError />}
-          />
-          <Route path="*" element={<NotFound />} />
-        </Route>
+      <Route path="/" element={<RootLayout />}>
+        <Route
+          path="login"
+          element={<LoginForm />}
+          errorElement={<NotFound />}
+        />
+        <Route
+          path="register"
+          element={<RegistrationForm />}
+          errorElement={<NotFound />}
+        />
+        <Route
+          path="edit/:id"
+          element={<EditEvent />}
+          loader={eventDetailsLoader}
+          errorElement={<EventDetailsError />}
+        />
+        <Route index element={<EventList />} loader={eventsLoader} />
+        <Route
+          path=":id"
+          element={<EventDetails />}
+          loader={eventDetailsLoader}
+          errorElement={<EventDetailsError />}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Route>,
     ),
   );
   return <RouterProvider router={router} />;

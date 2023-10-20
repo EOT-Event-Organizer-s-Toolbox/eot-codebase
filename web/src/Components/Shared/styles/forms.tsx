@@ -7,7 +7,7 @@ const forms = {
   layout: {
     inputContainer: 'flex flex-col gap-1 pb-2',
     loginForm: 'flex flex-col gap-2',
-  }
-}
+  },
+};
 
-export default forms
+export default forms;

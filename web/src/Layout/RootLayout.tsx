@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import logo from '/eotlogo_white.svg';
-import authService  from '../Services/authService'
+import authService from '../Services/authService';
 import { AuthContext } from '../Components/Shared/context/AuthContext';
 import { useContext } from 'react';
 
@@ -32,7 +32,9 @@ const RootLayout = () => {
         <p className="max-sm:hidden md:text-lg font-black place-self-center text-white uppercase">
           Event Organizer's Toolbox
         </p>
-        <button className="text-white uppercase" onClick={logout}>Logout</button>
+        <button className="text-white uppercase" onClick={logout}>
+          Logout
+        </button>
       </header>
       <main className="p-4">
         <Outlet />
