@@ -2,11 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Text, Password } from './Shared/Forms';
-import { NewUser } from '../types';
+import { NewUserForm, User } from '../types';
 
 import styles from './Shared/styles';
 import { useNavigate } from 'react-router-dom';
 import authService from '../Services/authService';
+import { useContext } from 'react';
+import { AuthContext } from './Shared/context/AuthContext';
 
 const validationSchema = z
   .object({
@@ -23,13 +25,38 @@ const validationSchema = z
 
 
 const RegistrationForm = () => {
-  const { register, handleSubmit, formState: { errors }, } = useForm<NewUser>({
+  const { register, handleSubmit, formState: { errors }, } = useForm<NewUserForm>({
     resolver: zodResolver(validationSchema),
   });
 
+  const { setUser, setIsLoggedIn } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
-  const submitData = async (data: NewUser) => {
+  const submitData = async (data: NewUserForm) => {
+    try {
+      const response: User | undefined = await authService.register({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (!response) {
+        throw new Error('Registration failed');
+      }
+
+      setIsLoggedIn(true);
+      setUser(response);
+      console.log('response from server', response);
+
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+    }
+
+    }
+   
     console.log(data);
     navigate('/');
   }

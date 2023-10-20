@@ -2,9 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Text, Password } from './Shared/Forms';
+import  authService  from '../Services/authService';
+import { AuthContext } from './Shared/context/AuthContext';
+import { useContext } from 'react';
 
 import styles from './Shared/styles';
 import { useNavigate } from 'react-router-dom';
+import { User } from '../types';
 
 const validationSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -20,11 +24,25 @@ const LoginForm = () => {
     resolver: zodResolver(validationSchema),
   });
 
+  const { setUser, setIsLoggedIn } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const submitData = async (data: LoginForm) => {
-    console.log(data);
-    navigate('/');
+    try {
+      const response = await authService.login({
+        email: data.email,
+        password: data.password,
+      });
+      setIsLoggedIn(true);
+      setUser(response);
+
+      navigate('/');
+    } catch (e) {
+      if (e instanceof Error) {
+        console.error(e.message);
+      }
+    }
   }
   
   return (

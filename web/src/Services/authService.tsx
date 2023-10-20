@@ -1,7 +1,5 @@
-import axios from 'axios';
+import axiosService from './axiosService';
 import { User, NewUser } from '../types';
-
-const baseUrl = 'http://localhost:3000/api/auth';
 
 /* Register */
 const register = async (user: NewUser) => {
@@ -9,13 +7,34 @@ const register = async (user: NewUser) => {
   console.log('user:', user);
   try {
     // 
-    const req = await axios.post(`${baseUrl}/register`, user);
+    const req = await axiosService.post(`/auth/register`, user);
     const newUser: User = req.data.data;
+    console.log('newUser:', newUser)
     return newUser;
   } catch (e) {
     console.error(e);
   }
 };
 
+/* Login */
+const login = async ({ email, password }: { email: string; password: string }) => {
+  try {
+    const req = await axiosService.post(`/auth/login`, { email, password });
+    const user = req.data.data;
+    return user;
+  } catch (e) {
+    console.error('failed in login:', e);
+  }
+}
 
-export default { register };
+const logout = async () => {
+  try {
+    const req = await axiosService.get(`/auth/logout`);
+    const res = req.data.data;
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export default { register, login, logout };

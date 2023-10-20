@@ -2,7 +2,7 @@ export type User = {
   id: string;
   firstName: string;
   lastName: string;
-  phone: string;
+  phone?: string;
   email: string;
 };
 
@@ -46,7 +46,8 @@ export type NonSensitiveCommunityEvent = Omit<
 >;
 
 // Omits for creating new entries
-export type NewUser = Omit<User, 'id'> & { password: string, passwordConfirmation: string };
+export type NewUserForm = Omit<User, 'id'> & { password: string, passwordConfirmation: string };
+export type NewUser = Omit<User, 'id'> & { password: string };
 export type NewCommunityEventType = Omit<CommunityEventType, 'id'>;
 export type EditCommunityEvent = Omit<
   CommunityEvent,
