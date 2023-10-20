@@ -28,7 +28,7 @@ const LoginForm = () => {
   }
   
   return (
-    <div className={`${styles.layout.container} max-sm`}>
+    <div className={`${styles.layout.container} max-sm max-w-4xl m-auto`}>
       <h1 className={styles.layout.headingMain}>Login to continue</h1>
       <div className="py-4">
         <form onSubmit={handleSubmit(submitData)} className={styles.forms.layout.loginForm}>
