@@ -51,14 +51,11 @@ const RegistrationForm = () => {
 
       setIsLoggedIn(true);
       setUser(response);
-      console.log('response from server', response);
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
     }
-
-    console.log(data);
     navigate('/');
   };
 

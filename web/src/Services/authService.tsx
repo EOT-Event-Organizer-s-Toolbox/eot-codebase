@@ -3,13 +3,10 @@ import { User, NewUser } from '../types';
 
 /* Register */
 const register = async (user: NewUser) => {
-  console.log('register called');
-  console.log('user:', user);
   try {
     //
     const req = await axiosService.post(`/auth/register`, user);
     const newUser: User = req.data.data;
-    console.log('newUser:', newUser);
     return newUser;
   } catch (e) {
     console.error(e);

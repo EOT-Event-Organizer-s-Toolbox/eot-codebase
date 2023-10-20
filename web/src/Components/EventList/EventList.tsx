@@ -10,7 +10,6 @@ import eventService from '../../Services/eventService';
 const EventList = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
-  console.log('isLoggedIn', isLoggedIn);
   useEffect(() => {
     if (!isLoggedIn) {
       navigate('/login');
@@ -28,7 +27,6 @@ const EventList = () => {
       setLoading(false);
       navigate(`/edit/${event.id}`);
     }
-    console.log('newCommunityEvent');
   };
 
   return (

@@ -20,7 +20,6 @@ const getAll = async () => {
 
 /* Retrieve a single event from the server */
 const getEvent = async (id: string) => {
-  console.log('getEvent called');
   try {
     const req = await axiosService.get(`${baseUrl}/${id}`);
     const event: CommunityEvent = req.data.data;
@@ -47,9 +46,6 @@ const createEvent = async () => {
 
 /* Update an event */
 const updateEvent = async (id: string, event: EditCommunityEvent) => {
-  console.log('updateEvent called');
-  console.log('id:', id);
-  console.log('event:', event);
   try {
     const req = await axiosService.put(`${baseUrl}/${id}`, event);
     const updatedEvent: CommunityEvent = req.data.data;
