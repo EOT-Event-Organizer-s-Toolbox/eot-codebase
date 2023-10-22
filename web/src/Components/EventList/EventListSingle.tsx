@@ -6,7 +6,6 @@ type Props = {
   event: CommunityEvent | undefined;
 };
 const EventListSingle = ({ event }: Props) => {
-  console.log('SINGLE', event);
   const navigate = useNavigate();
 
   const handleView = (id: string) => {
