@@ -43,7 +43,6 @@ const authController = {
   },
 
   logout: async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.session)
     try {
       req.session.save((err) => {
         if (err) return next(err);

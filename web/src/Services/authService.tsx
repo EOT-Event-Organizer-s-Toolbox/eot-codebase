@@ -9,7 +9,7 @@ const register = async (user: NewUser) => {
     const newUser: User = req.data.data;
     return newUser;
   } catch (e) {
-    console.error(e);
+    alert('failed to register');
   }
 };
 
@@ -26,7 +26,7 @@ const login = async ({
     const user = req.data.data;
     return user;
   } catch (e) {
-    console.error('failed in login:', e);
+    alert('failed to login');
   }
 };
 
@@ -36,7 +36,7 @@ const logout = async () => {
     const res = req.data.data;
     return res;
   } catch (e) {
-    console.error(e);
+    alert('failed to logout');
   }
 };
 
