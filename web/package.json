@@ -13,7 +13,7 @@
     "format:write": "npx prettier --write src/"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.1.1",
+    "@hookform/resolvers": "^3.3.2",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
