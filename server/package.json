@@ -7,7 +7,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only  src/index.ts"
+    "start": "ts-node-dev --respawn --transpile-only  src/index.ts",
+    "format": "npx prettier --check src/**/*.ts",
+    "format:write": "npx prettier --write src/"
   },
   "dependencies": {
     "@prisma/client": "^4.15.0",
