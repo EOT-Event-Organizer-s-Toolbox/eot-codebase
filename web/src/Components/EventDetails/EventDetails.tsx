@@ -34,30 +34,34 @@ const EventDetails = () => {
       <section className="flex flex-wrap flex-row justify-between align-middle p-3 bg-zinc-100 mb-2">
         <div className="flex flex-wrap flex-col gap-2 justify-between">
           <h1 className="text-2xl leading-6 flex flex-row flex-wrap gap-2 font-black uppercase">
-            <span>
-              {event.eventType ? event.eventType.type : 'New Event'}
-            </span>
+            <span>{event.eventType ? event.eventType.type : 'New Event'}</span>
             {event.onlineEvent && '(Online)'}
           </h1>
           <p className="text-lg font-bold whitespace-nowrap">{dateDetails}</p>
-          {event.organizer &&
-          <p className="font-semibold">
-            Organizer:{' '}
-            {`${event.organizer?.firstName} ${event.organizer?.lastName}`}
-          </p>
-          }
+          {event.organizer && (
+            <p className="font-semibold">
+              Organizer:{' '}
+              {`${event.organizer?.firstName} ${event.organizer?.lastName}`}
+            </p>
+          )}
         </div>
         <div className="self-center"></div>
       </section>
-      {event.inPersonEvent && (![event.venue, event.venueContactName, event.venueContactPhone, event.venueContactEmail].every((v) => !v)) &&
-        <section className="p-3 bg-zinc-100 mb-2">
-          <h2 className="text-xl font-black uppercase">Venue Details</h2>
-          { event.venue && <p>Venue: {event.venue}</p> }
-          { event.venueContactName && <p>Contact: {event.venueContactName}</p> }
-          { event.venueContactPhone && <p>Phone: {event.venueContactPhone}</p> }
-          { event.venueContactEmail && <p>email: {event.venueContactEmail}</p> }
-        </section>
-      }
+      {event.inPersonEvent &&
+        ![
+          event.venue,
+          event.venueContactName,
+          event.venueContactPhone,
+          event.venueContactEmail,
+        ].every((v) => !v) && (
+          <section className="p-3 bg-zinc-100 mb-2">
+            <h2 className="text-xl font-black uppercase">Venue Details</h2>
+            {event.venue && <p>Venue: {event.venue}</p>}
+            {event.venueContactName && <p>Contact: {event.venueContactName}</p>}
+            {event.venueContactPhone && <p>Phone: {event.venueContactPhone}</p>}
+            {event.venueContactEmail && <p>email: {event.venueContactEmail}</p>}
+          </section>
+        )}
       <section className="p-3 bg-zinc-100 mb-2">
         <h2 className="text-xl font-black uppercase">Event Checklist</h2>
         <Task label="Idea Confirmed" isComplete={event.ideaConfirmed} />
@@ -66,27 +70,27 @@ const EventDetails = () => {
           label="Announcement Posted"
           isComplete={event.announcementPosted}
         />
-        {event.volunteersNeeded && event.volunteersNeeded > 0 && 
-        <Task
-          label="Volunteer Requests Sent"
-          isComplete={event.volunteerRequestsSent}
-        />
-        }
+        {event.volunteersNeeded && event.volunteersNeeded > 0 && (
+          <Task
+            label="Volunteer Requests Sent"
+            isComplete={event.volunteerRequestsSent}
+          />
+        )}
       </section>
-      {event.volunteersNeeded && event.volunteersNeeded > 0 && 
-      <section className="p-3 bg-zinc-100 mb-2">
-        <h2 className="text-xl font-black uppercase">Volunteer Details</h2>
-        <p className="font-semibold">
-          Number of volunteers needed: {event.volunteersNeeded}
-        </p>
-      </section>
-      }
-      {event.notes && 
-      <section className="p-3 bg-zinc-100 mb-2">
-        <h2 className="text-xl font-black uppercase">Notes</h2>
-        <p>{event.notes}</p>
-      </section>
-      }
+      {event.volunteersNeeded && event.volunteersNeeded > 0 && (
+        <section className="p-3 bg-zinc-100 mb-2">
+          <h2 className="text-xl font-black uppercase">Volunteer Details</h2>
+          <p className="font-semibold">
+            Number of volunteers needed: {event.volunteersNeeded}
+          </p>
+        </section>
+      )}
+      {event.notes && (
+        <section className="p-3 bg-zinc-100 mb-2">
+          <h2 className="text-xl font-black uppercase">Notes</h2>
+          <p>{event.notes}</p>
+        </section>
+      )}
       <footer className="flex flex-row align-middle gap-3 p-3 bg-zinc-700">
         <Link
           to="/"

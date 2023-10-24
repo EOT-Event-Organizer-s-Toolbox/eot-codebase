@@ -18,7 +18,7 @@ const authController = {
         req.session.save(function (err) {
           if (err) return next(err);
           console.log(req.session);
-          res.json({ message: 'Login Successful' });
+          return res.status(200).json({ message: 'Login Successful' });
         });
       });
     } catch (e) {
@@ -44,14 +44,13 @@ const authController = {
 
   logout: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      req.session.user = null;
       req.session.save((err) => {
         if (err) return next(err);
 
         req.session.regenerate((err) => {
           if (err) return next(err);
 
-          res.json({ message: 'User was successfully logged out' });
+          return res.json({ message: 'User was successfully logged out' });
         });
       });
     } catch (e) {

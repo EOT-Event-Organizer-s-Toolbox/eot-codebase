@@ -1,19 +1,24 @@
-
 import styles from '../styles';
 
 type PasswordProps = {
-  label: string,
-  name: string,
-  errorValue?: string | undefined,
-  placeHolder: string,
-  reactHookRegister: any,
-}
+  label: string;
+  name: string;
+  errorValue?: string | undefined;
+  placeHolder: string;
+  reactHookRegister: any;
+};
 
-const Password = ({ label, name, errorValue, placeHolder, reactHookRegister}: PasswordProps) => {
+const Password = ({
+  label,
+  name,
+  errorValue,
+  placeHolder,
+  reactHookRegister,
+}: PasswordProps) => {
   return (
     <div className={styles.forms.layout.inputContainer}>
       <label className={styles.forms.label} htmlFor={name}>
-        { label }
+        {label}
       </label>
       <input
         type="password"
@@ -22,12 +27,10 @@ const Password = ({ label, name, errorValue, placeHolder, reactHookRegister}: Pa
         className={styles.forms.text}
       />
       {errorValue && (
-        <span className={styles.forms.errorText}>
-          {errorValue}
-        </span>
+        <span className={styles.forms.errorText}>{errorValue}</span>
       )}
     </div>
   );
-}
+};
 
 export default Password;

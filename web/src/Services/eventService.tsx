@@ -1,12 +1,12 @@
 import { CommunityEvent, EditCommunityEvent } from '../types';
-import axios from 'axios';
+import axiosService from './axiosService';
 
-const baseUrl = 'http://localhost:3000/api/community-events';
+const baseUrl = '/community-events';
 
 /* Retrieve all Events from the server */
 const getAll = async () => {
   try {
-    const req = await axios.get(baseUrl);
+    const req = await axiosService.get(baseUrl);
     const eventList: CommunityEvent[] = req.data.data;
     return eventList;
   } catch (e: any) {
@@ -20,9 +20,8 @@ const getAll = async () => {
 
 /* Retrieve a single event from the server */
 const getEvent = async (id: string) => {
-  console.log('getEvent called');
   try {
-    const req = await axios.get(`${baseUrl}/${id}`);
+    const req = await axiosService.get(`${baseUrl}/${id}`);
     const event: CommunityEvent = req.data.data;
     return event;
   } catch (e: any) {
@@ -37,7 +36,7 @@ const getEvent = async (id: string) => {
 /**  Creates a new event */
 const createEvent = async () => {
   try {
-    const req = await axios.post(baseUrl, {});
+    const req = await axiosService.post(baseUrl, {});
     const event: CommunityEvent = req.data.data;
     return event;
   } catch (e) {
@@ -47,11 +46,8 @@ const createEvent = async () => {
 
 /* Update an event */
 const updateEvent = async (id: string, event: EditCommunityEvent) => {
-  console.log('updateEvent called');
-  console.log('id:', id);
-  console.log('event:', event);
   try {
-    const req = await axios.put(`${baseUrl}/${id}`, event);
+    const req = await axiosService.put(`${baseUrl}/${id}`, event);
     const updatedEvent: CommunityEvent = req.data.data;
     return updatedEvent;
   } catch (e) {

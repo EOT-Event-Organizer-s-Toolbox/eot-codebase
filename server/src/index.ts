@@ -1,10 +1,12 @@
 import express from 'express';
-import { prisma } from './modules/prisma';
 import { errorHandler } from './middleware/errorHandler';
 import router from './modules/routes';
 import cors from 'cors';
 import session from 'express-session';
 import { env } from './utils/env';
+import path from 'node:path';
+
+const WEB_DIST_PATH = path.resolve(__dirname, '../../web/dist');
 
 const app = express();
 const port = 3000;
@@ -14,8 +16,11 @@ const port = 3000;
 app.use(
   cors({
     origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    credentials: true,
   }),
 );
+
+app.use(express.static(WEB_DIST_PATH));
 
 app.use(express.json());
 
@@ -30,6 +35,11 @@ app.use(
 
 // routers
 app.use('/', router);
+
+// This is required for a single-page-application.
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(WEB_DIST_PATH, 'index.html'));
+});
 
 // error handling
 app.use(errorHandler);
