@@ -12,7 +12,7 @@ router.get('/api', (_, res: Response) => {
 });
 
 router.use('/api/community-events', communityEventRouter);
-router.use('/api/event-types', eventTypeRouter)
-router.use('/api/auth', authRouter)
+router.use('/api/event-types', eventTypeRouter);
+router.use('/api/auth', authRouter);
 
 export default router;

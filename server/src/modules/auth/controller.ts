@@ -59,4 +59,4 @@ const authController = {
   },
 };
 
-export default authController
+export default authController;

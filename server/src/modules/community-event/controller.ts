@@ -70,7 +70,7 @@ const communityEventController = {
   },
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { id:userId } = await isAuthenticated(req.session);
+      const { id: userId } = await isAuthenticated(req.session);
       // validate request
       const {
         params: { id },

@@ -28,7 +28,6 @@ export default {
   updateRequest(
     requestBody: z.infer<typeof updateCommunityEventReq>['body'],
   ): Prisma.CommunityEventUpdateInput {
-
     /* Make sure we are not adding any of the relationships if value is not set */
     let communityEventRelationships: Prisma.CommunityEventUpdateInput = {};
     if (requestBody.organizerUUID) {

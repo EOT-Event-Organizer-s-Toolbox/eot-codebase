@@ -1,6 +1,6 @@
-import { prisma } from "../prisma";
-import { Prisma } from "@prisma/client";
-import { NotFoundError } from "../../utils/errors";
+import { prisma } from '../prisma';
+import { Prisma } from '@prisma/client';
+import { NotFoundError } from '../../utils/errors';
 
 const eventTypeService = {
   findAll: async () => {
@@ -51,6 +51,6 @@ const eventTypeService = {
 
     return deletedEventType.id;
   },
-}
+};
 
 export default eventTypeService;
