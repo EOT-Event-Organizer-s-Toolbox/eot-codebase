@@ -7,6 +7,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "build": "tsc",
     "dev": "tsx watch src/index.ts"
   },
   "dependencies": {
