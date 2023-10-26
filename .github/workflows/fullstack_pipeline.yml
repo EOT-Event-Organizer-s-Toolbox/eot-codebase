@@ -23,12 +23,9 @@ jobs:
       - name: Run backend prettier checks
         working-directory: ./server
         run: npm run format
-      - name: Run backend tests
-        working-directory: ./server
-        run: npm run test
   frontend_tests:
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:

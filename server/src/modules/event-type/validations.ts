@@ -7,10 +7,9 @@ export const createEventTypeReq = z.object({
   body: z.object({
     type: z.string(),
     description: z.string().optional(),
-    active: z.boolean()
-  })
+    active: z.boolean(),
+  }),
 });
-
 
 /**
  * Validation schema for the update Event Type Request

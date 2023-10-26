@@ -23,16 +23,32 @@ const authService = {
     return { id: user.id };
   },
 
-  register: async(email:string, password:string, firstname:string, lastname:string, phone?: string): Promise<AuthInfo>=>{
-    const existingUser = await prisma.user.findUnique({where:{email:email}})
+  register: async (
+    email: string,
+    password: string,
+    firstname: string,
+    lastname: string,
+    phone?: string,
+  ): Promise<AuthInfo> => {
+    const existingUser = await prisma.user.findUnique({
+      where: { email: email },
+    });
 
-    if (existingUser){
-        throw new ConflictError("User already exists")
+    if (existingUser) {
+      throw new ConflictError('User already exists');
     }
     const passwordHash = await bcrypt.hash(password, 10);
-    const newUser = await prisma.user.create({data:{email:email, firstName: firstname, lastName: lastname, phone: phone, passwordHash: passwordHash }})
-    return  {id: newUser.id}
-  }
+    const newUser = await prisma.user.create({
+      data: {
+        email: email,
+        firstName: firstname,
+        lastName: lastname,
+        phone: phone,
+        passwordHash: passwordHash,
+      },
+    });
+    return { id: newUser.id };
+  },
 };
 
 export default authService;

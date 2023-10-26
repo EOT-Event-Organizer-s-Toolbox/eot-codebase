@@ -1,7 +1,7 @@
 import { EventType } from './types';
 
 export default {
-  default: (eventType: EventType)  => ({
+  default: (eventType: EventType) => ({
     id: eventType.id,
     type: eventType.type,
     description: eventType.description && eventType.description,
@@ -9,6 +9,6 @@ export default {
   }),
 
   delete: (eventTypeId: string) => ({
-    id: eventTypeId
+    id: eventTypeId,
   }),
-}
+};

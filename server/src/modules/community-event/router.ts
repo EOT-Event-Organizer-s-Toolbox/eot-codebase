@@ -7,10 +7,9 @@ import communityEventController from './controller';
 const communityEventRouter = Router();
 
 communityEventRouter.post('/', communityEventController.create);
-communityEventRouter.get('/', communityEventController.getAll)
+communityEventRouter.get('/', communityEventController.getAll);
 communityEventRouter.get('/:id', communityEventController.findById);
 communityEventRouter.put('/:id', communityEventController.update);
-communityEventRouter.delete('/:id', communityEventController.delete)
-
+communityEventRouter.delete('/:id', communityEventController.delete);
 
 export default communityEventRouter;

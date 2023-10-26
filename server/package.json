@@ -8,7 +8,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "format": "npx prettier --check src/**/*.ts",
+    "format:write": "npx prettier --write src/"
   },
   "dependencies": {
     "@prisma/client": "^4.15.0",
