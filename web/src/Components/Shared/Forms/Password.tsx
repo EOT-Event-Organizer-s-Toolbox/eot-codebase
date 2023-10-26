@@ -1,29 +1,23 @@
 import styles from '../styles';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 type PasswordProps = {
   label: string;
-  name: string;
   errorValue?: string | undefined;
   placeHolder: string;
-  reactHookRegister: any;
+  register: UseFormRegisterReturn;
 };
 
-const Password = ({
-  label,
-  name,
-  errorValue,
-  placeHolder,
-  reactHookRegister,
-}: PasswordProps) => {
+function Password({ label, errorValue, placeHolder, register }: PasswordProps) {
   return (
     <div className={styles.forms.layout.inputContainer}>
-      <label className={styles.forms.label} htmlFor={name}>
+      <label className={styles.forms.label} htmlFor={register.name}>
         {label}
       </label>
       <input
         type="password"
         placeholder={placeHolder}
-        {...reactHookRegister}
+        {...register}
         className={styles.forms.text}
       />
       {errorValue && (
@@ -31,6 +25,6 @@ const Password = ({
       )}
     </div>
   );
-};
+}
 
 export default Password;

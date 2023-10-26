@@ -14,9 +14,7 @@ const EventList = () => {
     if (!isLoggedIn) {
       navigate('/login');
     }
-  }, [isLoggedIn]);
-
-  if (!isLoggedIn) return null;
+  }, [isLoggedIn, navigate]);
 
   const events = useLoaderData() as CommunityEvent[];
   const [loading, setLoading] = useState(false);

@@ -18,7 +18,7 @@ export type CommunityEvent = {
   eventType?: CommunityEventType;
   ideaConfirmed?: boolean;
   organizer?: User;
-  date?: string | Date;
+  date?: string;
   inPersonEvent: boolean;
   onlineEvent: boolean;
   notes?: string;

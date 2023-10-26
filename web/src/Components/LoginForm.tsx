@@ -8,7 +8,6 @@ import { useContext } from 'react';
 
 import styles from './Shared/styles';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../types';
 
 const validationSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -61,15 +60,14 @@ const LoginForm = () => {
             label="Email"
             name="email"
             placeHolder="Enter your email"
-            errorValue={errors.email?.message as string}
-            reactHookRegister={register('email')}
+            errorValue={errors.email?.message}
+            register={register('email')}
           />
           <Password
             label="Password"
-            name="password"
             placeHolder="Enter your password"
-            errorValue={errors.password?.message as string}
-            reactHookRegister={register('password')}
+            errorValue={errors.password?.message}
+            register={register('password')}
           />
           <div className={styles.layout.buttonFooter}>
             <input className={styles.layout.buttons.primary} type="submit" />

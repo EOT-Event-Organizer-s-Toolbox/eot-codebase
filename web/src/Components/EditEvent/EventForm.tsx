@@ -45,7 +45,7 @@ const schemaPatterns = {
 };
 
 const validationSchema: ZodType<CommunityEventForm> = z.object({
-  date: z.date(),
+  date: z.string(),
   eventTypeUUID: z.string().uuid().optional(),
   organizerUUID: z.string().uuid().optional(),
   venue: schemaPatterns.optionalString,
@@ -79,7 +79,7 @@ const EventForm = ({ communityEvent }: Props) => {
   } = useForm<CommunityEventForm>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
-      date: communityEvent?.date ? new Date(communityEvent.date) : new Date(),
+      date: communityEvent?.date,
       eventTypeUUID: communityEvent?.eventType?.id
         ? communityEvent.eventType.id
         : '',
@@ -248,9 +248,9 @@ const EventForm = ({ communityEvent }: Props) => {
             render={({ field: { onChange, value } }) => (
               <DayPicker
                 mode="single"
-                selected={value as Date}
+                selected={value ? new Date(value) : new Date()}
                 fromDate={new Date()}
-                onSelect={onChange}
+                onSelect={(e) => onChange(e?.toISOString())}
                 footer={false}
               />
             )}

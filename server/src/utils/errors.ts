@@ -23,8 +23,8 @@ export class ApplicationError extends Error {
  * was invalid
  */
 export class BadRequestError extends ApplicationError {
-  issues: any[];
-  constructor(message?: string, issues?: any[]) {
+  issues: unknown[];
+  constructor(message?: string, issues?: unknown[]) {
     super(message || 'VALIDATION ERROR', 400);
     if (issues) {
       this.issues = issues;
