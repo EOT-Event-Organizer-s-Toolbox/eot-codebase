@@ -1,3 +1,4 @@
+import { UseFormRegisterReturn } from 'react-hook-form';
 import styles from '../styles';
 
 type TextProps = {
@@ -5,7 +6,7 @@ type TextProps = {
   name: string;
   errorValue?: string | undefined;
   placeHolder: string;
-  reactHookRegister: any;
+  register: UseFormRegisterReturn;
 };
 
 const Text = ({
@@ -13,7 +14,7 @@ const Text = ({
   name,
   errorValue,
   placeHolder,
-  reactHookRegister,
+  register,
 }: TextProps) => {
   return (
     <div className={styles.forms.layout.inputContainer}>
@@ -23,7 +24,7 @@ const Text = ({
       <input
         type="text"
         placeholder={placeHolder}
-        {...reactHookRegister}
+        {...register}
         className={styles.forms.text}
       />
       {errorValue && (

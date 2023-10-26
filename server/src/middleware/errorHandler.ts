@@ -9,7 +9,7 @@ export const errorHandler = (
   next: NextFunction,
 ) => {
   console.error(err);
-  const response: { message: string; status: number; issues?: any[] } = {
+  const response: { message: string; status: number; issues?: unknown[] } = {
     message: 'INTERNAL SERVER ERROR',
     status: 500,
   };

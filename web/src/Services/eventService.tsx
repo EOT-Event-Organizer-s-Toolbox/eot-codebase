@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { CommunityEvent, EditCommunityEvent } from '../types';
 import axiosService from './axiosService';
 
@@ -9,10 +10,10 @@ const getAll = async () => {
     const req = await axiosService.get(baseUrl);
     const eventList: CommunityEvent[] = req.data.data;
     return eventList;
-  } catch (e: any) {
+  } catch (e) {
     /* Handle error due to no server connection */
-    if (e.code === 'ERR_NETWORK') {
-      console.error('Network Error - Could not connect to server');
+    if (e instanceof AxiosError && e.code === 'ERR_NETWORK') {
+      alert('Network Error - Could not connect to server');
     }
     console.error('error:', e);
   }
@@ -24,9 +25,9 @@ const getEvent = async (id: string) => {
     const req = await axiosService.get(`${baseUrl}/${id}`);
     const event: CommunityEvent = req.data.data;
     return event;
-  } catch (e: any) {
-    if (e.response.status === 404) {
-      console.error('Event not found');
+  } catch (e) {
+    if (e instanceof AxiosError && e.response?.status === 404) {
+      alert('Event not found');
     } else {
       console.error(e);
     }

@@ -2,9 +2,9 @@ name: Developement Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   backend_tests:
     runs-on: ubuntu-latest
@@ -16,13 +16,19 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '18.16.0'
+          node-version: "18.16.0"
       - name: Install backend dependencies
         working-directory: ./server
         run: npm ci
+      - name: Run backend linter
+        working-directory: ./server
+        run: npm run lint
       - name: Run backend prettier checks
         working-directory: ./server
-        run: npm run format
+        run: npm run format:check
+      - name: Build backend
+        working-directory: ./server
+        run: npm run build
   frontend_tests:
     runs-on: ubuntu-latest
     steps:
@@ -33,8 +39,12 @@ jobs:
       - name: Install frontend dependencies
         working-directory: ./web
         run: npm ci
+      - name: Run frontend linter
+        working-directory: ./web
+        run: npm run lint
       - name: Run frontend prettier checks
         working-directory: ./web
-        run: npm run format
-
-
+        run: npm run format:check
+      - name: Build frontend
+        working-directory: ./web
+        run: npm run build

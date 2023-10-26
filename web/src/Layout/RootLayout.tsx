@@ -6,7 +6,7 @@ import { useContext } from 'react';
 
 const RootLayout = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn, setUser, isLoggedIn } = useContext(AuthContext);
+  const { setIsLoggedIn, setUser } = useContext(AuthContext);
 
   const logout = async () => {
     try {
