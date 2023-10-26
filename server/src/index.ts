@@ -1,7 +1,6 @@
 import express from 'express';
 import { errorHandler } from './middleware/errorHandler';
 import router from './modules/routes';
-import cors from 'cors';
 import session from 'express-session';
 import { env } from './utils/env';
 import path from 'node:path';
@@ -12,18 +11,8 @@ const app = express();
 const port = 3000;
 
 // middlewares
-/* CORS policy for localhost in development.  will need to be updated for production. */
-app.use(
-  cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
-    credentials: true,
-  }),
-);
-
 app.use(express.static(WEB_DIST_PATH));
-
 app.use(express.json());
-
 app.use(
   session({
     secret: env.SESSION_SECRET,
