@@ -6,7 +6,14 @@ export default defineConfig({
   plugins: [
     react({
       include: '**/*.tsx',
-    })
+    }),
   ],
-
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
+  },
 });
