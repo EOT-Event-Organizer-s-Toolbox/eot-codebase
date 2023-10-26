@@ -71,36 +71,34 @@ const RegistrationForm = () => {
             label="First Name"
             name="firstName"
             placeHolder="Enter your first name"
-            errorValue={errors.firstName?.message as string}
-            reactHookRegister={register('firstName')}
+            errorValue={errors.firstName?.message}
+            register={register('firstName')}
           />
           <Text
             label="Last Name"
             name="lastName"
             placeHolder="Enter your last name"
-            errorValue={errors.lastName?.message as string}
-            reactHookRegister={register('lastName')}
+            errorValue={errors.lastName?.message}
+            register={register('lastName')}
           />
           <Text
             label="Email"
             name="email"
             placeHolder="Enter your email"
-            errorValue={errors.email?.message as string}
-            reactHookRegister={register('email')}
+            errorValue={errors.email?.message}
+            register={register('email')}
           />
           <Password
             label="Set a Password"
-            name="password"
             placeHolder=""
-            errorValue={errors.password?.message as string}
-            reactHookRegister={register('password')}
+            errorValue={errors.password?.message}
+            register={register('password')}
           />
           <Password
             label="Confirm Password"
-            name="passwordConfirmation"
             placeHolder=""
-            errorValue={errors.passwordConfirmation?.message as string}
-            reactHookRegister={register('passwordConfirmation')}
+            errorValue={errors.passwordConfirmation?.message}
+            register={register('passwordConfirmation')}
           />
           <div className={styles.layout.buttonFooter}>
             <input className={styles.layout.buttons.primary} type="submit" />

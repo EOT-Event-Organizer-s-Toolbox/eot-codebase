@@ -8,8 +8,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "tsc",
+    "lint": "eslint src --ext ts --max-warnings 0",
     "dev": "tsx watch src/index.ts",
-    "format": "npx prettier --check src/**/*.ts",
+    "format:check": "npx prettier --check src/**/*.ts",
     "format:write": "npx prettier --write src/"
   },
   "dependencies": {
@@ -27,9 +28,10 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/express-session": "^1.17.7",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.8.8",
     "prisma": "^4.15.0",
     "supertest": "^6.1.3",
