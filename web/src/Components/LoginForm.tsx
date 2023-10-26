@@ -8,7 +8,6 @@ import { useContext } from 'react';
 
 import styles from './Shared/styles';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../types';
 
 const validationSchema = z.object({
   email: z.string().email('Invalid email address'),
