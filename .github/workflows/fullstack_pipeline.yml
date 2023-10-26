@@ -45,6 +45,6 @@ jobs:
       - name: Run frontend prettier checks
         working-directory: ./web
         run: npm run format:check
-      - name: Run frontend
+      - name: Build frontend
         working-directory: ./web
         run: npm run build
