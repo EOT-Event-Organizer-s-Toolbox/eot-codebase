@@ -1,9 +1,4 @@
-import {
-  createBrowserRouter,
-  Route,
-  createRoutesFromElements,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { eventDetailsLoader, eventsLoader } from './Services/loaderFunctions';
 //Layouts
 import RootLayout from './Layout/RootLayout';
@@ -15,39 +10,56 @@ import NotFound from './Components/Error/NotFound';
 import EventDetailsError from './Components/Error/EventDetailsError';
 import EditEvent from './Components/EditEvent/EditEvent';
 import RegistrationForm from './Components/RegistrationForm';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        path: 'login',
+        element: <LoginForm />,
+        errorElement: <NotFound />,
+      },
+      {
+        path: 'register',
+        element: <RegistrationForm />,
+        errorElement: <NotFound />,
+      },
+      {
+        path: 'edit/:id',
+        element: <EditEvent />,
+        loader: eventDetailsLoader,
+        errorElement: <EventDetailsError />,
+      },
+      {
+        index: true,
+        element: <EventList />,
+        loader: eventsLoader,
+      },
+      {
+        path: ':id',
+        element: <EventDetails />,
+        loader: eventDetailsLoader,
+        errorElement: <EventDetailsError />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
-        <Route
-          path="login"
-          element={<LoginForm />}
-          errorElement={<NotFound />}
-        />
-        <Route
-          path="register"
-          element={<RegistrationForm />}
-          errorElement={<NotFound />}
-        />
-        <Route
-          path="edit/:id"
-          element={<EditEvent />}
-          loader={eventDetailsLoader}
-          errorElement={<EventDetailsError />}
-        />
-        <Route index element={<EventList />} loader={eventsLoader} />
-        <Route
-          path=":id"
-          element={<EventDetails />}
-          loader={eventDetailsLoader}
-          errorElement={<EventDetailsError />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Route>,
-    ),
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
-  return <RouterProvider router={router} />;
 }
 
 export default App;
