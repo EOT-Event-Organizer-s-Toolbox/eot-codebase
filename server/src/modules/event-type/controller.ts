@@ -50,6 +50,9 @@ const eventTypeController = {
       await isAuthenticated(req.session);
       const { id } = req.params;
       const result = await eventTypeService.findById(id);
+      if (result == null) {
+        return res.sendStatus(404);
+      }
       res.json({ data: eventTypeSerializer.default(result) });
     } catch (e) {
       next(e);

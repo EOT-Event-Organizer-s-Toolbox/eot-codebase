@@ -4,11 +4,14 @@ import router from './modules/routes';
 import session from 'express-session';
 import { env } from './utils/env';
 import path from 'node:path';
+import invariant from 'tiny-invariant';
 
 const WEB_DIST_PATH = path.resolve(__dirname, '../../web/dist');
 
 const app = express();
 const port = 3000;
+
+invariant(env.SESSION_SECRET);
 
 // middlewares
 app.use(express.static(WEB_DIST_PATH));

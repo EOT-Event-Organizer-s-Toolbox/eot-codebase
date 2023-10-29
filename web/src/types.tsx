@@ -15,9 +15,9 @@ export type CommunityEventType = {
 
 export type CommunityEvent = {
   id: string;
-  eventType?: CommunityEventType;
+  eventType?: CommunityEventType | null;
   ideaConfirmed?: boolean;
-  organizer?: User;
+  organizer?: User | null;
   date?: string;
   inPersonEvent: boolean;
   onlineEvent: boolean;

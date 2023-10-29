@@ -26,8 +26,8 @@ const authService = {
   register: async (
     email: string,
     password: string,
-    firstname: string,
-    lastname: string,
+    firstname?: string,
+    lastname?: string,
     phone?: string,
   ): Promise<AuthInfo> => {
     const existingUser = await prisma.user.findUnique({

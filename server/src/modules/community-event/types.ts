@@ -6,18 +6,14 @@ import {
 import { Modify } from '../../utils/types';
 
 export type CommunityEvent = CommunityEventPrisma & {
-  eventType: EventType;
-  organizer: User;
+  eventType?: EventType | null;
+  organizer?: User | null;
 };
 
 export type CommunityEventResponse = Modify<
-  Omit<
-    CommunityEvent,
-    'typeId' | 'organizerId' | 'announcementPosted' | 'volunteersNeeded'
-  >,
+  Omit<CommunityEvent, 'typeId' | 'organizerId' | 'announcementPosted'>,
   {
-    organizer: string;
+    organizer?: User | null;
     eventAnnounced: boolean;
-    numVolunteersNeeded: number;
   }
 >;

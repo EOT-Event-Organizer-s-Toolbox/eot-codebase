@@ -26,9 +26,7 @@ export class BadRequestError extends ApplicationError {
   issues: unknown[];
   constructor(message?: string, issues?: unknown[]) {
     super(message || 'VALIDATION ERROR', 400);
-    if (issues) {
-      this.issues = issues;
-    }
+    this.issues = issues ?? [];
   }
 }
 

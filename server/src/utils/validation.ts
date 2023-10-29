@@ -19,6 +19,6 @@ export async function validationParser<T extends AnyZodObject>(
     if (err instanceof ZodError) {
       throw new BadRequestError('', err.issues);
     }
-    throw new BadRequestError(err.message);
+    throw new BadRequestError(String(err));
   }
 }
