@@ -4,6 +4,19 @@ import { loginReqSchema, registerReqSchema } from './validations';
 import authService from './service';
 
 const authController = {
+  getCurrentUser: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      if (req.session.user == null) {
+        return null;
+      }
+      const { id } = req.session.user;
+      const user = await authService.getUser(id);
+      return user;
+    } catch (e) {
+      next(e);
+    }
+  },
+
   login: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { body } = await validationParser(loginReqSchema, req);
