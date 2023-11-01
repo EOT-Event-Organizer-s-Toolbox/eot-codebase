@@ -1,21 +1,12 @@
 import EventListSingle from './EventListSingle';
 import { CommunityEvent } from '../../types';
-import { useLoaderData } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import LoadingButton from '../Shared/LoadingButton';
-import { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../Shared/context/AuthContext';
-import eventService from '../../Services/eventService';
+import { useState } from 'react';
+import * as eventService from '../../Services/eventService';
 
 const EventList = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext);
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/login');
-    }
-  }, [isLoggedIn, navigate]);
-
   const events = useLoaderData() as CommunityEvent[];
   const [loading, setLoading] = useState(false);
   const newCommunityEvent = async () => {

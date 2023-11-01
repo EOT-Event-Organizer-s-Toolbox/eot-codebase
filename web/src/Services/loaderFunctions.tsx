@@ -1,16 +1,73 @@
-import { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
-import eventService from './eventService';
-import { CommunityEvent } from '../types';
+import { LoaderFunctionArgs } from 'react-router-dom';
+import axios, { AxiosError } from 'axios';
+import { QueryClient } from '@tanstack/react-query';
 
-export const eventsLoader: LoaderFunction = async () => {
-  const events: CommunityEvent[] | undefined = await eventService.getAll();
-  if (!events) return null;
-  return events;
+export class LoaderBaseError extends Error {}
+export class NotFoundError extends LoaderBaseError {}
+export class UnauthorizedError extends LoaderBaseError {}
+
+function translateLoaderError(e: unknown): LoaderBaseError {
+  if (e instanceof LoaderBaseError) {
+    return e;
+  }
+  if (e instanceof AxiosError) {
+    if (e.response?.status === 404) {
+      return new NotFoundError();
+    }
+    if (e.response?.status === 401) {
+      return new UnauthorizedError();
+    }
+    return new LoaderBaseError(String(e));
+  }
+  return new LoaderBaseError(String(e));
+}
+
+function loader(
+  logic: (
+    queryClient: QueryClient,
+    args: LoaderFunctionArgs,
+  ) => Promise<unknown>,
+) {
+  return (queryClient: QueryClient) => async (args: LoaderFunctionArgs) => {
+    try {
+      return await logic(queryClient, args);
+    } catch (e) {
+      throw translateLoaderError(e);
+    }
+  };
+}
+
+const eventsQuery = {
+  queryKey: ['community-events'],
+  queryFn: async () => {
+    const req = await axios.get('/api/community-events');
+    return req.data.data;
+  },
 };
 
-export const eventDetailsLoader: LoaderFunction = async ({
-  params,
-}: LoaderFunctionArgs) => {
-  if (!params.id) return null;
-  return await eventService.getEvent(params.id);
-};
+const eventDetailQuery = (id: string) => ({
+  queryKey: ['community-events', id],
+  queryFn: async () => {
+    const req = await axios.get(`/api/community-events/${id}`);
+    return req.data.data;
+  },
+});
+
+/* Retrieve all Events from the server */
+export const eventsLoader = loader(async (queryClient) => {
+  return (
+    queryClient.getQueryData(eventsQuery.queryKey) ??
+    (await queryClient.fetchQuery(eventsQuery))
+  );
+});
+
+/* Retrieve a single event from the server */
+export const eventDetailsLoader = loader(async (queryClient, { params }) => {
+  if (!params.id) {
+    throw new NotFoundError();
+  }
+  return (
+    queryClient.getQueryData(eventDetailQuery(params.id).queryKey) ??
+    (await queryClient.fetchQuery(eventDetailQuery(params.id)))
+  );
+});
