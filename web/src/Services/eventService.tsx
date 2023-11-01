@@ -1,40 +1,10 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { CommunityEvent, EditCommunityEvent } from '../types';
 
 const baseUrl = '/api/community-events';
 
-/* Retrieve all Events from the server */
-const getAll = async () => {
-  try {
-    const req = await axios.get(baseUrl);
-    const eventList: CommunityEvent[] = req.data.data;
-    return eventList;
-  } catch (e) {
-    /* Handle error due to no server connection */
-    if (e instanceof AxiosError && e.code === 'ERR_NETWORK') {
-      alert('Network Error - Could not connect to server');
-    }
-    console.error('error:', e);
-  }
-};
-
-/* Retrieve a single event from the server */
-const getEvent = async (id: string) => {
-  try {
-    const req = await axios.get(`${baseUrl}/${id}`);
-    const event: CommunityEvent = req.data.data;
-    return event;
-  } catch (e) {
-    if (e instanceof AxiosError && e.response?.status === 404) {
-      alert('Event not found');
-    } else {
-      console.error(e);
-    }
-  }
-};
-
 /**  Creates a new event */
-const createEvent = async () => {
+export const createEvent = async () => {
   try {
     const req = await axios.post(baseUrl, {});
     const event: CommunityEvent = req.data.data;
@@ -45,7 +15,7 @@ const createEvent = async () => {
 };
 
 /* Update an event */
-const updateEvent = async (id: string, event: EditCommunityEvent) => {
+export const updateEvent = async (id: string, event: EditCommunityEvent) => {
   try {
     const req = await axios.put(`${baseUrl}/${id}`, event);
     const updatedEvent: CommunityEvent = req.data.data;
@@ -54,5 +24,3 @@ const updateEvent = async (id: string, event: EditCommunityEvent) => {
     console.error(e);
   }
 };
-
-export default { getAll, getEvent, createEvent, updateEvent };

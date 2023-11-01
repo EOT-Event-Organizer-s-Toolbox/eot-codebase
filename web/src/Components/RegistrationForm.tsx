@@ -3,12 +3,9 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Text, Password } from './Shared/Forms';
 import { NewUserForm, User } from '../types';
-
 import styles from './Shared/styles';
 import { useNavigate } from 'react-router-dom';
 import authService from '../Services/authService';
-import { useContext } from 'react';
-import { AuthContext } from './Shared/context/AuthContext';
 
 const validationSchema = z
   .object({
@@ -32,8 +29,6 @@ const RegistrationForm = () => {
     resolver: zodResolver(validationSchema),
   });
 
-  const { setUser, setIsLoggedIn } = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const submitData = async (data: NewUserForm) => {
@@ -48,9 +43,6 @@ const RegistrationForm = () => {
       if (!response) {
         throw new Error('Registration failed');
       }
-
-      setIsLoggedIn(true);
-      setUser(response);
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);

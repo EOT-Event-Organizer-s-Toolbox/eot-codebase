@@ -9,7 +9,7 @@ import {
   EditCommunityEvent,
   CommunityEventType,
 } from '../../types';
-import eventService from '../../Services/eventService';
+import * as eventService from '../../Services/eventService';
 import eventTypeService from '../../Services/eventTypeService';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';

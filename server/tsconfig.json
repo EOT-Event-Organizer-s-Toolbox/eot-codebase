@@ -15,12 +15,8 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "noUnusedLocals": true,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "strict": true,
+    "noUnusedLocals": true
   },
   "include": ["src/**/*.ts", "src/index.ts"]
 }

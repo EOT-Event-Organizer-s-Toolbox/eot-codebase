@@ -4,6 +4,15 @@ import * as bcrypt from 'bcrypt';
 import { AuthInfo } from 'express-session';
 
 const authService = {
+  getUser: async (id: string) => {
+    try {
+      const user = await prisma.user.findUnique({ where: { id } });
+      return user;
+    } catch {
+      return null;
+    }
+  },
+
   /**
    * Takes in an email and password and checks if the credentials match any user
    * in the database. If successful the user auth info is returned else an Unauthorized error
@@ -26,8 +35,8 @@ const authService = {
   register: async (
     email: string,
     password: string,
-    firstname: string,
-    lastname: string,
+    firstname?: string,
+    lastname?: string,
     phone?: string,
   ): Promise<AuthInfo> => {
     const existingUser = await prisma.user.findUnique({

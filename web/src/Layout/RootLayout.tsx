@@ -1,18 +1,16 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import logo from '/eotlogo_white.svg';
 import authService from '../Services/authService';
-import { AuthContext } from '../Components/Shared/context/AuthContext';
-import { useContext } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 const RootLayout = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn, setUser } = useContext(AuthContext);
+  const queryClient = useQueryClient();
 
   const logout = async () => {
     try {
       await authService.logout();
-      setIsLoggedIn(false);
-      setUser(null);
+      queryClient.invalidateQueries();
       navigate('/login');
     } catch (e) {
       console.error(e);

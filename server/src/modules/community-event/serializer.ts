@@ -5,12 +5,12 @@ import { updateCommunityEventReq } from './validations';
 
 export default {
   default: (
-    communityEvent: CommunityEvent & { organizer: User },
+    communityEvent: CommunityEvent & { organizer?: User | null },
   ): CommunityEventResponse => ({
     id: communityEvent.id,
     eventType: communityEvent.eventType,
     ideaConfirmed: communityEvent.ideaConfirmed,
-    organizer: communityEvent.organizerId,
+    organizer: communityEvent.organizer,
     date: communityEvent.date,
     inPersonEvent: communityEvent.inPersonEvent,
     onlineEvent: communityEvent.onlineEvent,
@@ -21,7 +21,7 @@ export default {
     venueContactEmail: communityEvent.venueContactEmail,
     eventAnnounced: communityEvent.announcementPosted,
     signUpFormSent: communityEvent.signUpFormSent,
-    numVolunteersNeeded: communityEvent.volunteersNeeded,
+    volunteersNeeded: communityEvent.volunteersNeeded,
     volunteerRequestsSent: communityEvent.volunteerRequestsSent,
   }),
 
