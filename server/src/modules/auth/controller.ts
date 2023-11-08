@@ -7,11 +7,11 @@ const authController = {
   getCurrentUser: async (req: Request, res: Response, next: NextFunction) => {
     try {
       if (req.session.user == null) {
-        return null;
+        return res.status(401).json({ user: null, message: 'User not logged in.' });
       }
       const { id } = req.session.user;
       const user = await authService.getUser(id);
-      return user;
+      return res.status(200).json({ user });
     } catch (e) {
       next(e);
     }
