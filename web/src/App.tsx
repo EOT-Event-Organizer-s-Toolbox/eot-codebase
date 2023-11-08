@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { eventDetailsLoader, eventsLoader } from './Services/loaderFunctions';
+import { eventDetailsLoader, eventsLoader, userLoader } from './Services/loaderFunctions';
 //Layouts
 import RootLayout from './Layout/RootLayout';
 //Pages
@@ -10,6 +10,7 @@ import NotFound from './Components/Error/NotFound';
 import EditEvent from './Components/EditEvent/EditEvent';
 import RegistrationForm from './Components/RegistrationForm';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import DefaultErrorComponent from './Components/Error/DefaultErrorComponent';
 
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
       <RouterProvider router={router} />
     </QueryClientProvider>
   );

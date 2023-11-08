@@ -53,6 +53,23 @@ const eventDetailQuery = (id: string) => ({
   },
 });
 
+const userQuery = {
+  queryKey: ['user'],
+  queryFn: async () => {
+    const req = await axios.get('/api/auth/user');
+    return req.data.data;
+  },
+};
+
+/* Retrive current user from the server */
+
+export const userLoader = loader(async (queryClient) => {
+  return (
+    queryClient.getQueryData(userQuery.queryKey) ??
+      (await queryClient.fetchQuery(userQuery))
+  )
+});
+
 /* Retrieve all Events from the server */
 export const eventsLoader = loader(async (queryClient) => {
   return (

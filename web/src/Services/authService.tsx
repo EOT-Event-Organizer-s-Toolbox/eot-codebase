@@ -9,7 +9,7 @@ const register = async (user: NewUser) => {
     const newUser: User = req.data.data;
     return newUser;
   } catch (e) {
-    alert('failed to register');
+    console.error('failed to register');
   }
 };
 
@@ -26,7 +26,7 @@ const login = async ({
     const user = req.data.data;
     return user;
   } catch (e) {
-    alert('failed to login');
+    console.error('failed to login');
   }
 };
 
@@ -36,8 +36,21 @@ const logout = async () => {
     const res = req.data.data;
     return res;
   } catch (e) {
-    alert('failed to logout');
+    console.error('failed to logout');
   }
 };
 
-export default { register, login, logout };
+const getUser = async () => {
+  try {
+    console.log('retrieve user');
+    const req = await axios.get(`/api/auth/user`);
+    console.log('req:', req);
+    const user = req.data.data;
+    console.log('user:', user);
+    return user;
+  } catch (e) {
+    console.error('failed to get user');
+  }
+}
+
+export default { register, login, logout, getUser };

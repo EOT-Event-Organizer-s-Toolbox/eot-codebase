@@ -1,5 +1,4 @@
 import { UseFormRegisterReturn } from 'react-hook-form';
-import styles from '../styles';
 
 type TextProps = {
   label: string;
@@ -17,18 +16,18 @@ const Text = ({
   register,
 }: TextProps) => {
   return (
-    <div className={styles.forms.layout.inputContainer}>
-      <label className={styles.forms.label} htmlFor={name}>
+    <div className="">
+      <label className="" htmlFor={name}>
         {label}
       </label>
       <input
         type="text"
         placeholder={placeHolder}
         {...register}
-        className={styles.forms.text}
+        className=""
       />
       {errorValue && (
-        <span className={styles.forms.errorText}>{errorValue}</span>
+        <span className="">{errorValue}</span>
       )}
     </div>
   );
