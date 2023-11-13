@@ -7,7 +7,6 @@ const RootLayout = () => {
   return (
     <>
       <Header />
-
       <main className="p-4">
         <Outlet />
       </main>

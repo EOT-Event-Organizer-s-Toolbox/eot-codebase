@@ -9,6 +9,7 @@ const EventList = () => {
   const navigate = useNavigate();
   const events = useLoaderData() as CommunityEvent[];
   const [loading, setLoading] = useState(false);
+   console.log(events);
   const newCommunityEvent = async () => {
     setLoading(true);
     const event = await eventService.createEvent();
@@ -18,21 +19,23 @@ const EventList = () => {
     }
   };
 
+  if(loading) return <div>Loading...</div>
+
   return (
-    <div>
-      <div className="flex flex-row justify-between align-middle pb-2">
-        <h1 className="text-2xl font-black uppercase">Event List</h1>
+    <>
+      <section className="flex items-center justify-between pb-4">
+        <h2 className="uppercase font-bold text-xl">Upcoming Events</h2>
         <LoadingButton loading={loading} action={newCommunityEvent}>
           New Event
         </LoadingButton>
-      </div>
+      </section>
 
       {events.length > 0
         ? events.map((event) => (
             <EventListSingle key={event.id} event={event} />
           ))
         : 'No events found! Create a new event to get started.'}
-    </div>
+    </>
   );
 };
 

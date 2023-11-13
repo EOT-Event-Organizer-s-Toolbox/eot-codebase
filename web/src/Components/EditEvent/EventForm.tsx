@@ -427,11 +427,11 @@ const EventForm = ({ communityEvent }: Props) => {
       </div>
       <div className="flex flex-row align-middle gap-3 py-6">
         <input
-          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600 cursor-pointer"
+          className="bg-primary px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600 cursor-pointer"
           type="submit"
         />
         <button
-          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-red-600"
+          className="bg-dark px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-red-600"
           onClick={onCancel}
         >
           Cancel

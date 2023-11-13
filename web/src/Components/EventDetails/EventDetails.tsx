@@ -94,13 +94,13 @@ const EventDetails = () => {
       <footer className="flex flex-row align-middle gap-3 p-3 bg-zinc-700">
         <Link
           to="/"
-          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600"
+          className="bg-primary px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600"
         >
           Return to Event List
         </Link>
         <Link
           to={`/edit/${event.id}`}
-          className="bg-zinc-400 px-4 py-1 text-white text-xs leading-loose hover:bg-lime-600"
+          className="bg-primary px-4 py-1 text-white text-xs leading-loose hover:bg-lime-600"
         >
           Edit Event
         </Link>

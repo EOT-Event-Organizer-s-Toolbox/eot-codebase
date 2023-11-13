@@ -31,7 +31,7 @@ const EventListSingle = ({ event }: Props) => {
     )}`;
   }
   return (
-    <section className="flex justify-between flex-col md:flex-row md:align-middle p-3 md:py-1.5 md:gap-2 bg-zinc-100 mb-2 hover:bg-zinc-200">
+    <section className="flex justify-between flex-col border-t-secondary border-t-2">
       <div
         onClick={() => handleView(event.id)}
         className="flex flex-col md:flex-row md:align-middle md:gap-2 cursor-pointer"
@@ -46,27 +46,27 @@ const EventListSingle = ({ event }: Props) => {
         </p>
         <div className="flex flex-wrap flex-row md:align-middle gap-1 text-xs md:leading-loose">
           {event.onlineEvent && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-zinc-300">
+            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
               Online Event
             </div>
           )}
           {event.inPersonEvent && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-zinc-300">
+            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
               In Person Event
             </div>
           )}
           {event.ideaConfirmed && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-zinc-300">
+            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
               Confirmed
             </div>
           )}
           {event.announcementPosted && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-zinc-300">
+            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
               Posted
             </div>
           )}
           {event.signUpFormSent && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-zinc-300">
+            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
               Sign-up Form Sent
             </div>
           )}
@@ -74,13 +74,13 @@ const EventListSingle = ({ event }: Props) => {
       </div>
       <div className="hidden md:flex md:flex-row md:justify-center md:align-middle md:gap-2 z-50">
         <button
-          className="bg-zinc-400 px-4 py-0 self-center text-white text-xs leading-loose hover:bg-lime-600"
+          className="bg-primary px-4 py-0 self-center text-white text-xs leading-loose hover:bg-secondary"
           onClick={() => handleView(event.id)}
         >
           View
         </button>
         <button
-          className="bg-zinc-400 px-4 py-0 text-white self-center text-xs leading-loose hover:bg-red-600"
+          className="bg-primary px-4 py-0 text-white self-center text-xs leading-loose hover:bg-primary"
           onClick={() => handleDelete(event.id)}
         >
           Delete
