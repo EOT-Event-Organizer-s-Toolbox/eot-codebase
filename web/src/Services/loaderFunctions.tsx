@@ -53,11 +53,12 @@ const eventDetailQuery = (id: string) => ({
   },
 });
 
-const userQuery = {
+export const userQuery = {
   queryKey: ['user'],
+  retry: false,
   queryFn: async () => {
     const req = await axios.get('/api/auth/user');
-    return req.data.data;
+    return req.data;
   },
 };
 
