@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Text, Password } from './Shared/Forms';
 import authService from '../Services/authService';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 const validationSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -23,16 +24,18 @@ const LoginForm = () => {
     resolver: zodResolver(validationSchema),
   });
 
+  const queryClient = useQueryClient();
+
   const navigate = useNavigate();
 
   const submitData = async (data: LoginForm) => {
     try {
-      const user = await authService.login({
+      await authService.login({
         email: data.email,
         password: data.password,
       });
+      queryClient.invalidateQueries();
       navigate('/');
-      console.log('user:', user)
     } catch (e) {
       if (e instanceof Error) {
         console.error(e.message);
