@@ -20,6 +20,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     errorElement: <DefaultErrorComponent />,
+    loader: userLoader(queryClient),
     children: [
       {
         path: 'login',
