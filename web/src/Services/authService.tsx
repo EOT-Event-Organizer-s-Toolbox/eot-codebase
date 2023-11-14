@@ -40,17 +40,14 @@ const logout = async () => {
   }
 };
 
-const getUser = async () => {
+const me = async () => {
   try {
-    console.log('retrieve user');
     const req = await axios.get(`/api/auth/user`);
-    console.log('req:', req);
-    const user = req.data.data;
-    console.log('user:', user);
+    const user = req.data;
     return user;
   } catch (e) {
     console.error('failed to get user');
   }
 }
 
-export default { register, login, logout, getUser };
+export default { register, login, logout, me };

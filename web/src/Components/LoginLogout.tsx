@@ -2,38 +2,37 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import authService from '../Services/authService';
 
-const LoginLogout = () => {
+type LoginLogoutProps = {
+  me: { id: number; firstName: string; lastName: string } | null;
+  loading: boolean;
+}
+
+const LoginLogout = ({ me, loading }: LoginLogoutProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const getUser = async () => {
-    const user = await authService.getUser()
-      console.log('testuser:', user)
-  }
-
   const logout = async () => {
-    console.log('logout')
     try {
       await authService.logout();
       queryClient.invalidateQueries();
+      // for testing (delete this when better solution is found)
       navigate('/login');
     } catch (e) {
       console.error(e);
     }
   };
 
-  const LoggedIn = false
+  const login = () => {
+    navigate('/login');
+  }
 
-  if(!LoggedIn){
+  if(loading) return null;
+
+  if(!me){
     return (
-      <>
-      <button className="text-white" onClick={getUser}>
-          GET USER
-      </button> 
-      <button className="text-white" onClick={logout}>
+      <button className="text-white" onClick={login}>
           Login
       </button>
-      </>
       
     )
   }
