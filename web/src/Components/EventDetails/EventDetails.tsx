@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { formatDateWritten, getDayOfWeek, isDateValid } from '../../utils/date';
 import Task from './Task';
 import { deleteEvent } from '../../Services/eventService';
-import { InvalidateQueryFilters, useQueryClient, useMutation } from '@tanstack/react-query';
+import {  useQueryClient, useMutation } from '@tanstack/react-query';
+
 
 const EventDetails = () => {
   const event = useLoaderData() as CommunityEvent;
@@ -31,18 +32,21 @@ const EventDetails = () => {
     dateDetails = `${getDayOfWeek(event.date)}, ${formatDateWritten(
       event.date,
     )}`;
+  
   }
 
-  const mutation = useMutation(deleteEvent, {
-    onSuccess: () => {
-      // Invalidate the 'community-events' query key to update the cache
-      queryClient.invalidateQueries('community-events');
-    },
-  });
 
-  const handleDeleteEvent = (id: string) => {
-    mutation.mutate(id);
-  };
+// Using useMutation with appropriate options
+const deleteEventMutation = useMutation({
+  mutationFn: (id: string) => deleteEvent(id)
+})
+
+// Example usage of the mutation
+const handleDeleteEvent = async (id: string) => {
+  deleteEventMutation.mutate(id);
+  queryClient.invalidateQueries({queryKey: ['community-events']});
+  navigate('/');
+};
   
 
   return (
