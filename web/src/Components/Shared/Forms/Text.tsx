@@ -16,18 +16,18 @@ const Text = ({
   register,
 }: TextProps) => {
   return (
-    <div className="">
-      <label className="" htmlFor={name}>
+    <div className="flex flex-col pb-4">
+      <label className="text-lg font-bold" htmlFor={name}>
         {label}
       </label>
       <input
         type="text"
         placeholder={placeHolder}
         {...register}
-        className=""
+        className="p-2 bg-white text-xl"
       />
       {errorValue && (
-        <span className="">{errorValue}</span>
+        <span className="text-primary">{errorValue}</span>
       )}
     </div>
   );

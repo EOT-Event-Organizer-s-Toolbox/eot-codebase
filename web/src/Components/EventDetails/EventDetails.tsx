@@ -1,11 +1,15 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { CommunityEvent } from '../../types';
 import { Link } from 'react-router-dom';
 import { formatDateWritten, getDayOfWeek, isDateValid } from '../../utils/date';
 import Task from './Task';
+import { deleteEvent } from '../../Services/eventService';
+import { InvalidateQueryFilters, useQueryClient, useMutation } from '@tanstack/react-query';
 
 const EventDetails = () => {
   const event = useLoaderData() as CommunityEvent;
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   if (!event.date && !event.eventType) {
     return (
@@ -28,6 +32,18 @@ const EventDetails = () => {
       event.date,
     )}`;
   }
+
+  const mutation = useMutation(deleteEvent, {
+    onSuccess: () => {
+      // Invalidate the 'community-events' query key to update the cache
+      queryClient.invalidateQueries('community-events');
+    },
+  });
+
+  const handleDeleteEvent = (id: string) => {
+    mutation.mutate(id);
+  };
+  
 
   return (
     <>
@@ -68,7 +84,7 @@ const EventDetails = () => {
         <Task label="Sign-up Form Sent" isComplete={event.signUpFormSent} />
         <Task
           label="Announcement Posted"
-          isComplete={event.announcementPosted}
+          isComplete={event.eventAnnounced}
         />
         {event.volunteersNeeded && event.volunteersNeeded > 0 && (
           <Task
@@ -104,6 +120,11 @@ const EventDetails = () => {
         >
           Edit Event
         </Link>
+        <button 
+          onClick={() => handleDeleteEvent(event.id)}
+          className="bg-primary px-4 py-1 text-white text-xs leading-loose hover:bg-lime-600">
+          Delete Event
+        </button>
       </footer>
     </>
   );

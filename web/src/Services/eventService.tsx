@@ -24,3 +24,13 @@ export const updateEvent = async (id: string, event: EditCommunityEvent) => {
     console.error(e);
   }
 };
+
+export const deleteEvent = async (id: string) => {
+  try {
+    const req = await axios.delete(`${baseUrl}/${id}`);
+    return req.data as string;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};

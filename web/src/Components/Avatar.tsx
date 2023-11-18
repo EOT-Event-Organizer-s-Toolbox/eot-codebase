@@ -1,13 +1,19 @@
+import { User } from "../types";
+
 type AvatarProps = {
-  user: { id: number; firstName: string; lastName: string, email: string } | null;
+  user: User | null
 }
 const Avatar = ({user}: AvatarProps) => {
  const avatarText = `${user?.firstName[0].toUpperCase()}${user?.firstName[1].toLowerCase()}`;
+ if (!user) {
+  console.log('no user');
+   return null;
+ }
  return ( 
    <figure className="flex flex-row gap-2">
     {user && 
-      <div className='flex h-8 w-8 text-[1em] items-center justify-center rounded-full bg-secondary'>
-        <p className="text-white text-center">{avatarText}</p>
+      <div className='flex h-9 w-9 text-[1em] font-bold items-center justify-center rounded-full bg-dark'>
+        <p className="text-primary text-center">{avatarText}</p>
       </div>
     }
       <figcaption className="sr-only">

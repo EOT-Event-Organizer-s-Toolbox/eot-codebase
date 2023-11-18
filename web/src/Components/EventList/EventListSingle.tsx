@@ -2,6 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { CommunityEvent } from '../../types';
 import { formatDateWritten, getDayOfWeek, isDateValid } from '../../utils/date';
 
+import { BsPeopleFill, BsLaptopFill } from 'react-icons/bs';
+import { MdSpeakerNotes } from 'react-icons/md';
+import Avatar from '../Avatar';
+
+
 type Props = {
   event: CommunityEvent | undefined;
 };
@@ -14,14 +19,14 @@ const EventListSingle = ({ event }: Props) => {
     navigate(`/${id}`);
   };
 
-  const handleDelete = (id: string) => {
-    // TODO - implement delete
-    console.log('DELETE', id);
-  };
-
   if (!event) {
     return null;
   }
+  
+  const showNotes = () => {
+    alert('event note alert placeholder: ' + event.notes)
+  }
+
 
   // Handle dates that are not yet set
   let dateDetails = 'Date TBD';
@@ -30,63 +35,69 @@ const EventListSingle = ({ event }: Props) => {
       event.date,
     )}`;
   }
+
+  let location = 'TBD';
+  if(event.venue){
+    location = event.venue;
+  }
+
+  let orgainizer = null;
+  if(event.organizer){
+    orgainizer = event.organizer;
+  }
+
   return (
-    <section className="flex justify-between flex-col border-t-secondary border-t-2">
-      <div
-        onClick={() => handleView(event.id)}
-        className="flex flex-col md:flex-row md:align-middle md:gap-2 cursor-pointer"
-      >
-        <h3 className="font-semibold flex flex-row gap-2">
-          <span>{event.eventType ? event.eventType.type : 'New Event'}</span>
-          <span>{event.onlineEvent && '(Online)'}</span>
-          <span>{dateDetails}</span>
-        </h3>
-        <p className="text-xs -mt-1 md:m-0 pb-2 md:pb-0 md:leading-loose">
-          {event.venue}
-        </p>
-        <div className="flex flex-wrap flex-row md:align-middle gap-1 text-xs md:leading-loose">
-          {event.onlineEvent && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
-              Online Event
+    <article className="flex flex-row justify-between items-start sm:items-center gap-2 py-4 border-t-light border-t-2 last:border-b-2 last:border-b-light">
+      <figure className="bg-primary w-8 h-8 sm:w-12 sm:h-12 rounded flex justify-center items-center flex-shrink-0">
+        {event.inPersonEvent &&
+          <BsPeopleFill className="text-white sm:text-2xl" />
+        }
+        {event.onlineEvent &&
+          <BsLaptopFill className="text-white sm:text-2xl" />
+        }
+        <figcaption className="sr-only">The type of event</figcaption>
+      </figure>
+      <div className="flex grow flex-col sm:flex-row gap-2 sm:justify-between justify-start sm:items-center items-start">
+        <div className="flex flex-col leading-none">
+          <h3 className='font-bold text-sm'>{event.eventType?.type} - {dateDetails}</h3>
+          <p className='font-thin text-xs'>6PM to 9PM @ {location}</p>
+        </div>
+        <div className='flex flex-col sm:flex-row grow sm:items-center gap-3 justify-end'>
+          <div className="flex flex-col sm:text-right leading-none text-xs font-">
+            {event.ideaConfirmed && <div>Idea Confirmed</div>}
+            {event.eventAnnounced && <div>Anounced</div>}
+            {event.signUpFormSent && <div>Sign up Sent</div>}
+            {event.volunteerRequestsSent && <div>Volunteers Requested</div>}
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            <button className="bg-dark text-white rounded px-2 h-7">Venue Contact</button>
+            <button 
+              className="bg-primary text-white px-2 h-7 rounded"
+              onClick={() => handleView(event.id)}
+            >View</button>
+            {event.notes?.length && event.notes?.length > 0 ?
+            <button 
+              className="bg-secondary rounded flex items-center gap-1 px-2 h-7"
+              onClick={showNotes}
+            >
+              note
+              <MdSpeakerNotes />
+            </button>
+            : null
+            }
+          </div>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 order-first sm:order-none">
+            <div className="flex flex-row gap-2 sm:gap-0 sm:flex-col sm:text-right leading-tight text-xs">
+              <p className="font-bold">Event Organizer</p>
+              <p>{`${event.organizer?.firstName} ${event.organizer?.lastName}`}</p>
             </div>
-          )}
-          {event.inPersonEvent && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
-              In Person Event
+            <div className="hidden sm:block">
+              <Avatar user={orgainizer} />
             </div>
-          )}
-          {event.ideaConfirmed && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
-              Confirmed
-            </div>
-          )}
-          {event.announcementPosted && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
-              Posted
-            </div>
-          )}
-          {event.signUpFormSent && (
-            <div className="text-center leading-loose p-4 pb-0 pt-0 rounded-lg bg-secondary">
-              Sign-up Form Sent
-            </div>
-          )}
+          </div>
         </div>
       </div>
-      <div className="hidden md:flex md:flex-row md:justify-center md:align-middle md:gap-2 z-50">
-        <button
-          className="bg-primary px-4 py-0 self-center text-white text-xs leading-loose hover:bg-secondary"
-          onClick={() => handleView(event.id)}
-        >
-          View
-        </button>
-        <button
-          className="bg-primary px-4 py-0 text-white self-center text-xs leading-loose hover:bg-primary"
-          onClick={() => handleDelete(event.id)}
-        >
-          Delete
-        </button>
-      </div>
-    </section>
+    </article>
   );
 };
 

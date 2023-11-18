@@ -4,9 +4,10 @@ type LoadingButtonProps = {
   loading: boolean;
   children: React.ReactNode;
   action: () => void;
+  loadingMessage?: string;
 };
 
-const LoadingButton = ({ loading, children, action }: LoadingButtonProps) => {
+const LoadingButton = ({ loading, children, action, loadingMessage }: LoadingButtonProps) => {
   const getClasses = () => {
     let classes =
       'inline-flex items-center px-4 py-1 font-semibold leading-6 text-sm shadow text-white bg-dark rounded hover:bg-zinc-400 transition ease-in-out duration-150';
@@ -40,7 +41,7 @@ const LoadingButton = ({ loading, children, action }: LoadingButtonProps) => {
           ></path>
         </svg>
       )}
-      {loading ? 'Creating New Event...' : children}
+      {loading ? loadingMessage || 'Creating New Event...' : children}
     </button>
   );
 };

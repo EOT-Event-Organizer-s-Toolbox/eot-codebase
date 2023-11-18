@@ -23,7 +23,6 @@ const Header = () => {
   const login = () => {
     navigate('/login');
   }
-  console.log(user);
 
   return (
     <header className="flex flex-row items-center justify-between gap-3 py-4 px-3 bg-primary">
@@ -40,7 +39,7 @@ const Header = () => {
           ? <button className="text-white" onClick={login}>Login</button>
           : <button className="text-white" onClick={logout}>Logout</button>
         }
-        {isLoading ? null : !user && <Avatar user={user} />}
+        {isLoading ? null : user && <Avatar user={user} />}
       </div>
     </header>
   )
