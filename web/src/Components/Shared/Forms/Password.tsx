@@ -1,4 +1,3 @@
-import styles from '../styles';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 type PasswordProps = {
@@ -10,18 +9,18 @@ type PasswordProps = {
 
 function Password({ label, errorValue, placeHolder, register }: PasswordProps) {
   return (
-    <div className={styles.forms.layout.inputContainer}>
-      <label className={styles.forms.label} htmlFor={register.name}>
+    <div className="flex flex-col pb-4">
+      <label className="font-bold text-lg" htmlFor={register.name}>
         {label}
       </label>
       <input
         type="password"
         placeholder={placeHolder}
         {...register}
-        className={styles.forms.text}
+        className="autofill:bg-light p-2 bg-white text-xl"
       />
       {errorValue && (
-        <span className={styles.forms.errorText}>{errorValue}</span>
+        <span className="">{errorValue}</span>
       )}
     </div>
   );

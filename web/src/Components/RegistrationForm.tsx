@@ -3,7 +3,6 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { Text, Password } from './Shared/Forms';
 import { NewUserForm, User } from '../types';
-import styles from './Shared/styles';
 import { useNavigate } from 'react-router-dom';
 import authService from '../Services/authService';
 
@@ -52,12 +51,12 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className={`${styles.layout.container} max-sm max-w-4xl m-auto`}>
-      <h1 className={styles.layout.headingMain}>Create an account</h1>
+    <div className="max-sm max-w-4xl m-auto">
+      <h1 className="">Create an account</h1>
       <div className="py-4">
         <form
           onSubmit={handleSubmit(submitData)}
-          className={styles.forms.layout.loginForm}
+          className=""
         >
           <Text
             label="First Name"
@@ -92,8 +91,8 @@ const RegistrationForm = () => {
             errorValue={errors.passwordConfirmation?.message}
             register={register('passwordConfirmation')}
           />
-          <div className={styles.layout.buttonFooter}>
-            <input className={styles.layout.buttons.primary} type="submit" />
+          <div className="">
+            <input className="" type="submit" />
           </div>
         </form>
       </div>

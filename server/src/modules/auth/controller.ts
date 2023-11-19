@@ -11,7 +11,12 @@ const authController = {
       }
       const { id } = req.session.user;
       const user = await authService.getUser(id);
-      return res.status(200).json({ user });
+      return res.status(200).json({ 
+        id: user?.id, 
+        firstName: user?.firstName, 
+        lastName: user?.lastName,
+        email: user?.email,
+      });
     } catch (e) {
       next(e);
     }

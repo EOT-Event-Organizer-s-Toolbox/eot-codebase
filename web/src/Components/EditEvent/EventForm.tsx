@@ -3,7 +3,6 @@ import { z, ZodType } from 'zod';
 import { useForm, Controller } from 'react-hook-form';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-
 import {
   CommunityEvent,
   EditCommunityEvent,
@@ -13,6 +12,7 @@ import * as eventService from '../../Services/eventService';
 import eventTypeService from '../../Services/eventTypeService';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { InvalidateQueryFilters, useQueryClient } from '@tanstack/react-query';
 
 /* communityEvent format replaces values for inPersonEvent(BOOLEAN) and onlineEvent(BOOLEAN) */
 const EventFormatOptions = {
@@ -56,7 +56,7 @@ const validationSchema: ZodType<CommunityEventForm> = z.object({
   volunteersNeeded: z.number().optional(),
   eventFormat: EventFormatOptionsSchema,
   ideaConfirmed: schemaPatterns.singleCheckBox,
-  announcementPosted: schemaPatterns.singleCheckBox,
+  eventAnnounced: schemaPatterns.singleCheckBox,
   signUpFormSent: schemaPatterns.singleCheckBox,
   volunteerRequestsSent: schemaPatterns.singleCheckBox,
 });
@@ -66,6 +66,7 @@ type Props = {
 };
 
 const EventForm = ({ communityEvent }: Props) => {
+  const queryClient = useQueryClient();
   const [eventTypes, setEventTypes] = useState<
     CommunityEventType[] | undefined
   >(undefined);
@@ -106,8 +107,8 @@ const EventForm = ({ communityEvent }: Props) => {
       ideaConfirmed: communityEvent?.ideaConfirmed
         ? communityEvent.ideaConfirmed
         : false,
-      announcementPosted: communityEvent?.announcementPosted
-        ? communityEvent.announcementPosted
+      eventAnnounced: communityEvent?.eventAnnounced
+        ? communityEvent.eventAnnounced
         : false,
       signUpFormSent: communityEvent?.signUpFormSent
         ? communityEvent.signUpFormSent
@@ -154,14 +155,14 @@ const EventForm = ({ communityEvent }: Props) => {
       venue: data.venue,
       venueContactName: data.venueContactName,
       venueContactPhone: data.venueContactPhone,
-      announcementPosted: data.announcementPosted,
+      eventAnnounced: data.eventAnnounced,
       signUpFormSent: data.signUpFormSent,
       volunteersNeeded: data.volunteersNeeded,
       volunteerRequestsSent: data.volunteerRequestsSent,
     };
 
     const submittedEvent = await eventService.updateEvent(eventId, event);
-
+    queryClient.invalidateQueries(['community-events'] as InvalidateQueryFilters);
     if (submittedEvent) {
       navigate(`/${eventId}`);
     }
@@ -360,17 +361,17 @@ const EventForm = ({ communityEvent }: Props) => {
         </div>
 
         <div className="flex flex-row flex-wrap gap-1 pb-2">
-          <label className={style.formLabel} htmlFor="announcementPosted">
+          <label className={style.formLabel} htmlFor="eventAnnounced">
             Announcement Posted
           </label>
           <input
             type="checkbox"
-            id="announcementPosted"
-            {...register('announcementPosted')}
+            id="eventAnnounced"
+            {...register('eventAnnounced')}
           />
-          {errors.announcementPosted && (
+          {errors.eventAnnounced && (
             <span className="text-red-700 flex-grow">
-              {errors.announcementPosted.message}
+              {errors.eventAnnounced.message}
             </span>
           )}
         </div>
@@ -427,11 +428,11 @@ const EventForm = ({ communityEvent }: Props) => {
       </div>
       <div className="flex flex-row align-middle gap-3 py-6">
         <input
-          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600 cursor-pointer"
+          className="bg-primary px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-lime-600 cursor-pointer"
           type="submit"
         />
         <button
-          className="bg-zinc-400 px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-red-600"
+          className="bg-dark px-4 py-1 self-baseline text-white text-xs leading-loose hover:bg-red-600"
           onClick={onCancel}
         >
           Cancel
