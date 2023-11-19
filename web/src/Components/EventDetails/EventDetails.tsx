@@ -35,13 +35,11 @@ const EventDetails = () => {
   
   }
 
-
-// Using useMutation with appropriate options
 const deleteEventMutation = useMutation({
   mutationFn: (id: string) => deleteEvent(id)
 })
 
-// Example usage of the mutation
+
 const handleDeleteEvent = async (id: string) => {
   deleteEventMutation.mutate(id);
   queryClient.invalidateQueries({queryKey: ['community-events']});
